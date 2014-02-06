@@ -2,10 +2,10 @@
 
 Command line application to generate an auto-wired project type. 
 Supported project types include:
-  1. Command line interface (cli)
-  2. Core Project
-  3. Utility Project
-  4. Test Project
+1. Command line application
+2. Orb Core Project
+3. Utility Project 
+4. Test Project
 
   Generated projects are created with a predefined structure, dependency injection and default tasks added. 
   Logging, results reporting, coverage, documentation, static analysis...
@@ -14,15 +14,15 @@ Supported project types include:
 
   Add this line to your application's Gemfile:
 
-      gem orb-archetyper
+      `gem orb-archetyper`
 
   And then execute:
 
-      $ bundle orb-archetyper
+      `$ bundle orb-archetyper`
 
   Or install it yourself as:
 
-      $ gem install orb-archetyper
+      `$ gem install orb-archetyper`
 
   ## Usage
 
@@ -31,24 +31,24 @@ Supported project types include:
 e.g.
   `$ ruby orb-archetyper.rb --type cli -p comand-line -x coverage -i licence`
 
-  Usage: orb-archetyper COMMAND [OPTIONS]
+Usage: orb-archetyper COMMAND [OPTIONS]
 
   Required options:
-  * -t, --type [TYPE]           Select project type (cli, core, utility, test).
-  * -p, --project [STRING]      Specify the project name.
+  * -t, --type [TYPE] Select project type (cli, core, utility, test).
+  * -p, --project [STRING] Specify the project name.
 
 
-  Optional:
+Optional:
 
-  * -x, --exclude x,y,z         Explicitly state the files/folders you wish to EXCLUDE from the archetype.
-  * -i, --include x,y,z         Explicitly state the files/folders you wish to INCLUDE into the archetype.
-  * -d, --directoy [STRING]     Specify the target directoy, if not pwd.
-  * -g, --[no-]github           Create the git repo for the project, False if omitted, true if declared.
+* -x, --exclude x,y,z Explicitly state the files/folders you wish to EXCLUDE from the archetype.
+* -i, --include x,y,z Explicitly state the files/folders you wish to INCLUDE into the archetype.
+* -d, --directoy [STRING] Specify the target directoy, if not pwd.
+* -g, --[no-]github Create the git repo for the project, False if omitted, true if declared.
 
-  Common options:
-  * -e, --expand                     Display file/folder choices.
-  * -v, --version                    Display version
-  * -h, --help                       Show help
+Common options:
+* -e, --expand Display file/folder choices.
+* -v, --version Display version
+* -h, --help Show help
 
   ###Output
 
