@@ -8,7 +8,7 @@ Supported project types include:
 4. Test Project
 
   Generated projects are created with a predefined structure, dependency injection and default tasks added. 
-  Logging, results reporting, coverage, documentation, static analysis...
+  Including: Logging, results reporting, coverage, documentation, static analysis.
 
   ## Installation
 
@@ -36,7 +36,6 @@ Usage: orb-archetyper COMMAND [OPTIONS]
   Required options:
   * -t, --type [TYPE] Select project type (cli, core, utility, test).
   * -p, --project [STRING] Specify the project name.
-
 
 Optional:
 
