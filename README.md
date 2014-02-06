@@ -1,20 +1,20 @@
 #Orb Archetype Generator
 
-  Command line application to generate an auto-wired project type. 
-  Supported project types include:
+Command line application to generate an auto-wired project type. 
+Supported project types include:
   1. Command line interface (cli)
   2. Core Project
   3. Utility Project
   4. Test Project
 
-  Projects come with predefined structure, dependency injection and default tasks added. 
+  Generated projects are created with a predefined structure, dependency injection and default tasks added. 
   Logging, results reporting, coverage, documentation, static analysis...
 
   ## Installation
 
   Add this line to your application's Gemfile:
 
-      gem 'orb-archetyper'
+      gem orb-archetyper
 
   And then execute:
 
@@ -28,29 +28,31 @@
 
   Just now run from /bin/orb-archetyper:
 
-  i.e.
-  $ `ruby orb-archetyper.rb --type cli -p comand-line -x coverage -i licence`
+e.g.
+  `$ ruby orb-archetyper.rb --type cli -p comand-line -x coverage -i licence`
 
   Usage: orb-archetyper COMMAND [OPTIONS]
 
-  Specific options:
-  -t, --type [TYPE]           Select project type (cli, core, utility, test).
-  -p, --project [STRING]      Specify the project name.
+  Required options:
+  * -t, --type [TYPE]           Select project type (cli, core, utility, test).
+  * -p, --project [STRING]      Specify the project name.
 
-  Optional options:
-  -x, --exclude x,y,z         Explicitly state the files/folders you wish to EXCLUDE from the archetype.
-  -i, --include x,y,z         Explicitly state the files/folders you wish to INCLUDE into the archetype.
-  -d, --directoy [STRING]     Specify the target directoy, if not pwd.
-  -g, --[no-]github           Create the git repo for the project, False if omitted, true if declared.
+
+  Optional:
+
+  * -x, --exclude x,y,z         Explicitly state the files/folders you wish to EXCLUDE from the archetype.
+  * -i, --include x,y,z         Explicitly state the files/folders you wish to INCLUDE into the archetype.
+  * -d, --directoy [STRING]     Specify the target directoy, if not pwd.
+  * -g, --[no-]github           Create the git repo for the project, False if omitted, true if declared.
 
   Common options:
-  -e, --expand                     Display file/folder choices.
-  -v, --version                    Display version
-  -h, --help                       Show help
+  * -e, --expand                     Display file/folder choices.
+  * -v, --version                    Display version
+  * -h, --help                       Show help
 
   ###Output
 
-  Based om the following command, where project name = "command line":
+  Based om the following command, where project name = "command-line":
   `ruby orb-archetyper.rb --type cli -p comand-line -x coverage -i licence`
 
 * Included licence into cli archetype.
