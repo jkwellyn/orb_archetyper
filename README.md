@@ -7,6 +7,9 @@
   3. Utility Project
   4. Test Project
 
+  Projects come with predefined structure, dependency injection and default tasks added. 
+  Logging, results reporting, coverage, documentation, static analysis...
+
   ## Installation
 
   Add this line to your application's Gemfile:
@@ -23,10 +26,10 @@
 
   ## Usage
 
-  Run from /bin/orb-archetyper:
+  Just now run from /bin/orb-archetyper:
 
-  e.g:
-  $ ruby orb-archetyper.rb --type cli -p comand-line -x coverage -i licence
+  i.e.
+  $ 'ruby orb-archetyper.rb --type cli -p comand-line -x coverage -i licence'
 
   Usage: orb-archetyper COMMAND [OPTIONS]
   Specific options:
@@ -48,38 +51,94 @@
 
   ###Output
 
-  Based om the following command
-  $ ruby orb-archetyper.rb --type cli -p comand-line -x coverage -i licence
+  Based om the following command:
+  'ruby orb-archetyper.rb --type cli -p comand-line -x coverage -i licence'
 
-  Included licence into cli archetype.
-  Excluded coverage from cli archetype.
-  created comand-line
-  created comand-line/logs
-  created comand-line/rdoc
-  created comand-line/resources
-  created comand-line/bin
-  created comand-line/bin/comand-line
-  created comand-line/.gitignore
-  created comand-line/Gemfile
-  created comand-line/comand-line.gemspec
-  created comand-line/lib
-  created comand-line/lib/comand-line.rb
-  created comand-line/LICENCE
-  created comand-line/Rakefile
-  created comand-line/README.md
-  created comand-line/test
-  created comand-line/test/comand-line_test.rb
-  created comand-line/lib/comand-line
-  created comand-line/lib/comand-line/version.rb
+* Included licence into cli archetype.
+* Excluded coverage from cli archetype.
+* created 'comand-line'
+* created 'comand-line'/logs
+* created 'comand-line'/rdoc
+* created 'comand-line'/resources
+* created 'comand-line'/bin
+* created 'comand-line'/bin/'comand-line'
+* created 'comand-line'/.gitignore
+* created 'comand-line'/Gemfile
+* created 'comand-line'/'comand-line'.gemspec
+* created 'comand-line'/lib
+* created 'comand-line'/lib/'comand-line'.rb
+* created 'comand-line'/LICENCE
+* created 'comand-line'/Rakefile
+* created 'comand-line'/README.md
+* created 'comand-line'/test
+* created 'comand-line'/test/'comand-line_test'.rb
+* created 'comand-line'/lib/'comand-line'
+* created 'comand-line'/lib/'comand-line'/version.rb
   
-  ### Archetype Structure
-  #### Command Line Application
+### Archetype Structure
 
-  #### Core 
+#### 1. Command Line Application
 
-  #### Utility
+* binf
+* gemfile
+* gemspec
+* gitignore 
+* libf 
+* logs
+* rake 
+* readme
+* resources
+* rdoc
+* test
+* coverage
+* version
 
-  #### Test
+#### 2. Core 
+A core Orb project that is used to facilitate automated testing. 
+
+* coverage
+* gemfile
+* gemspec
+* gitignore
+* libf
+* rake
+* rdoc
+* readme
+* test
+* version
+
+#### 3. Utility
+A client interface to provide a reusable access point to a component/service/application under test.
+
+ * config
+ * coverage
+ * gemfile 
+ * gemspec 
+ * gitignore
+ * libf 
+ * rake
+ * rdoc
+ * readme
+ * test
+ * version  
+
+#### 4. Test
+An RSPEC test project that can be executed against a number of deployment tiers.
+
+* config - environment configuration 
+* coverage
+* gemfile
+* gemlock
+* gitignore
+* libf
+* logs
+* rake
+* readme
+* resources
+* results - used by jenkins
+* rvmrc
+* test - unit tests on test projects
+* spec - functional automated tests
 
   ## Contributing
 
