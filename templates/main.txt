@@ -1,0 +1,5 @@
+ require "{project_name}/version"
+
+  module {module_name}
+    # Your code goes here...
+  end

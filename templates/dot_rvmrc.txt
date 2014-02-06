@@ -1,0 +1,4 @@
+#autogen orb-archetyper version 1.0.0
+#.rvmrc
+
+rvm use 1.9.2-p290

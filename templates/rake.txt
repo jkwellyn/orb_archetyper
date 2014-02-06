@@ -1,0 +1,25 @@
+#!/usr/bin/env rake
+
+#Example rake
+
+require 'rake'
+require 'rspec/core/rake_task'
+require 'rdoc/task'
+
+task :default => [:test]
+
+  task :test do
+    ruby "test/{project_name}_test.rb"
+  end
+
+ RDoc::Task.new do |rdoc|
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.title = '{project_name}'
+  rdoc.main = 'README.rdoc'
+ rdoc.rdoc_files.include('README*', 'lib/**/*.rb')
+end
+
+RSpec::Core::RakeTask.new do |t|
+  t.rspec_opts = ['--options', 'spec/spec.opts']
+end
+

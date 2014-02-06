@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/{project_name}"
+
+begin
+  {project_name}::Main.new(ARGV).run
+rescue Errno::ENOENT => err
+  abort "{project_name}: #{err.message}"
+end
