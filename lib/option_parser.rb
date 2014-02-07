@@ -77,7 +77,6 @@ class OptionParser
 
 		#Now raise an exception if we have not found a project name option or type is unsupported
 		raise OptionParser::MissingArgument if options[:project].nil?
-
 		raise OptionParser::InvalidArgument if options[:type].nil?
 
 		return options
