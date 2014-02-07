@@ -10,11 +10,11 @@
 
   And then execute:
 
-      $ bundle {project_name}
+      $ bundle '{project_name}'
 
   Or install it yourself as:
 
-      $ gem install {project_name}
+      $ gem install '{project_name}'
 
   ## Usage
 

@@ -1,10 +1,12 @@
 require 'date'
 
 class TemplateManager
+  @@types = [:cli,:core,:test,:utility]
 	
-  def initialize(pname)
+  def initialize(pname, mname)
 
     @pname = pname
+    @mname = mname
 
     @archetypes = {
       :cli    => [:binf, :gemfile, :gemspec, :gitignore, :libf, :logs, :rake, :readme, :resources, :rdoc, :test, :coverage, :version], 
@@ -48,17 +50,19 @@ class TemplateManager
     }
 
     @substitutes = {
-      :gemspec => {:username      => ["{username}",       ENV['USER'] ],
+      :gemspec => {:module_name   => ["{module_name}",    "#{@mname}"],
+                   :username      => ["{username}",       ENV['USER'] ],
                    :project_name  => ["{project_name}",   "#{@pname}"]},
       :gemfile => {:project_name  => ["{project_name}",   "#{@pname}"]},
       :licence => {:holder_name   => ["{copyright_holder}", ENV['USER']       ],
                   :year           => ["{year}",            Date.today.strftime("%Y")]},
       :readme  => {:project_name  => ["{project_name}",   "#{@pname}"]},
       :rake    => {:project_name  => ["{project_name}",   "#{@pname}"]},
-      :version => {:module_name   => ["{module_name}",    "#{@pname}".capitalize]},
-      :libf    => {:module_name   => ["{module_name}",    "#{@pname}".capitalize],
+      :version => {:module_name   => ["{module_name}",    "#{@mname}"]},
+      :libf    => {:module_name   => ["{module_name}",    "#{@mname}"],
                    :project_name  => ["{project_name}",   "#{@pname}"]},
-      :binf    => {:project_name  => ["{project_name}",   "#{@pname}"]},
+      :binf    =>  {:module_name  => ["{module_name}",    "#{@mname}"],
+                   :project_name  => ["{project_name}",   "#{@pname}"]},
       :spec    => {:project_name  => ["{project_name}",   "#{@pname}"]},
     }
   end
@@ -87,6 +91,11 @@ class TemplateManager
   def subtypes
       (@files.keys + @folders.keys).uniq.sort
 	end
+
+  def self.types
+    @@types
+  end
+
 
 #!EOF	
 end

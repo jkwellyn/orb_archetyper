@@ -1,5 +1,4 @@
 #Gemfile
+source 'http://gemserver.va.opower.it'
 
-source 'https://rubygems.org'
-
-gem 'ansi', '~> 1.4.3'
+  gemspec

@@ -14,13 +14,13 @@ class OptionParser
 		
 		opt_parser = OptionParser.new do |opts|
 			opts.separator ""
-			opts.banner = "Orb Archetype Generator: [options]"
+			opts.banner = "Orb Archetype Generator:"
 	
-			opts.separator "Usage: orb-archetyper COMMAND [OPTIONS]"
+			opts.separator "Usage: orb-archetyper [OPTIONS]"
 			opts.separator "Specific options:"
 
 			#list of choices
-			opts.on("-t", "--type [TYPE]", [:cli, :core, :utility, :test], 
+			opts.on("-t", "--type [TYPE]", TemplateManager.types, 
 				"Select project type (cli, core, utility, test).") do |t|
 					
 					options[:type] = t
@@ -74,6 +74,12 @@ class OptionParser
 		end
 		
 		opt_parser.parse(args)
+
+		#Now raise an exception if we have not found a project name option or type is unsupported
+		raise OptionParser::MissingArgument if options[:project].nil?
+
+		raise OptionParser::InvalidArgument if options[:type].nil?
+
 		return options
 	end
 end

@@ -1,14 +1,19 @@
 #TODO move file helpers out to GEM
 require_relative 'helpers/file_utils'
 require_relative 'template_manager'
- 
+require 'ansi'
+
 #Archetype generator
 class ArchetypeGenerator
 
   #base directory is an optional arg
   def initialize(project_name, *base_directory)
 
+    #sanitize project name 
     @pname = sanitize(project_name)
+    #generate valid module name
+    @mname = @pname.split(/[_\-]/).map(&:capitalize).join
+
 
     if base_directory[0].nil?
       @bdir = @pname
@@ -16,7 +21,7 @@ class ArchetypeGenerator
       @bdir = base_directory[0]
     end
 
-    templater = TemplateManager.new(@pname)
+    templater = TemplateManager.new(@pname, @mname)
 
     @archetypes = templater.archetypes
     @folders = templater.folders
@@ -66,7 +71,7 @@ class ArchetypeGenerator
 
     #Add to the repo
     if options[:github]
-      raise "Unsupported operation exception: git creation not yet implemented."
+      git_initter
     end
   end
 
@@ -94,6 +99,13 @@ class ArchetypeGenerator
     
      FileUtils.file_creator(target, fname, fdata)
     end
+  end
+
+  def git_initter
+    raise "Unsupported operation exception: git creation not yet implemented."
+
+    puts "\t" + ANSI.green{"Initialized "} + "  git repo in  #{}"    
+
   end
 
   private

@@ -2,15 +2,16 @@
 
 #Example rake
 
-require 'rake'
-require 'rspec/core/rake_task'
-require 'rdoc/task'
-
 task :default => [:test]
 
   task :test do
     ruby "test/{project_name}_test.rb"
   end
+
+=begin
+require 'rake'
+require 'rspec/core/rake_task'
+require 'rdoc/task'
 
  RDoc::Task.new do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
@@ -23,3 +24,4 @@ RSpec::Core::RakeTask.new do |t|
   t.rspec_opts = ['--options', 'spec/spec.opts']
 end
 
+=end

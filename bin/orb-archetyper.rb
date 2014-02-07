@@ -9,6 +9,7 @@ begin
 
 	generator = ArchetypeGenerator.new(options[:project], options[:directory])
 
-	generator.generate(options)
+	#generator.generate(options)
+	
 
 end
