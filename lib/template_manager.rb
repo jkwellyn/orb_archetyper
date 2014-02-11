@@ -63,7 +63,8 @@ class TemplateManager
                    :project_name  => ["{project_name}",   "#{@pname}"]},
       :binf    =>  {:module_name  => ["{module_name}",    "#{@mname}"],
                    :project_name  => ["{project_name}",   "#{@pname}"]},
-      :spec    => {:project_name  => ["{project_name}",   "#{@pname}"]},
+      :spec    => {:project_name  => ["{project_name}",   "#{@pname}"],
+                    :module_name  => ["{module_name}",    "#{@mname}"]},
     }
   end
 

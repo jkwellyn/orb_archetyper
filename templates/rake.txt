@@ -1,27 +1,26 @@
 #!/usr/bin/env rake
+require 'rspec/core/rake_task'
+require 'rspec-extra-formatters'
+require 'rspec/core'
 
-#Example rake
+RSpec::Core::RakeTask.new(:rspec) do |t|
+  t.rspec_opts = ['-c']
+  t.rspec_opts << '-r' << 'rspec-extra-formatters'
+  t.rspec_opts << '-o' << 'results/rspec-extra-formatter-results.xml'
+  t.rspec_opts << '-f' << JUnitFormatter
+  t.rspec_opts << '-o' << 'results/rspec-extra-formatter-results.html'
+  t.rspec_opts << '-f' << 'html'
+  t.pattern = 'spec/**/*spec.rb'
+end
 
-task :default => [:test]
-
-  task :test do
-    ruby "test/{project_name}_test.rb"
-  end
 
 =begin
-require 'rake'
-require 'rspec/core/rake_task'
 require 'rdoc/task'
 
- RDoc::Task.new do |rdoc|
+ RDoc::Task.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = '{project_name}'
+  rdoc.title = '{}'
   rdoc.main = 'README.rdoc'
- rdoc.rdoc_files.include('README*', 'lib/**/*.rb')
+  rdoc.rdoc_files.include('README*', 'lib/**/*.rb')
 end
-
-RSpec::Core::RakeTask.new do |t|
-  t.rspec_opts = ['--options', 'spec/spec.opts']
-end
-
 =end
