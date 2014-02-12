@@ -2,8 +2,6 @@ require 'ansi/code'
 
 #Helper Utilities for File and Directory Management
 class FileUtils
-
-	#modify to suppport v1.9.2.3.  as this uses 2.0 functionality
 	def FileUtils.dir_creator(new_dir_flag, dir_path)  
 	  if new_dir_flag
 	    if Dir.exists?(dir_path)

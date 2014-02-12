@@ -30,23 +30,22 @@ class TemplateManager
         :test => "test" #unit tests folders    
     };
 
-
   # {target directory, src directory, filename]
    @files = {
-      :binf      => [@folders[:binf],   "../templates/bin_cli.txt",      "#{@pname}"],
-      :config    => [@folders[:config], "../templates/env_config.yml",   "env_config.yml"], 
-      :gitignore => [@folders[:base],   "../templates/dot_gitignore.txt",".gitignore"],
-      :gemfile   => [@folders[:base],   "../templates/gemfile.txt",      "Gemfile"],
-      :gemspec   => [@folders[:base],   "../templates/gemspec.txt",      "#{@pname}.gemspec"],
-      :gemlock   => [@folders[:base],   "../templates/gemlock.txt",      "Gemfile.lock"],
-      :libf      => [@folders[:libf],   "../templates/main.txt",         "#{@pname}.rb"],
-      :licence   => [@folders[:base],   "../templates/licence.txt",      "LICENCE"],
-      :rake      => [@folders[:base],   "../templates/rake.txt",         "Rakefile"],
-      :readme    => [@folders[:base],   "../templates/readme.txt",       "README.md"],
-      :rvmrc     => [@folders[:base],   "../templates/dot_rvmrc.txt",    ".rvmrc"],
-      :spec      => [@folders[:spec],   "../templates/spec.txt",         "#{@pname}_spec.rb"],
-      :test      => [@folders[:test],   "../templates/test.txt",         "#{@pname}_test.rb"],
-      :version   => [@folders[:libf]+"/#{@pname}", "../templates/version.txt", "version.rb"]
+      :binf      => [@folders[:binf],   "templates/bin_cli.txt",      "#{@pname}"],
+      :config    => [@folders[:config], "templates/env_config.yml",   "env_config.yml"], 
+      :gitignore => [@folders[:base],   "templates/dot_gitignore.txt",".gitignore"],
+      :gemfile   => [@folders[:base],   "templates/gemfile.txt",      "Gemfile"],
+      :gemspec   => [@folders[:base],   "templates/gemspec.txt",      "#{@pname}.gemspec"],
+      :gemlock   => [@folders[:base],   "templates/gemlock.txt",      "Gemfile.lock"],
+      :libf      => [@folders[:libf],   "templates/main.txt",         "#{@pname}.rb"],
+      :licence   => [@folders[:base],   "templates/licence.txt",      "LICENCE"],
+      :rake      => [@folders[:base],   "templates/rake.txt",         "Rakefile"],
+      :readme    => [@folders[:base],   "templates/readme.txt",       "README.md"],
+      :rvmrc     => [@folders[:base],   "templates/dot_rvmrc.txt",    ".rvmrc"],
+      :spec      => [@folders[:spec],   "templates/spec.txt",         "#{@pname}_spec.rb"],
+      :test      => [@folders[:test],   "templates/test.txt",         "#{@pname}_test.rb"],
+      :version   => [@folders[:libf]+"/#{@pname}", "templates/version.txt", "version.rb"]
     }
 
     @substitutes = {
