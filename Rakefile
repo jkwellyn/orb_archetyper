@@ -16,16 +16,5 @@ end
 # TODO rake tasks to clobber results directory
 
 
-=begin
-require 'rdoc/task'
-
- RDoc::Task.new(:rdoc) do |rdoc|
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = 'orb-archetyper'
-  rdoc.main = 'README.rdoc'
-  rdoc.rdoc_files.include('README*', 'lib/**/*.rb')
-end
-#=end
-
 
 	
