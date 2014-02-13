@@ -18,6 +18,7 @@ class FileUtils
 	#creates file, requires dir to exist
 	def self.file_creator(dir_path, file_name, file_contents)
 	  
+	  #TODO change to File join
 	  file_dir = dir_path + "/" + file_name
 
 	  file = open(file_dir, "w")

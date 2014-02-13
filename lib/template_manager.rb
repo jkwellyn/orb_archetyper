@@ -64,7 +64,9 @@ class TemplateManager
                    :project_name  => ["{project_name}",   "#{@pname}"]},
       :spec    => {:project_name  => ["{project_name}",   "#{@pname}"],
                     :module_name  => ["{module_name}",    "#{@mname}"]},
-    }
+      :test    => {:project_name  => ["{project_name}",   "#{@pname}"],
+                    :module_name  => ["{module_name}",    "#{@mname}"]}
+    } 
   end
 
   def self.archetypes

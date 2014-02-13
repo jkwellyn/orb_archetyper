@@ -85,11 +85,6 @@ class ArchetypeGenerator
   
       fulldir = File.join(File.dirname(File.expand_path(__FILE__)), "/" + src)
     
-=begin
-      puts "Debugging...."
-      puts "src = #{src}"
-      puts "#{fulldir}"
-=end
       unless File.exist?(fulldir)
         raise "Cannot find the template file: #{fulldir}"
       end
