@@ -19,7 +19,7 @@ Supported project types include:
 
   Build the gem locally
 
-  `$ gem build orb-archetyper.gemspec`
+  `$ gem build orb-archetyper.gemspec `
 
   Install it yourself as:
 
@@ -33,7 +33,7 @@ Supported project types include:
 
   ### Create a new project
 
-  `$ orb-archetyper --type cli -p comand-line -x coverage -i licence`
+  `$ orb-archetyper - cli -p comand-line -x coverage -i licence`
 
 
   ###Output

@@ -97,7 +97,9 @@ class ArchetypeGenerator
 
       if target != @pname
         target = "#{@pname}/#{target}"
-        FileUtils.dir_creator(target)
+        unless Dir.exists?(target)
+          FileUtils.dir_creator(target)
+        end
       end
     
      FileUtils.file_creator(target, fname, fdata)
@@ -105,10 +107,15 @@ class ArchetypeGenerator
   end
 
   # Create git init project files
-  # git ignore is created as part of archetype  
+  # git ignore is created as part of the base archetype  
   def git_initter
-    raise "Unsupported operation exception: git creation not yet implemented."
-    puts "\t" + ANSI.green{"Initialized "} + "  git repo in  #{}"    
+    
+    unless File.exists?(File.join(@pname,".git"))
+      gitinnit = `git init "#{@pname}"`
+      puts "\t" + ANSI.green{"#{gitinnit}"}
+    else
+      raise "Unable to create git repo."
+    end
   end
 
   private
