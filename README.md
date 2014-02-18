@@ -7,52 +7,39 @@ Supported project types include:
 3. Utility Project 
 4. Test Project
 
-  Generated projects are created with a predefined structure, dependency injection and default tasks added. 
-  Including: Logging, results reporting, coverage, documentation, static analysis.
+  Generated projects are created with a predefined structure, dependency injection and default rake tasks added. 
+  Including
+  1. Rendered results reporting for rspec - html/xml
+  2. Unit test coverage (simplecov)
+  3. Documentation (rdoc)
+  4. static analysis (rubocop and reek)
+  5. Annotations - Rake notes (TODO, FIXME, OPTIMIZE)
 
   ## Installation
 
-  Add this line to your application's Gemfile:
+  Build the gem locally
 
-      `gem orb-archetyper`
+  `$ gem build orb-archetyper.gemspec`
 
-  And then execute:
+  Install it yourself as:
 
-      `$ bundle orb-archetyper`
-
-  Or install it yourself as:
-
-      `$ gem install orb-archetyper`
+      `$ gem install orb-archetyper-0.0.1.gem`
 
   ## Usage
 
-  Just now run from /bin/orb-archetyper:
+  Help
 
-e.g.
-  `$ ruby orb-archetyper.rb --type cli -p comand-line -x coverage -i licence`
+  `$ orb-archetyper --help`
 
-Usage: orb-archetyper COMMAND [OPTIONS]
+  ### Create a new project
 
-  Required options:
-  * -t, --type [TYPE] Select project type (cli, core, utility, test).
-  * -p, --project [STRING] Specify the project name.
+  `$ orb-archetyper --type cli -p comand-line -x coverage -i licence`
 
-Optional:
-
-* -x, --exclude x,y,z Explicitly state the files/folders you wish to EXCLUDE from the archetype.
-* -i, --include x,y,z Explicitly state the files/folders you wish to INCLUDE into the archetype.
-* -d, --directoy [STRING] Specify the target directoy, if not pwd.
-* -g, --[no-]github Create the git repo for the project, False if omitted, true if declared.
-
-Common options:
-* -e, --expand Display file/folder choices.
-* -v, --version Display version
-* -h, --help Show help
 
   ###Output
 
   Based om the following command, where project name = "command-line":
-  `ruby orb-archetyper.rb --type cli -p comand-line -x coverage -i licence`
+  `$ orb-archetyper -t cli -p comand-line -x coverage -i licence`
 
 * Included licence into cli archetype.
 * Excluded coverage from cli archetype.

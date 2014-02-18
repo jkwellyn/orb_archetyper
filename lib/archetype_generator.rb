@@ -1,25 +1,17 @@
-#TODO move file helpers out to GEM
+#TODO: MOVE FILE HELPERS INTO GEM
 require_relative 'helpers/file_utils'
 require_relative 'template_manager'
 require 'ansi'
 
-#Archetype generator
+# Archetype generator
 class ArchetypeGenerator
-
-  #base directory is an optional arg
-  def initialize(project_name, *base_directory)
-
-    #sanitize project name 
+  # Create new generator instance given a project name
+  # Project name is validated
+  def initialize(project_name)
+    # sanitize project name
     @pname = sanitize(project_name)
-    #generate valid module name
+    # generate valid module name
     @mname = @pname.split(/[_\-]/).map(&:capitalize).join
-
-
-    if base_directory[0].nil?
-      @bdir = @pname
-    else
-      @bdir = base_directory[0]
-    end
 
     templater = TemplateManager.new(@pname, @mname)
 
@@ -30,12 +22,14 @@ class ArchetypeGenerator
 
   end 
 
+  # Create the required archetpe based on a hash
   def generate(options)
 
     arch = @archetypes[options[:type]]
 
-    #handle include
-    if options.has_key?(:include)
+    # OPTIMIZE: MERGE INCLUDE/EXCLUDE FUNCTIONALITY 
+    # handle include
+    if options.key?(:include)
       options[:include].each do |i|
         unless arch.include?(i.to_sym)
           arch.push(i.to_sym)
@@ -44,39 +38,42 @@ class ArchetypeGenerator
       end
     end
 
-    #handle exclude
-    if options.has_key?(:exclude)
+    # handle exclude
+    if options.key?(:exclude)
       options[:exclude].each do |x|
         if arch.include?(x.to_sym)
           arch.delete(x.to_sym)
-           #TODO add this to the logger
+           #TODO: ADD THIS TO THE LOGGER
               puts "\t" + ANSI.red{"Excluded"} + " #{x} from #{options[:type]} archetype."
         end
       end 
     end
 
-    #generate folder
-    #create base dir
-    FileUtils.dir_creator(true, @pname)
+    # generate base dir folder
+      if Dir.exists?(@pname)
+        raise "Error. Directory already exists: #{dir_path}"
+      end
+    FileUtils.dir_creator(@pname)
 
-    #create any empty folders
+    # create any empty folders
     (@folders.keys - @files.keys).each do |v|
-      if arch.include? v and v!=:base 
-       FileUtils.dir_creator(false, "#{@bdir}/#{v.to_s}")
+      if arch.include? v and v!=:base
+        folder_dir = File.join(@pname, v.to_s)
+        FileUtils.dir_creator(folder_dir)
       end
      end
 
     # Generate files
     file_gen(@files.select{|key, value| arch.include? key} )
 
-    #Add to the repo
+    # Add to the repo
     if options[:github]
       git_initter
     end
   end
 
   private
-  #Given a hash of @files
+  # Given a hash of @files
   def file_gen(archetype)
 
     archetype.each do |key, value|
@@ -91,42 +88,42 @@ class ArchetypeGenerator
 
       fdata = File.read(fulldir)
 
-      #handle dynamic subs
-      if @substitutes.has_key?(key) 
+      # handle dynamic subs
+      if @substitutes.key?(key) 
           @substitutes[key].each do |k, v|
             fdata = fdata.gsub(v[0], v[1])
           end 
       end
 
       if target != @pname
-        target = "#{@bdir}/#{target}"
-        FileUtils.dir_creator(false, target)
+        target = "#{@pname}/#{target}"
+        FileUtils.dir_creator(target)
       end
     
      FileUtils.file_creator(target, fname, fdata)
     end
   end
 
+  # Create git init project files
+  # git ignore is created as part of archetype  
   def git_initter
     raise "Unsupported operation exception: git creation not yet implemented."
-
     puts "\t" + ANSI.green{"Initialized "} + "  git repo in  #{}"    
-
   end
 
   private
-  #Ensure that the project name is valid
+  # Ensure that the project name is valid
   def sanitize(projectName)
 
     if (projectName == nil or projectName.length < 2 or projectName.length > 30)
-      raise "Error"
+      raise "Invalid Project Name Error. Project Name is either: nil or of incorrect length."
     end
     projectName = projectName.gsub(/\s/, "_")
 
     if (/^[\w_\-]+$/.match(projectName) != nil)
       return projectName
+    else
+      raise "Invalid Project Name: should only contain a-z, 0-9, -,_"
     end
-    raise "Invalid Project Name: should only contain a-z, 0-9, -,_"
   end
-
 end

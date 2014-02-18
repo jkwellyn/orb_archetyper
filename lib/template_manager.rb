@@ -1,33 +1,38 @@
 require 'date'
-
+# Data Structure to hold the supported project archetypes available: consisting of the project types, files and folders required.
+# In addition any dynamic substitutins that are required when the files are created.
 class TemplateManager
   @@types = [:cli,:core,:test,:utility]
-	
+	# Create a new Templater Manager
+  # Project Name and Module name
   def initialize(pname, mname)
 
     @pname = pname
     @mname = mname
 
+    @user = ENV['USER']
+
     @archetypes = {
       :cli    => [:binf, :gemfile, :gemspec, :gitignore, :libf, :logs, :rake, :readme, :resources, :rdoc, :test, :coverage, :version], 
       :core   => [:coverage, :gemfile, :gemspec, :gitignore, :libf, :rake, :rdoc, :readme, :test, :version], 
-      :test   => [:config, :coverage, :gemfile, :gemlock, :gitignore, :libf, :logs, :rake, :readme, :resources, :results, :rvmrc, :test, :spec],
+      :test   => [:config, :coverage, :gemfile, :gemlock, :gitignore, :libf, :logs, :rake, :readme, :resources, :results, :rvmrc, :test, :spec, :spec_help],
       :utility=> [:config, :coverage, :gemfile, :gemspec, :gitignore, :libf, :rake, :rdoc, :readme, :test, :version],
     }
 
       #not all folders have child files
     @folders = {
-        :base => "#{@pname}",
-        :binf => "bin",
-        :coverage => "coverage",
-        :config => "config",   
-        :libf => "lib",
-        :logs => "logs",
-        :rdoc => "rdoc",
+        :base =>      "#{@pname}", 
+        :binf =>      "bin",
+        :coverage =>  "coverage",  
+        :config =>    "config",   
+        :libf =>      "lib",
+        :logs =>      "logs",
+        :rdoc =>      "rdoc",
         :resources => "resources",
-        :results =>"results",
-        :spec => "spec", #functional tests #TODO add subdirs here for test categories e.g SMOKE SANITY PRIORITY SECONDARY TERTIARY
-        :test => "test" #unit tests folders    
+        :results =>   "results",
+        # TODO: RESTRUCTURE TEST FILE STRUCTURE
+        :spec =>      "spec", #functional tests 
+        :test =>      "test" #unit tests folders    
     };
 
   # {target directory, src directory, filename]
@@ -44,16 +49,17 @@ class TemplateManager
       :readme    => [@folders[:base],   "templates/readme.txt",       "README.md"],
       :rvmrc     => [@folders[:base],   "templates/dot_rvmrc.txt",    ".rvmrc"],
       :spec      => [@folders[:spec],   "templates/spec.txt",         "#{@pname}_spec.rb"],
+      :spec_help => [@folders[:spec],   "templates/spec_helper.txt",  "spec_helper.rb"],
       :test      => [@folders[:test],   "templates/test.txt",         "#{@pname}_test.rb"],
       :version   => [@folders[:libf]+"/#{@pname}", "templates/version.txt", "version.rb"]
     }
 
     @substitutes = {
       :gemspec => {:module_name   => ["{module_name}",    "#{@mname}"],
-                   :username      => ["{username}",       ENV['USER'] ],
+                   :username      => ["{username}",        @user],
                    :project_name  => ["{project_name}",   "#{@pname}"]},
       :gemfile => {:project_name  => ["{project_name}",   "#{@pname}"]},
-      :licence => {:holder_name   => ["{copyright_holder}", ENV['USER']       ],
+      :licence => {:holder_name   => ["{copyright_holder}", @user],
                   :year           => ["{year}",            Date.today.strftime("%Y")]},
       :readme  => {:project_name  => ["{project_name}",   "#{@pname}"]},
       :rake    => {:project_name  => ["{project_name}",   "#{@pname}"]},
@@ -89,7 +95,6 @@ class TemplateManager
 		@substitutes
   end
   
-  #TODO use to validate in generator
   def subtypes
       (@files.keys + @folders.keys).uniq.sort
 	end
@@ -97,7 +102,4 @@ class TemplateManager
   def self.types
     @@types
   end
-
-
-#!EOF	
 end

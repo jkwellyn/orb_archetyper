@@ -13,16 +13,20 @@ require File.expand_path('../lib/orb-archetyper/version', __FILE__)
 
     spec.license       = "MIT"
     
-    #file attributes...
+    #file attributes
     spec.files         = `git ls-files`.split($\)
     spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
     spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
     spec.require_paths = ["lib"]
 
-    #Dependencies...
-    spec.add_development_dependency 'rake'
-    spec.add_development_dependency 'rspec'
-    spec.add_development_dependency' rspec-extra-formatters' 
-    spec.add_development_dependency 'rdoc'
+    #Dependencies
+    spec.add_development_dependency('rdoc', '>2.4.2')
+    spec.add_development_dependency('rspec', '2.14.1')
+    spec.add_development_dependency 'rspec-extra-formatters'
     spec.add_development_dependency 'ansi'
+    spec.add_development_dependency('rake', '10.1.1')
+    spec.add_development_dependency('simplecov', '~>0.7.1')
+    spec.add_development_dependency 'reek'
+    spec.add_development_dependency 'rubocop'
+    spec.add_development_dependency 'rake-notes'
   end

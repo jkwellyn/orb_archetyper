@@ -1,7 +1,7 @@
 require_relative "{project_name}/version"
 
-# Your code goes here...
-# description
+# TODO: YOUR CODE GOES HERE...
+# TODO: ADD DESCRIPTION
   module {module_name}
   	class Main
   		def run
