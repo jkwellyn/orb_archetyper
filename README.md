@@ -19,7 +19,7 @@ Supported project types include:
 
   Build the gem locally
 
-  `$ gem build orb-archetyper.gemspec `
+  `$ gem build orb-archetyper.gemspec`
 
   Install it yourself as:
 
@@ -30,11 +30,15 @@ Supported project types include:
   Help
 
   `$ orb-archetyper --help`
+  `$ orb-archetyper -h`
 
   ### Create a new project
+  Where "project-a "is the name of your project.
 
-  `$ orb-archetyper - cli -p comand-line -x coverage -i licence`
+  `$ orb-archetyper -t cli -p project-a -x coverage -i spec,spec_help -x logs -g`
 
+  Note: Inlcude, exlcude is comma separated and comtains no white space.
+  -g does a git init for ya.
 
   ###Output
 
