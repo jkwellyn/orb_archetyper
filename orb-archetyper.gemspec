@@ -28,5 +28,5 @@ require File.expand_path('../lib/orb-archetyper/version', __FILE__)
     spec.add_development_dependency('simplecov', '~>0.7.1')
     spec.add_development_dependency 'reek'
     spec.add_development_dependency 'rubocop'
-    spec.add_development_dependency 'rake-notes'
+    spec.add_development_dependency('rake-notes', '0.2.0')
   end
