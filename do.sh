@@ -19,8 +19,9 @@ main() {
 	echo "Executing..."
 	startTime=$(date +%s)
 
-	# ensure using rvm1.9.3
-	rvm use ruby-1.9.3
+	#this does not work on ci-sandbox due to login shell issue. Will be added for master.
+	#ensure using rvm1.9.3
+	#rvm use ruby-1.9.3
 	bundle install
 
 	bundle exec rake rspec_unit
