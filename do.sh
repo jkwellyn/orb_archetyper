@@ -20,7 +20,7 @@ main() {
 	startTime=$(date +%s)
 
 	# ensure using rvm1.9.3
-	rvm use 1.9.3
+	rvm use ruby-1.9.3
 	bundle install
 
 	bundle exec rake rspec_unit
