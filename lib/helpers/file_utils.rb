@@ -1,10 +1,10 @@
 require 'ansi/code'
 
 # Helper Utilities for File and Directory Management
-class FileUtils
-	
-	# Create a directory 
-	def self.dir_creator(dir_path)  
+class FileUtility
+
+	# Create a directory
+	def self.dir_creator(dir_path)
 	  Dir::mkdir(dir_path)
 	  puts "\t" + ANSI.green{"created"} + " #{dir_path}"
 	  return dir_path
