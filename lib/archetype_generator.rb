@@ -20,14 +20,14 @@ class ArchetypeGenerator
     @files = templater.files
     @substitutes = templater.substitutes
 
-  end 
+  end
 
   # Create the required archetpe based on a hash
   def generate(options)
 
     arch = @archetypes[options[:type]]
 
-    # OPTIMIZE: MERGE INCLUDE/EXCLUDE FUNCTIONALITY 
+    # OPTIMIZE: MERGE INCLUDE/EXCLUDE FUNCTIONALITY
     # handle include
     if options.key?(:include)
       options[:include].each do |i|
@@ -46,20 +46,20 @@ class ArchetypeGenerator
            #TODO: ADD THIS TO THE LOGGER
               puts "\t" + ANSI.red{"Excluded"} + " #{x} from #{options[:type]} archetype."
         end
-      end 
+      end
     end
 
     # generate base dir folder
       if Dir.exists?(@pname)
         raise "Error. Directory already exists: #{dir_path}"
       end
-    FileUtils.dir_creator(@pname)
+    FileUtility.dir_creator(@pname)
 
     # create any empty folders
     (@folders.keys - @files.keys).each do |v|
       if arch.include? v and v!=:base
         folder_dir = File.join(@pname, v.to_s)
-        FileUtils.dir_creator(folder_dir)
+        FileUtility.dir_creator(folder_dir)
       end
      end
 
@@ -79,9 +79,9 @@ class ArchetypeGenerator
     archetype.each do |key, value|
 
       target, src, fname = value
-  
+
       fulldir = File.join(File.dirname(File.expand_path(__FILE__)), "/" + src)
-    
+
       unless File.exist?(fulldir)
         raise "Cannot find the template file: #{fulldir}"
       end
@@ -89,27 +89,27 @@ class ArchetypeGenerator
       fdata = File.read(fulldir)
 
       # handle dynamic subs
-      if @substitutes.key?(key) 
+      if @substitutes.key?(key)
           @substitutes[key].each do |k, v|
             fdata = fdata.gsub(v[0], v[1])
-          end 
+          end
       end
 
       if target != @pname
         target = "#{@pname}/#{target}"
         unless Dir.exists?(target)
-          FileUtils.dir_creator(target)
+          FileUtility.dir_creator(target)
         end
       end
-    
-     FileUtils.file_creator(target, fname, fdata)
+
+     FileUtility.file_creator(target, fname, fdata)
     end
   end
 
   # Create git init project files
-  # git ignore is created as part of the base archetype  
+  # git ignore is created as part of the base archetype
   def git_initter
-    
+
     unless File.exists?(File.join(@pname,".git"))
       gitinnit = `git init "#{@pname}"`
       puts "\t" + ANSI.green{"#{gitinnit}"}
