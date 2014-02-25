@@ -23,7 +23,7 @@ require File.expand_path('../lib/orb-archetyper/version', __FILE__)
     spec.add_development_dependency('rdoc', '>2.4.2')
     spec.add_development_dependency('rspec', '2.14.1')
     spec.add_development_dependency 'rspec-extra-formatters'
-    spec.add_development_dependency 'ansi'
+    spec.add_development_dependency('ansi', '1.4.3')
     spec.add_development_dependency('rake', '10.1.1')
     spec.add_development_dependency('simplecov', '~>0.7.1')
     spec.add_development_dependency 'reek'
