@@ -21,10 +21,10 @@ Gem::Specification.new do |spec|
  spec.require_paths = ["lib"]
 
 #Dev Dependencies
- spec.add_development_dependency('metric_fu', '4.8.0')
+ spec.add_development_dependency('metric_fu', '>= 4.0')
  spec.add_development_dependency('rake', '10.1.1')
  spec.add_development_dependency('rake-notes', '0.2.0')
- spec.add_development_dependency('rdoc', '4.1.1')#'> 2.4.2')
+ spec.add_development_dependency('rdoc', '>= 4.0')#'> 2.4.2')
  spec.add_development_dependency('rspec', '2.14.1')
  spec.add_development_dependency('rspec-extra-formatters', '0.4')
  spec.add_development_dependency('rubocop', '0.16.0')
