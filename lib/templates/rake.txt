@@ -4,9 +4,10 @@ require 'rspec-extra-formatters'
 require 'rspec/core'
 require 'rubocop/rake_task'
 require 'rdoc/task'
-require 'reek/rake/task'
 require 'rake/notes/rake_task'
+require 'metric_fu'
 
+# Generates a timestamp for files
 def timestamp
   Time.now.strftime("%Y%m%d_%H%M%S")
 end
@@ -26,11 +27,9 @@ RDoc::Task.new(:rdoc) do |rdoc|
     rdoc.title = 'orb-archetyper'
     rdoc.main = 'README.md'
     rdoc.rdoc_files.include('README*', 'lib/**/*.rb')
+    rdoc.options << '--op' << 'doc/'
 end
 
-Reek::Rake::Task.new do |t|
-  t.fail_on_error = false
-end
 
 desc 'Run RuboCop on the lib directory'
 Rubocop::RakeTask.new(:rubocop) do |task|
@@ -39,7 +38,20 @@ Rubocop::RakeTask.new(:rubocop) do |task|
   #task.formatters = ['files', 'offences']
   # don't abort rake on failure
   task.fail_on_error = false
-  #display cop names
   #task.options << '-D'
-  task.options << '-o' << "coverage/#{timestamp}_rubocop.txt"
+  #task.options << '-o' << "coverage/#{timestamp}_rubocop.txt"
+end
+
+desc "Remove Unit Test Results files"
+  task :clobber_unit do
+    puts "Clearing the unit test directory..."
+    `rm -rf results/unit/*`
+    puts "Done."
+end
+
+desc "Remove Simplecov files"
+  task :clobber_coverage do
+    puts "Clearing the coverage directory..."
+    `rm -rf coverage/*`
+    puts "Done."
 end

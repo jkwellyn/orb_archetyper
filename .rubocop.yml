@@ -1,0 +1,10 @@
+#do not check for utf stamp
+Encoding:
+ Enabled: false
+
+LineLength:
+ Enabled: true
+ Max: 128
+
+Documentation:
+ Enabled: false

@@ -13,7 +13,7 @@ class TemplateManager
     @user = ENV['USER']
 
     @archetypes = {
-      :cli    => [:binf, :gemfile, :gemspec, :gitignore, :libf, :logs, :rake, :readme, :resources, :rdoc, :test, :coverage, :version], 
+      :cli    => [:binf, :gemfile, :gemspec, :gitignore, :libf, :logs, :metrics, :rake, :readme, :resources, :rdoc, :rubocop, :test, :coverage, :version], 
       :core   => [:coverage, :gemfile, :gemspec, :gitignore, :libf, :rake, :rdoc, :readme, :test, :version], 
       :test   => [:config, :coverage, :gemfile, :gemlock, :gitignore, :libf, :logs, :rake, :readme, :resources, :results, :rvmrc, :test, :spec, :spec_help],
       :utility=> [:config, :coverage, :gemfile, :gemspec, :gitignore, :libf, :rake, :rdoc, :readme, :test, :version],
@@ -45,6 +45,8 @@ class TemplateManager
       :gemlock   => [@folders[:base],   "templates/gemlock.txt",      "Gemfile.lock"],
       :libf      => [@folders[:libf],   "templates/main.txt",         "#{@pname}.rb"],
       :licence   => [@folders[:base],   "templates/licence.txt",      "LICENCE"],
+      :metrics   => [@folders[:base],   "templates/dot_metrics.txt",  ".metrics"],
+      :rubocop   => [@folders[:base],   "templates/dot_rubocop.txt",  ".rubocop.yml"],
       :rake      => [@folders[:base],   "templates/rake.txt",         "Rakefile"],
       :readme    => [@folders[:base],   "templates/readme.txt",       "README.md"],
       :rvmrc     => [@folders[:base],   "templates/dot_rvmrc.txt",    ".rvmrc"],
