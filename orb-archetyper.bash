@@ -29,7 +29,8 @@ main() {
 	rvm use ruby-1.9.3
 	bundle install
 
-	bundle exec rake rspec_unit
+	bundle exec rake spec_unit
+	bundle exec rake metrics:all
 
 	endTime=$(date +%s)
 	timeDifference=$(( $endTime - $startTime ))
