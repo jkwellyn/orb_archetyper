@@ -1,5 +1,5 @@
-require_relative 'test_helper'
-require_relative '../lib/template_manager'
+require_relative '../spec_helper'
+require_relative '../../lib/template_manager'
 
 module OrbArchetyper
 

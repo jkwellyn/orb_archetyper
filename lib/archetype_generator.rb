@@ -1,4 +1,3 @@
-#TODO: MOVE FILE HELPERS INTO GEM
 require_relative 'helpers/file_utils'
 require_relative 'template_manager'
 require 'ansi'

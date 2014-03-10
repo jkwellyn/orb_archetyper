@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
  spec.require_paths = ["lib"]
 
  #development dependencies...
+ spec.add_development_dependency('ci_reporter')
  spec.add_development_dependency('metric_fu', '4.8.0')
  spec.add_development_dependency('rake', '10.1.1')
  spec.add_development_dependency('rake-notes', '0.2.0')

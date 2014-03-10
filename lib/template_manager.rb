@@ -1,3 +1,4 @@
+require_relative 'orb-archetyper/version'
 require 'date'
 # Data Structure to hold the supported project archetypes available: consisting of the project types, files and folders required.
 # In addition any dynamic substitutins that are required when the files are created.
@@ -13,10 +14,10 @@ class TemplateManager
     @user = ENV['USER']
 
     @archetypes = {
-      :cli    => [:binf, :gemfile, :gemspec, :gitignore, :libf, :logs, :metrics, :rake, :readme, :resources, :rdoc, :rubocop, :test, :coverage, :version], 
-      :core   => [:coverage, :gemfile, :gemspec, :gitignore, :libf, :rake, :rdoc, :readme, :test, :version], 
-      :test   => [:config, :coverage, :gemfile, :gemlock, :gitignore, :libf, :logs, :rake, :readme, :resources, :results, :rvmrc, :test, :spec, :spec_help],
-      :utility=> [:config, :coverage, :gemfile, :gemspec, :gitignore, :libf, :rake, :rdoc, :readme, :test, :version],
+      :cli    => [:binf, :build, :gemfile, :gemspec, :gitignore, :libf, :logs, :metrics, :rake, :readme, :spec_dot, :spec_help, :unit, :resources, :rubocop, :coverage, :version], 
+      :core   => [:build, :coverage, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :unit, :rubocop, :version], 
+      :test   => [:build, :config, :coverage, :gemfile, :gemlock, :gitignore, :logs, :rake, :readme, :resources, :results, :rvmrc, :spec_dot, :accept, :spec_help, :lib, :version],
+      :utility=> [:build, :config, :coverage, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :unit, :version],
     }
 
       #not all folders have child files
@@ -25,19 +26,22 @@ class TemplateManager
         :binf =>      "bin",
         :coverage =>  "coverage",  
         :config =>    "config",   
-        :libf =>      "lib",
+        :lib =>       "lib", #this is the lib folder
+        :libf =>      "lib", #this is the main lib rb file
         :logs =>      "logs",
         :rdoc =>      "rdoc",
         :resources => "resources",
-        :results =>   "results",
-        # TODO: RESTRUCTURE TEST FILE STRUCTURE
-        :spec =>      "spec", #functional tests 
-        :test =>      "test" #unit tests folders    
+        :results =>   "results", 
+        :spec =>      "spec", 
+        :unit =>      "spec/unit", #unit tests 
+        :accept =>    "spec/accept", #functional
+        :version =>   "lib/#{pname}"
     };
 
   # {target directory, src directory, filename]
    @files = {
       :binf      => [@folders[:binf],   "templates/bin_cli.txt",      "#{@pname}"],
+      :build     => [@folders[:base],   "templates/build.txt",        "#{@pname}.bash"],
       :config    => [@folders[:config], "templates/env_config.yml",   "env_config.yml"], 
       :gitignore => [@folders[:base],   "templates/dot_gitignore.txt",".gitignore"],
       :gemfile   => [@folders[:base],   "templates/gemfile.txt",      "Gemfile"],
@@ -50,10 +54,11 @@ class TemplateManager
       :rake      => [@folders[:base],   "templates/rake.txt",         "Rakefile"],
       :readme    => [@folders[:base],   "templates/readme.txt",       "README.md"],
       :rvmrc     => [@folders[:base],   "templates/dot_rvmrc.txt",    ".rvmrc"],
-      :spec      => [@folders[:spec],   "templates/spec.txt",         "#{@pname}_spec.rb"],
-      :spec_help => [@folders[:spec],   "templates/spec_helper.txt",  "spec_helper.rb"],
-      :test      => [@folders[:test],   "templates/test.txt",         "#{@pname}_test.rb"],
-      :version   => [@folders[:libf]+"/#{@pname}", "templates/version.txt", "version.rb"]
+      :spec_help => [@folders[:spec],   "templates/spec_help.txt",    "spec_helper.rb"],
+      :spec_dot  => [@folders[:base],   "templates/spec_dot.txt",     ".rspec"],
+      :unit      => [@folders[:unit],   "templates/spec_test.txt",    "#{@pname}_test.rb"],
+      :accept    => [@folders[:accept], "templates/spec_test.txt",    "#{@pname}_test.rb"],
+      :version   => [@folders[:version],"templates/version.txt",      "version.rb"]
     }
 
     @substitutes = {
@@ -65,14 +70,15 @@ class TemplateManager
                   :year           => ["{year}",            Date.today.strftime("%Y")]},
       :readme  => {:project_name  => ["{project_name}",   "#{@pname}"]},
       :rake    => {:project_name  => ["{project_name}",   "#{@pname}"]},
-      :version => {:module_name   => ["{module_name}",    "#{@mname}"]},
+      :version => {:orb_version   => ["{version}",         OrbArchetyper::VERSION],
+                   :module_name   => ["{module_name}",    "#{@mname}"]},
       :libf    => {:module_name   => ["{module_name}",    "#{@mname}"],
                    :project_name  => ["{project_name}",   "#{@pname}"]},
       :binf    =>  {:module_name  => ["{module_name}",    "#{@mname}"],
                    :project_name  => ["{project_name}",   "#{@pname}"]},
-      :spec    => {:project_name  => ["{project_name}",   "#{@pname}"],
+      :unit    => {:project_name  => ["{project_name}",   "#{@pname}"],
                     :module_name  => ["{module_name}",    "#{@mname}"]},
-      :test    => {:project_name  => ["{project_name}",   "#{@pname}"],
+      :accept   => {:project_name  => ["{project_name}",   "#{@pname}"],
                     :module_name  => ["{module_name}",    "#{@mname}"]}
     } 
   end

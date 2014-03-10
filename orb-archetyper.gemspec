@@ -29,8 +29,9 @@ Gem::Specification.new do |spec|
  spec.add_development_dependency('rspec-extra-formatters', '0.4')
  spec.add_development_dependency('rubocop', '0.16.0')
  spec.add_development_dependency('simplecov', '0.7.1')
+ spec.add_development_dependency('ci_reporter')
 #Runtime dependencies
  spec.add_runtime_dependency('ansi', '1.4.3')
 
- spec.post_install_message = "Welcome to the oRb..."
+ spec.post_install_message = "Welcome to the oRb."
 end
