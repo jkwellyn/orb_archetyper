@@ -3,6 +3,9 @@ require_relative '../../lib/{project_name}'
 
 module {module_name}
 
+	 log = OrbLogger.new.logger
+	 log.info("called in: " + self.class.name + "," + File.basename(__FILE__))
+
 	describe {module_name} do
 
 		context "Your tests will fail..." do
