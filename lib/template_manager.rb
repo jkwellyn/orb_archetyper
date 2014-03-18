@@ -14,7 +14,7 @@ class TemplateManager
     @user = ENV['USER']
 
     @archetypes = {
-      :cli    => [:binf, :build, :gemfile, :gemspec, :gitignore, :libf, :logs, :metrics, :rake, :readme, :spec_dot, :spec_help, :unit, :resources, :rubocop, :coverage, :version], 
+      :cli    => [:binf, :build, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :unit, :resources, :rubocop, :version], 
       :core   => [:build, :coverage, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :unit, :rubocop, :version], 
       :test   => [:build, :config, :coverage, :gemfile, :gemlock, :gitignore, :logs, :rake, :readme, :resources, :results, :rvmrc, :spec_dot, :accept, :spec_help, :lib, :version],
       :utility=> [:build, :config, :coverage, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :unit, :version],
@@ -23,15 +23,11 @@ class TemplateManager
       #not all folders have child files
     @folders = {
         :base =>      "#{@pname}", 
-        :binf =>      "bin",
-        :coverage =>  "coverage",  
+        :binf =>      "bin",  
         :config =>    "config",   
         :lib =>       "lib", #this is the lib folder
         :libf =>      "lib", #this is the main lib rb file
-        :logs =>      "logs",
-        :rdoc =>      "rdoc",
-        :resources => "resources",
-        :results =>   "results", 
+        :resources => "resources", 
         :spec =>      "spec", 
         :unit =>      "spec/unit", #unit tests 
         :accept =>    "spec/accept", #functional

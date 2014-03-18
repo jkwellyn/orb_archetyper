@@ -36,7 +36,7 @@ main() {
 	timeDifference=$(( $endTime - $startTime ))
 
 	echo "Execution time :" $timeDifference
-	echo "Fin."
+	echo "Finished."
 
 }
 

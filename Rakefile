@@ -13,7 +13,7 @@ def timestamp
 end
 
 RSpec::Core::RakeTask.new(:spec_unit_ci => ["ci:setup:rspec"]) do |t|
-  spec_opts = "--format html --out results/unit/#{timestamp}_results.html"
+  spec_opts = "--format html --out tmp/results/unit/#{timestamp}_results.html"
   ENV["SPEC_OPTS"] = "#{ENV['SPEC_OPTS']} #{spec_opts}"
   t.pattern = 'spec/**/*test.rb'
 end
@@ -22,14 +22,14 @@ RSpec::Core::RakeTask.new(:spec_unit) do |t|
   t.rspec_opts = ['-c']
   t.rspec_opts << '--require' << 'rspec-extra-formatters'
   t.rspec_opts << '--format' << JUnitFormatter
-  t.rspec_opts << '--out' << "results/unit/#{timestamp}_results.xml"
+  t.rspec_opts << '--out' << "tmp/results/unit/#{timestamp}_results.xml"
   t.rspec_opts << '--format' << 'html'
-  t.rspec_opts << '--out' << "results/unit/#{timestamp}_results.html"
+  t.rspec_opts << '--out' << "tmp/results/unit/#{timestamp}_results.html"
   t.pattern = 'spec/unit/*test.rb'
 end
 
 RDoc::Task.new(:rdoc) do |rdoc|
-    rdoc.rdoc_dir = 'rdoc'
+    rdoc.rdoc_dir = 'tmp/rdoc'
     rdoc.title = 'orb-archetyper'
     rdoc.main = 'README.md'
     rdoc.rdoc_files.include('README*', 'lib/**/*.rb')
@@ -48,13 +48,13 @@ end
 desc "Remove Simplecov files"
   task :clobber_coverage do
     puts "Clearing the coverage directory..."
-    `rm -rf coverage/*`
+    `rm -rf tmp/coverage/*`
     puts "Done."
 end
 
-desc "Remove Tmp files"
+desc "Remove ALL Tmp files"
   task :clobber_tmp do
-    puts "Clearing the tmp directory..."
+    puts "Clearing the root tmp directory..."
     `rm -rf tmp/*`
     puts "Done."
 end
@@ -62,6 +62,13 @@ end
 desc "Remove Unit Test Results files"
   task :clobber_unit do
     puts "Clearing the unit test directory..."
-    `rm -rf results/unit/*`
+    `rm -rf tmp/results/unit/*`
+    puts "Done."
+end
+
+desc "Remove metrics results files"
+  task :clobber_metrics do
+    puts "Clearing the metrics directory..."
+    `rm -rf tmp/metric_fu/*`
     puts "Done."
 end

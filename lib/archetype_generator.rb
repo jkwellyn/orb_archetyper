@@ -6,6 +6,9 @@ require 'ansi'
 class ArchetypeGenerator
   # Create new generator instance given a project name
   # Project name is validated
+
+  attr_reader :pname, :mname
+
   def initialize(project_name)
     # sanitize project name
     @pname = sanitize(project_name)
@@ -71,7 +74,6 @@ class ArchetypeGenerator
     end
   end
 
-  private
   # Given a hash of @files
   def file_gen(archetype)
 
@@ -117,7 +119,6 @@ class ArchetypeGenerator
     end
   end
 
-  private
   # Ensure that the project name is valid
   def sanitize(projectName)
 

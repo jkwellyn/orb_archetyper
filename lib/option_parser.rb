@@ -42,7 +42,9 @@ class OptionParser
 			# optional arguement, true if declared
 			opts.on("-g", "--[no-]github", "Create the git repo for the project,", 
 				"False if omitted, true if declared.") do |g|
-					options[:github] = g
+					unless g.nil?
+						options[:github] = g
+					end
 			end
 
 			opts.separator ""

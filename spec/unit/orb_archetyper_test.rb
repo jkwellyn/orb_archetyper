@@ -1,9 +1,9 @@
 require_relative '../spec_helper'
-require_relative '../../lib/archetype_generator'
+#require_relative '../../bin/orb-archetyper'
 
 module OrbArchetyper
 
-	describe ArchetypeGenerator do
+	describe OrbArchetyper do
 		context "Initialization" do 
 			it "does what it says on the tin" do
 
