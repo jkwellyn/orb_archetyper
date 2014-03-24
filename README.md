@@ -1,16 +1,5 @@
 #orb-archetyper - Project cookie cutter
 
-       .,,,.           ...           .,,,.
-      ((o o))        (`@ @`)        ((6 6))
-    ___\ - /___    ___\ o /___    ___\ v /___
-   |B_   &   _B|  (&_   %   _&)  (&_   &   _&)
-      |  %  |        |  &  |        |  %  |
-      |  &  |        |  %  |        |  &  |
-      /  %  \        /  &  \        /  %  \
-    _/  / \  \_    _/  / \  \_    _/  / \  \_
-   (B__/   \__B)  (&__/   \__&)  (&__/   \__&)
-
-
 Command line application to generate an auto-wired project type for AQA. 
 
 Supported project types include:
