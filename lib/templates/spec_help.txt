@@ -1,13 +1,12 @@
 require 'simplecov'
 SimpleCov.start do 
-	 
-	 coverage_dir 'tmp/coverage/unit'
+  coverage_dir 'tmp/coverage/unit'
 
-	 add_filter 'spec/'
-	 add_filter 'test/'
-	 add_filter 'rdoc/'
-	 add_filter 'results/'
-	 add_filter 'coverage/'
+  add_filter 'spec/'
+  add_filter 'test/'
+  add_filter 'rdoc/'
+  add_filter 'results/'
+  add_filter 'coverage/'
 end
 
 RSpec.configure do |config|
@@ -19,13 +18,13 @@ end
 
 
 #output logs to both console and STDOUT
-#TODO : It would be cool to give this the moon-raker treatment ED
+# TODO : It would be cool to give this the moon-raker treatment ED
 require 'logger'
 
-#Support multi formats with the logger
+# Support multi formats with the logger
 class MultiIO
   def initialize(*targets)
-     @targets = targets
+    @targets = targets
   end
 
   def write(*args)
@@ -38,18 +37,17 @@ class MultiIO
 end
 
 # Logger that supports STDOUT and a logfile
-#Logger init as log level info
+# Logger init as log level info
 class OrbLogger
-	
-	attr_reader :logger
-	
-	def initialize
-		log_file = File.open('tmp/logfile.log', 'a')
-		@logger = Logger.new MultiIO.new(STDOUT, log_file)
-
-    	#TODO : this is set by default here but should be moved to be a config file
-		@logger.level = Logger::INFO
-		@logger.info("Logging initilaized.")
-	end
-
+  attr_reader :logger
+  
+  def initialize
+    log_file = File.open('tmp/logfile.log', 'a')
+    @logger = Logger.new MultiIO.new(STDOUT, log_file)
+    
+    # TODO : this is set by default here but should be moved to be a config file
+    @logger.level = Logger::INFO
+    @logger.info("Logging initilaized.")
+  end
 end
+
