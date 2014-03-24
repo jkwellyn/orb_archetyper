@@ -8,7 +8,7 @@ module OrbArchetyper
 		context "class variables supported types" do
 
 				it "supports 4 project pattern types" do
-					TemplateManager.types.length.should == 4
+					expect(TemplateManager.types.length).to eq(4)
 				end
 
 				it "has the correct project types" do
