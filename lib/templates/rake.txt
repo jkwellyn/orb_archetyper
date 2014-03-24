@@ -15,7 +15,7 @@ end
 RSpec::Core::RakeTask.new(:spec_unit) do |t|
   t.rspec_opts = ['-c']
   #If you dont like cats: change out the nyan-cat for fuubar for your console output format
-  t.rspec_opts << '--format' << NyanCatFormatter
+  t.rspec_opts << '--format' << 'NyanCatFormatter'
   #t.rspec_opts << '--require' << fuubar
   #t.rspec_opts << '--format' << Fuubar
   t.rspec_opts << '--require' << 'rspec-extra-formatters'
