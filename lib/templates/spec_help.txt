@@ -10,6 +10,14 @@ SimpleCov.start do
 	 add_filter 'coverage/'
 end
 
+RSpec.configure do |config|
+  # Only accept expect syntax do not allow old should syntax
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
+end
+
+
 #output logs to both console and STDOUT
 #TODO : It would be cool to give this the moon-raker treatment ED
 require 'logger'

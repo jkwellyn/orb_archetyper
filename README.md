@@ -1,49 +1,72 @@
-#Orb Archetype Generator
+#orb-archetyper - Project cookie cutter
 
-Command line application to generate an auto-wired project type. 
+       .,,,.           ...           .,,,.
+      ((o o))        (`@ @`)        ((6 6))
+    ___\ - /___    ___\ o /___    ___\ v /___
+   ($_   &   _$)  ($_   %   _$)  ($_   &   _$)
+      |  %  |        |  &  |        |  %  |
+      |  &  |        |  %  |        |  &  |
+      /  %  \        /  &  \        /  %  \
+    _/  / \  \_    _/  / \  \_    _/  / \  \_
+   ($__/   \__$)  ($__/   \__$)  ($__/   \__$)
+
+
+Command line application to generate an auto-wired project type for AQA. 
+
 Supported project types include:
 1. Command line application
-2. Orb Core Project
-3. Utility Project 
-4. Test Project
+2. Test Project (aka test launcher) 
+3. Utility Project (e.g. a client for a service)
+4. Core project
 
-  Generated projects are created with a predefined structure, dependency injection and default rake tasks added. 
-  Including
-  1. Rendered results reporting for rspec - html/xml
-  2. Unit test coverage (simplecov)
-  3. Documentation (rdoc)
-  4. static analysis (rubocop and reek)
-  5. Annotations - Rake notes (TODO, FIXME, OPTIMIZE)
+Projects are created with a predefined structure and are autorired with a set configuration. 
+This inlcudes:
 
-  ## Installation
+Rspec 
+--configured for accepting only except the new expect syntax 
+RSpec test implementation for unit and acceptance tests
+Rendered results reporting for rspec - html/xml/console
+Logging - console and logfile
+Unit test coverage (simplecov)
+Documentation (rdoc)
+Static analysis (rubocop)
+Metrics and stats (metric_fu)
+Annotations - Rake notes (TODO, FIXME, OPTIMIZE)
+Predefined rake tasks
+Git initialization
+A build.bash script to simplify how jenkins executes/invokes tests
 
-  Build the gem locally
+## Installation
+ 
 
-  `$ gem build orb-archetyper.gemspec`
+`$ gem install orb-archetyper`
 
-  Install it yourself as:
+## Usage
 
-      `$ gem install orb-archetyper-0.0.1.gem`
+###Help
 
-  ## Usage
+`$ orb-archetyper --help`
+`$ orb-archetyper -h`
+`$ orb-archetyper -h`
 
-  Help
+Show all subproject types:
+`$ orb-archetyper -e`
+  
 
-  `$ orb-archetyper --help`
-  `$ orb-archetyper -h`
+### Create a new project
+Where "project-a "is the name of your project.
 
-  ### Create a new project
-  Where "project-a "is the name of your project.
+`$ orb-archetyper -t cli -p my_project -x coverage -i spec,spec_help -x logs -g`
 
-  `$ orb-archetyper -t cli -p project-a -x coverage -i spec,spec_help -x logs -g`
+Note: Inlcude, exlcude is comma separated and comtains no white spaces.
+-g does a git init for ya.
 
-  Note: Inlcude, exlcude is comma separated and comtains no white space.
-  -g does a git init for ya.
+`$ orb-archetyper -t cli -p my_project -x coverage -i spec,spec_help -x logs -g`
 
-  ###Output
+###Output
 
-  Based om the following command, where project name = "command-line":
-  `$ orb-archetyper -t cli -p comand-line -x coverage -i licence`
+Based om the following command, where project name = "command-line":
+`$ orb-archetyper -t cli -p comand-line -x coverage -i licence`
 
 * Included licence into cli archetype.
 * Excluded coverage from cli archetype.
@@ -66,75 +89,22 @@ Supported project types include:
 * created `comand-line`/lib/`comand-line`
 * created `comand-line`/lib/`comand-line`/version.rb
   
-### Archetype Structure
 
-#### 1. Command Line Application
+#### 1. Command Line Applications
 
-* binf
-* gemfile
-* gemspec
-* gitignore 
-* libf 
-* logs
-* rake 
-* readme
-* resources
-* rdoc
-* test
-* coverage
-* version
-
-#### 2. Core 
-A core Orb project that is used to facilitate automated testing. 
-
-* coverage
-* gemfile
-* gemspec
-* gitignore
-* libf
-* rake
-* rdoc
-* readme
-* test
-* version
+#### 2. Test
+An RSPEC test project that can be configured to be executed against a number of deployment tiers.
 
 #### 3. Utility
 A client interface to provide a reusable access point to a component/service/application under test.
 
- * config
- * coverage
- * gemfile 
- * gemspec 
- * gitignore
- * libf 
- * rake
- * rdoc
- * readme
- * test
- * version  
+#### 4. Core 
+A core project that is used to facilitate automated testing common to all AQA. 
 
-#### 4. Test
-An RSPEC test project that can be executed against a number of deployment tiers.
+## Contributing
 
-* config - environment configuration 
-* coverage
-* gemfile
-* gemlock
-* gitignore
-* libf
-* logs
-* rake
-* readme
-* resources
-* results - used by jenkins
-* rvmrc
-* test - unit tests on test projects
-* spec - functional automated tests
-
-  ## Contributing
-
-  1. Fork it ( https://github.va.opower.it/euan-davidson/orb-archetyper )
-  2. Create your feature branch (`git checkout -b my-new-feature`)
-  3. Commit your changes (`git commit -am 'Add some feature'`)
-  4. Push to the branch (`git push origin my-new-feature`)
-  5. Create new Pull Request
+1. Fork it ( https://github.va.opower.it/auto/orb-archetyper )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request

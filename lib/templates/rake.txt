@@ -14,6 +14,10 @@ end
 
 RSpec::Core::RakeTask.new(:spec_unit) do |t|
   t.rspec_opts = ['-c']
+  #If you dont like cats: change out the nyan-cat for fuubar for your console output format
+  t.rspec_opts << '--format' << NyanCatFormatter
+  #t.rspec_opts << '--require' << fuubar
+  #t.rspec_opts << '--format' << Fuubar
   t.rspec_opts << '--require' << 'rspec-extra-formatters'
   t.rspec_opts << '--format' << JUnitFormatter
   t.rspec_opts << '--out' << "tmp/results/unit/#{timestamp}_results.xml"
@@ -24,6 +28,7 @@ end
 
 RSpec::Core::RakeTask.new(:spec_accept) do |t|
   t.rspec_opts = ['-c']
+  t.rspec_opts << '--format' << NyanCatFormatter
   t.rspec_opts << '--require' << 'rspec-extra-formatters'
   t.rspec_opts << '--format' << JUnitFormatter
   t.rspec_opts << '--out' << "tmp/results/accept/#{timestamp}_results.xml"
@@ -82,4 +87,10 @@ desc "Remove metrics results files"
     puts "Clearing the metrics directory..."
     `rm -rf tmp/metric_fu/*`
     puts "Done."
+end
+
+desc "Open latest unit test results in your yer browser"
+ task :open_unit_results do
+  file = `find tmp/results/unit/ -regex ".*\.\html" | tail -1`
+  `open #{file}`
 end

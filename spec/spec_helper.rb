@@ -9,3 +9,10 @@ SimpleCov.start do
 	add_filter 'results/'
 	add_filter 'coverage/'
 end	
+
+RSpec.configure do |config|
+  # Only accept expect syntax do not allow old should syntax
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
+end

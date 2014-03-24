@@ -30,6 +30,9 @@ Gem::Specification.new do |spec|
  spec.add_development_dependency('rubocop', '0.16.0')
  spec.add_development_dependency('simplecov', '0.7.1')
  spec.add_development_dependency('ci_reporter')
+ spec.add_development_dependency('fuubar', '1.3.2')
+ spec.add_development_dependency('nyan-cat-formatter', '0.5.2')
+
 #Runtime dependencies
  spec.add_runtime_dependency('ansi', '1.4.3')
 
