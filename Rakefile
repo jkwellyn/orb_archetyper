@@ -7,12 +7,13 @@ require 'rubocop/rake_task'
 require 'rdoc/task'
 require 'rake/notes/rake_task'
 require 'metric_fu'
+require 'fuubar'
 
 def timestamp
 	Time.now.strftime("%Y%m%d_%H%M%S")
 end
 
-RSpec::Core::RakeTask.new(:spec_unit_ci => ["ci:setup:rspec"]) do |t|
+RSpec::Core::RakeTask.new(:spec_unit_ci_2 => ["ci:setup:rspec"]) do |t|
   spec_opts = "--format html --out tmp/results/unit/#{timestamp}_results.html"
   ENV["SPEC_OPTS"] = "#{ENV['SPEC_OPTS']} #{spec_opts}"
   t.pattern = 'spec/**/*test.rb'
@@ -20,10 +21,17 @@ end
 
 RSpec::Core::RakeTask.new(:spec_unit) do |t|
   t.rspec_opts = ['-c']
-  #If you dont like cats: change out the nyan-cat for fuubar for your console output format
   t.rspec_opts << '--format' << 'NyanCatFormatter'
-  #t.rspec_opts << '--require' << fuubar
-  #t.rspec_opts << '--format' << Fuubar
+  t.rspec_opts << '--require' << 'rspec-extra-formatters'
+  t.rspec_opts << '--format' << 'html'
+  t.rspec_opts << '--out' << "tmp/results/unit/#{timestamp}_results.html"
+  t.pattern = 'spec/unit/*test.rb'
+end
+
+RSpec::Core::RakeTask.new(:spec_unit_ci) do |t|
+  t.rspec_opts = ['-c']
+  t.rspec_opts << '--require' << 'fuubar'
+  t.rspec_opts << '--format' << Fuubar
   t.rspec_opts << '--require' << 'rspec-extra-formatters'
   t.rspec_opts << '--format' << JUnitFormatter
   t.rspec_opts << '--out' << "tmp/results/unit/#{timestamp}_results.xml"
@@ -31,6 +39,7 @@ RSpec::Core::RakeTask.new(:spec_unit) do |t|
   t.rspec_opts << '--out' << "tmp/results/unit/#{timestamp}_results.html"
   t.pattern = 'spec/unit/*test.rb'
 end
+
 
 RDoc::Task.new(:rdoc) do |rdoc|
     rdoc.rdoc_dir = 'tmp/rdoc'
