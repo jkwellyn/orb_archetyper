@@ -26,7 +26,7 @@ This inlcudes:
 * A jenkins build.bash script to simplify how jenkins executes/invokes commands
 
 ## Installation
- 
+ 	
 `$ gem install orb-archetyper`
 
 ## Usage
