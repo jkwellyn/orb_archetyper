@@ -11,19 +11,19 @@ Supported project types include:
 Projects are created with a predefined structure and are autorired with a set configuration. 
 This inlcudes:
 
-* Rspec
-+ Configured to only accept: the new expect syntax
-+ RSpec test implementation for unit and acceptance tests
-+ Rendered results reporting for - html/xml/console (jenkins and local)
-* Logging - console and logfile
-* Unit test coverage (simplecov)
-* Documentation (rdoc)
-* Static analysis (rubocop)
-* Metrics and stats (metric_fu)
-* Annotations - Rake notes (TODO, FIXME, OPTIMIZE) and orb-moon-raker
-* rake tasks
-* Git project initialization
-* A jenkins build.bash script to simplify how jenkins executes/invokes commands
+1. Rspec
+ + Configured to only accept: the new expect syntax
+ + RSpec test implementation for unit and acceptance tests
+ + Rendered results reporting for - html/xml/console (jenkins and local)
+2. Logging - console and logfile
+3. Unit test coverage (simplecov)
+4. Documentation (rdoc)
+5. Static analysis (rubocop)
+6. Metrics and stats (metric_fu)
+7. Annotations - Rake notes (TODO, FIXME, OPTIMIZE) and orb-moon-raker
+8. Rake tasks
+9. Git project initialization
+10. A jenkins build.bash script to simplify how jenkins executes/invokes commands
 
 ## Installation
  	
