@@ -2,11 +2,11 @@
 
 Command line application to generate an auto-wired project type for AQA. 
 
-Supported project types include:
-1. Command line application
-2. Test Project (aka test launcher) 
+Supported project types inlcude:
+1. Command line applications
+2. Test Project (aka test launcher)
 3. Utility Project (e.g. a client for a service)
-4. Core project
+4. Core project (e.g. SQL or Rest Connection manager) 
 
 Projects are created with a predefined structure and are autorired with a set configuration. 
 This inlcudes:
