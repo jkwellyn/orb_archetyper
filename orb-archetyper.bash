@@ -15,21 +15,22 @@ ALPHA=$1
 BETA=$2
 
 #Begin
-echo
-echo "Run build script..."
-echo "Build args: $1 $2"
+echo "*************************************"
+echo "Running build script..."
 echo "PWD :"$SOURCE_DIR
+echo "Build args: $1 $2"
 
 main() {
 
-	echo "Executing..."
+	echo "*************************************"
 	startTime=$(date +%s)
 
 	#ensure using rvm1.9.3
 	rvm use ruby-1.9.3
+	
 	bundle install
-
 	bundle exec rake spec_unit_ci
+	bundle exec rake metrics:all
 	bundle exec rake code_metrics:stats
 
 	endTime=$(date +%s)
