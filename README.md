@@ -11,23 +11,22 @@ Supported project types include:
 Projects are created with a predefined structure and are autorired with a set configuration. 
 This inlcudes:
 
-Rspec 
---configured for accepting only except the new expect syntax 
-RSpec test implementation for unit and acceptance tests
-Rendered results reporting for rspec - html/xml/console
-Logging - console and logfile
-Unit test coverage (simplecov)
-Documentation (rdoc)
-Static analysis (rubocop)
-Metrics and stats (metric_fu)
-Annotations - Rake notes (TODO, FIXME, OPTIMIZE)
-Predefined rake tasks
-Git initialization
-A build.bash script to simplify how jenkins executes/invokes tests
+* Rspec
++ Configured to only accept: the new expect syntax
++ RSpec test implementation for unit and acceptance tests
++ Rendered results reporting for - html/xml/console (jenkins and local)
+* Logging - console and logfile
+* Unit test coverage (simplecov)
+* Documentation (rdoc)
+* Static analysis (rubocop)
+* Metrics and stats (metric_fu)
+* Annotations - Rake notes (TODO, FIXME, OPTIMIZE) and orb-moon-raker
+* rake tasks
+* Git project initialization
+* A jenkins build.bash script to simplify how jenkins executes/invokes commands
 
 ## Installation
  
-
 `$ gem install orb-archetyper`
 
 ## Usage
