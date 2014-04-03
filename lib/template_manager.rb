@@ -1,5 +1,7 @@
 require_relative 'orb-archetyper/version'
 require 'date'
+require 'erb'
+
 # Data Structure to hold the supported project archetypes available: consisting of the project types, files and folders required.
 # In addition any dynamic substitutins that are required when the files are created.
 class TemplateManager
@@ -14,22 +16,22 @@ class TemplateManager
     @user = ENV['USER']
 
     @archetypes = {
-      :cli    => [:binf, :build, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :unit, :resources, :rubocop, :version], 
-      :core   => [:build, :coverage, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :unit, :rubocop, :version], 
+      :cli    => [:binf, :build, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :unit, :resources, :rubocop, :version],
+      :core   => [:build, :coverage, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :unit, :rubocop, :version],
       :test   => [:build, :config, :coverage, :gemfile, :gemlock, :gitignore, :logs, :rake, :readme, :resources, :results, :rvmrc, :spec_dot, :accept, :spec_help, :lib, :version],
       :utility=> [:build, :config, :coverage, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :unit, :version],
     }
 
       #not all folders have child files
     @folders = {
-        :base =>      "#{@pname}", 
-        :binf =>      "bin",  
-        :config =>    "config",   
+        :base =>      "#{@pname}",
+        :binf =>      "bin",
+        :config =>    "config",
         :lib =>       "lib", #this is the lib folder
         :libf =>      "lib", #this is the main lib rb file
-        :resources => "resources", 
-        :spec =>      "spec", 
-        :unit =>      "spec/unit", #unit tests 
+        :resources => "resources",
+        :spec =>      "spec",
+        :unit =>      "spec/unit", #unit tests
         :accept =>    "spec/accept", #functional
         :version =>   "lib/#{pname}"
     };
@@ -38,10 +40,10 @@ class TemplateManager
    @files = {
       :binf      => [@folders[:binf],   "templates/bin_cli.txt",      "#{@pname}"],
       :build     => [@folders[:base],   "templates/build.txt",        "#{@pname}.bash"],
-      :config    => [@folders[:config], "templates/env_config.yml",   "env_config.yml"], 
+      :config    => [@folders[:config], "templates/env_config.yml",   "env_config.yml"],
       :gitignore => [@folders[:base],   "templates/dot_gitignore.txt",".gitignore"],
-      :gemfile   => [@folders[:base],   "templates/gemfile.txt",      "Gemfile"],
-      :gemspec   => [@folders[:base],   "templates/gemspec.txt",      "#{@pname}.gemspec"],
+      :gemfile   => [@folders[:base],   "templates/gemfile.erb",      "Gemfile"],
+      :gemspec   => [@folders[:base],   "templates/gemspec.erb",      "#{@pname}.gemspec"],
       :gemlock   => [@folders[:base],   "templates/gemlock.txt",      "Gemfile.lock"],
       :libf      => [@folders[:libf],   "templates/main.txt",         "#{@pname}.rb"],
       :licence   => [@folders[:base],   "templates/licence.txt",      "LICENCE"],
@@ -76,7 +78,7 @@ class TemplateManager
                     :module_name  => ["{module_name}",    "#{@mname}"]},
       :accept   => {:project_name  => ["{project_name}",   "#{@pname}"],
                     :module_name  => ["{module_name}",    "#{@mname}"]}
-    } 
+    }
   end
 
   def self.archetypes
@@ -98,7 +100,7 @@ class TemplateManager
 	def substitutes
 		@substitutes
   end
-  
+
   def subtypes
       (@files.keys + @folders.keys).uniq.sort
 	end

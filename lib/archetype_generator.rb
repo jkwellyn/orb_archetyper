@@ -1,6 +1,15 @@
 require_relative 'helpers/file_utils'
 require_relative 'template_manager'
 require 'ansi'
+require 'erb'
+
+require 'ostruct'
+
+class ERBValues < OpenStruct
+  def render(template)
+    ERB.new(template, nil, '-').result(binding)
+  end
+end
 
 # Archetype generator
 class ArchetypeGenerator
@@ -66,7 +75,7 @@ class ArchetypeGenerator
      end
 
     # Generate files
-    file_gen(@files.select{|key, value| arch.include? key} )
+    file_gen(options[:type], @files.select{|key, value| arch.include? key} )
 
     # Add to the repo
     if options[:github]
@@ -75,25 +84,33 @@ class ArchetypeGenerator
   end
 
   # Given a hash of @files
-  def file_gen(archetype)
+  def file_gen(project_type, archetype)
 
     archetype.each do |key, value|
 
       target, src, fname = value
 
-      fulldir = File.join(File.dirname(File.expand_path(__FILE__)), "/" + src)
+      dir = File.dirname(File.expand_path(__FILE__))
+      fulldir = File.join(dir, "/" + src)
 
       unless File.exist?(fulldir)
         raise "Cannot find the template file: #{fulldir}"
       end
 
-      fdata = File.read(fulldir)
+      if fulldir.match(/erb?/) # it's an erb!
+        @substitutes[:dir] = dir
+        @substitutes[:project_type] = project_type # add in project type that is used in conditionals
+        et = ERBValues.new(@substitutes)
+        fdata = et.render(File.read(fulldir))
+      else
+        fdata = File.read(fulldir)
 
-      # handle dynamic subs
-      if @substitutes.key?(key)
-          @substitutes[key].each do |k, v|
-            fdata = fdata.gsub(v[0], v[1])
-          end
+        # handle dynamic subs
+        if @substitutes.key?(key)
+            @substitutes[key].each do |k, v|
+              fdata = fdata.gsub(v[0], v[1])
+            end
+        end
       end
 
       if target != @pname
@@ -103,8 +120,11 @@ class ArchetypeGenerator
         end
       end
 
-     FileUtility.file_creator(target, fname, fdata)
+      FileUtility.file_creator(target, fname, fdata)
     end
+
+
+
   end
 
   # Create git init project files
