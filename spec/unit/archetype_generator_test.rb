@@ -4,6 +4,12 @@ require_relative '../../lib/archetype_generator'
 module OrbArchetyper
 
 	describe ArchetypeGenerator do
+
+		before(:all) do
+	  	log = OrbLogger.new.logger
+	  	log.info("called in: " + self.class.name + "," + File.basename(__FILE__))
+	  end
+
 		context "Initialization" do 
 			it "generator is initilaized as expected" do
 

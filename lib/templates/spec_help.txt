@@ -16,7 +16,6 @@ RSpec.configure do |config|
   end
 end
 
-
 #output logs to both console and STDOUT
 # TODO : It would be cool to give this the moon-raker treatment ED
 require 'logger'
@@ -47,7 +46,7 @@ class OrbLogger
     
     # TODO : this is set by default here but should be moved to be a config file
     @logger.level = Logger::INFO
-    @logger.info("Logging initilaized.")
+    @logger.info("Logging initialized.")
   end
 end
 
