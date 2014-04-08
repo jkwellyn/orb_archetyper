@@ -26,7 +26,7 @@ main() {
 	startTime=$(date +%s)
 
 	#ensure using rvm1.9.3
-	#rvm use ruby-1.9.3
+	rvm use ruby-1.9.3 --fuzzy
 	
 	bundle install
 	bundle exec rake spec_unit_ci
