@@ -39,7 +39,7 @@ class TemplateManager
   # {target directory, src directory, filename]
    @files = {
       :binf      => [@folders[:binf],   "templates/bin_cli.txt",      "#{@pname}"],
-      :build     => [@folders[:base],   "templates/build.txt",        "#{@pname}.bash"],
+      :build     => [@folders[:base],   "templates/build.txt",        "build.bash"],
       :config    => [@folders[:config], "templates/env_config.yml",   "env_config.yml"],
       :gitignore => [@folders[:base],   "templates/dot_gitignore.txt",".gitignore"],
       :gemfile   => [@folders[:base],   "templates/gemfile.erb",      "Gemfile"],
@@ -50,6 +50,7 @@ class TemplateManager
       :metrics   => [@folders[:base],   "templates/dot_metrics.txt",  ".metrics"],
       :rubocop   => [@folders[:base],   "templates/dot_rubocop.txt",  ".rubocop.yml"],
       :rake      => [@folders[:base],   "templates/rake.txt",         "Rakefile"],
+      :tasks     => [@folders[:libf],  "templates/tasks.erb",        "tasks.rb"],
       :readme    => [@folders[:base],   "templates/readme.txt",       "README.md"],
       :rvmrc     => [@folders[:base],   "templates/dot_rvmrc.txt",    ".rvmrc"],
       :spec_help => [@folders[:spec],   "templates/spec_help.txt",    "spec_helper.rb"],
