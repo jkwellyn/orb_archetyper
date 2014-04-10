@@ -16,10 +16,10 @@ class TemplateManager
     @user = ENV['USER']
 
     @archetypes = {
-      :cli    => [:binf, :build, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :unit, :resources, :rubocop, :version],
-      :core   => [:build, :coverage, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :unit, :rubocop, :version],
-      :test   => [:build, :config, :coverage, :gemfile, :gemlock, :gitignore, :logs, :rake, :readme, :resources, :results, :rvmrc, :spec_dot, :accept, :spec_help, :lib, :version],
-      :utility=> [:build, :config, :coverage, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :unit, :version],
+      :cli    => [:binf, :build, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :tasks, :unit, :resources, :rubocop, :version],
+      :core   => [:build, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :tasks, :unit, :rubocop, :version],
+      :test   => [:build, :config, :gemfile, :gemlock, :gitignore, :logs, :rake, :readme, :resources, :rvmrc, :spec_dot, :tasks, :accept, :spec_help, :lib, :version],
+      :utility=> [:build, :config, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :unit, :version],
     }
 
       #not all folders have child files
