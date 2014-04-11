@@ -8,12 +8,11 @@ Gem::Specification.new do |spec|
  spec.description   = "Generate template AQA projects: command line applications, core, test and utility projects."
  spec.homepage      = "https://github.va.opower.it/euan-davidson/orb-archetyper"
  spec.requirements << 'Ruby, v1.9.3.'
- spec.required_ruby_version = '>= 1.9.3'
 
  spec.authors       = ["euan.davidson"]
  spec.email         = ["euan.davidson@opower.com"]
 
- spec.required_ruby_version = '>= 1.9.3'
+ spec.required_ruby_version = ">= 1.9.3"
  spec.license       = "MIT"
 
 #file attributes

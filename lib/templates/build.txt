@@ -1,6 +1,7 @@
 #!/bin/bash
 # Tell bash that we want the whole script to fail if any part fails.
 set -e
+
 source "$rvm_path/scripts/rvm"
 
 #Global Variables
@@ -10,7 +11,7 @@ ALPHA=$1
 BETA=$2
 
 #Begin
-echo "*************************************" 
+echo "*************************************"
 echo "Running build script:"
 echo "PWD :"$SOURCE_DIR
 echo "Build args: $1 $2"
@@ -20,8 +21,20 @@ main() {
 	echo "Executing..."
 	startTime=$(date +%s)
 
-	#ensure using rvm1.9.3 a default
-	rvm use ruby-1.9.3
+    #Grab rvm version from the gemspec
+    #TODO is there a better way to do this??
+	rvmVersion=`grep -o 'required_ruby_version.*' orb-archetyper.gemspec`
+    reg_pattern='\".* ([0-9.]+)\"'
+    [[ $rvmVersion =~ $reg_pattern ]]
+    rvmVersionStr=''
+    i=1
+    n=${#BASH_REMATCH[*]}
+    while [[ $i -lt $n ]]
+    do
+        rvmVersionStr+=${BASH_REMATCH[$i]}
+        let i++
+    done
+	rvm use $rvmVersionStr --fuzzy
 
 	#execute
 

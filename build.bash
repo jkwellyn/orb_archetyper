@@ -5,7 +5,6 @@
 # Tell bash that we want the whole script to fail if any part fails.
 set -e
 
-# http://rvm.io/rvm/basics rvm must be loaded as a function
 source "$rvm_path/scripts/rvm"
 
 #Global Variables
@@ -25,9 +24,21 @@ main() {
 	echo "*************************************"
 	startTime=$(date +%s)
 
-	#ensure using rvm1.9.3
-	rvm use ruby-1.9.3
-	
+    #Grab rvm version from the gemspec
+    #TODO is there a better way to do this??
+	rvmVersion=`grep -o 'required_ruby_version.*' orb-archetyper.gemspec`
+    reg_pattern='\".* ([0-9.]+)\"'
+    [[ $rvmVersion =~ $reg_pattern ]]
+    rvmVersionStr=''
+    i=1
+    n=${#BASH_REMATCH[*]}
+    while [[ $i -lt $n ]]
+    do
+        rvmVersionStr+=${BASH_REMATCH[$i]}
+        let i++
+    done
+	rvm use $rvmVersionStr --fuzzy
+
 	bundle install
 	bundle exec rake spec_unit_ci
 	bundle exec rake metrics:all
