@@ -69,7 +69,7 @@ class ArchetypeGenerator
     # create any empty folders
     (@folders.keys - @files.keys).each do |v|
       if arch.include? v and v!=:base
-        folder_dir = File.join(@pname, v.to_s)
+        folder_dir = File.join(@pname, @folders[v])
         FileUtility.dir_creator(folder_dir)
       end
      end
@@ -122,9 +122,6 @@ class ArchetypeGenerator
 
       FileUtility.file_creator(target, fname, fdata)
     end
-
-
-
   end
 
   # Create git init project files
