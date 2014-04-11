@@ -97,7 +97,7 @@ class ArchetypeGenerator
         raise "Cannot find the template file: #{fulldir}"
       end
 
-      if fulldir.match(/erb?/) # it's an erb!
+      if File.extname(fulldir) == '.erb' # it's an erb!
         @substitutes[:dir] = dir
         @substitutes[:project_type] = project_type # add in project type that is used in conditionals
         et = ERBValues.new(@substitutes)
@@ -108,7 +108,7 @@ class ArchetypeGenerator
         # handle dynamic subs
         if @substitutes.key?(key)
             @substitutes[key].each do |k, v|
-              fdata = fdata.gsub(v[0], v[1])
+              fdata.gsub!(v[0], v[1])
             end
         end
       end
