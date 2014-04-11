@@ -16,10 +16,10 @@ class TemplateManager
     @user = ENV['USER']
 
     @archetypes = {
-      :cli    => [:binf, :build, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :unit, :resources, :rubocop, :version],
-      :core   => [:build, :coverage, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :unit, :rubocop, :version],
-      :test   => [:build, :config, :coverage, :gemfile, :gemlock, :gitignore, :logs, :rake, :readme, :resources, :results, :rvmrc, :spec_dot, :accept, :spec_help, :lib, :version],
-      :utility=> [:build, :config, :coverage, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :unit, :version],
+      :cli    => [:binf, :build, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :tasks, :unit, :resources, :rubocop, :version],
+      :core   => [:build, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :tasks, :unit, :rubocop, :version],
+      :test   => [:build, :config, :gemfile, :gemlock, :gitignore, :logs, :rake, :readme, :resources, :rvmrc, :spec_dot, :tasks, :spec, :accept, :acceptf, :smoke, :sanity, :primary, :secondary, :spec_help, :lib, :version],
+      :utility=> [:build, :config, :gemfile, :gemspec, :gitignore, :libf, :metrics, :rake, :readme, :spec_dot, :spec_help, :unit, :version],
     }
 
       #not all folders have child files
@@ -33,13 +33,17 @@ class TemplateManager
         :spec =>      "spec",
         :unit =>      "spec/unit", #unit tests
         :accept =>    "spec/accept", #functional
+        :smoke =>     "spec/accept/smoke",
+        :sanity =>    "spec/accept/sanity",
+        :primary =>   "spec/accept/primary",
+        :secondary => "spec/accept/secondary",
         :version =>   "lib/#{pname}"
     };
 
   # {target directory, src directory, filename]
    @files = {
       :binf      => [@folders[:binf],   "templates/bin_cli.txt",      "#{@pname}"],
-      :build     => [@folders[:base],   "templates/build.txt",        "#{@pname}.bash"],
+      :build     => [@folders[:base],   "templates/build.txt",        "build.bash"],
       :config    => [@folders[:config], "templates/env_config.yml",   "env_config.yml"],
       :gitignore => [@folders[:base],   "templates/dot_gitignore.txt",".gitignore"],
       :gemfile   => [@folders[:base],   "templates/gemfile.erb",      "Gemfile"],
@@ -50,12 +54,13 @@ class TemplateManager
       :metrics   => [@folders[:base],   "templates/dot_metrics.txt",  ".metrics"],
       :rubocop   => [@folders[:base],   "templates/dot_rubocop.txt",  ".rubocop.yml"],
       :rake      => [@folders[:base],   "templates/rake.txt",         "Rakefile"],
+      :tasks     => [@folders[:libf],  "templates/tasks.erb",        "tasks.rb"],
       :readme    => [@folders[:base],   "templates/readme.txt",       "README.md"],
       :rvmrc     => [@folders[:base],   "templates/dot_rvmrc.txt",    ".rvmrc"],
       :spec_help => [@folders[:spec],   "templates/spec_help.txt",    "spec_helper.rb"],
       :spec_dot  => [@folders[:base],   "templates/spec_dot.txt",     ".rspec"],
       :unit      => [@folders[:unit],   "templates/spec_test.txt",    "#{@pname}_test.rb"],
-      :accept    => [@folders[:accept], "templates/spec_test.txt",    "#{@pname}_test.rb"],
+      :acceptf   => [@folders[:accept], "templates/spec_test.txt",    "#{@pname}_test.rb"],
       :version   => [@folders[:version],"templates/version.txt",      "version.rb"]
     }
 
@@ -76,7 +81,7 @@ class TemplateManager
                    :project_name  => ["{project_name}",   "#{@pname}"]},
       :unit    => {:project_name  => ["{project_name}",   "#{@pname}"],
                     :module_name  => ["{module_name}",    "#{@mname}"]},
-      :accept   => {:project_name  => ["{project_name}",   "#{@pname}"],
+      :acceptf => {:project_name  => ["{project_name}",   "#{@pname}"],
                     :module_name  => ["{module_name}",    "#{@mname}"]}
     }
   end

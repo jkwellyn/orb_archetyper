@@ -69,7 +69,7 @@ class ArchetypeGenerator
     # create any empty folders
     (@folders.keys - @files.keys).each do |v|
       if arch.include? v and v!=:base
-        folder_dir = File.join(@pname, v.to_s)
+        folder_dir = File.join(@pname, @folders[v])
         FileUtility.dir_creator(folder_dir)
       end
      end
@@ -97,7 +97,7 @@ class ArchetypeGenerator
         raise "Cannot find the template file: #{fulldir}"
       end
 
-      if fulldir.match(/erb?/) # it's an erb!
+      if File.extname(fulldir) == '.erb' # it's an erb!
         @substitutes[:dir] = dir
         @substitutes[:project_type] = project_type # add in project type that is used in conditionals
         et = ERBValues.new(@substitutes)
@@ -108,7 +108,7 @@ class ArchetypeGenerator
         # handle dynamic subs
         if @substitutes.key?(key)
             @substitutes[key].each do |k, v|
-              fdata = fdata.gsub(v[0], v[1])
+              fdata.gsub!(v[0], v[1])
             end
         end
       end
@@ -122,9 +122,6 @@ class ArchetypeGenerator
 
       FileUtility.file_creator(target, fname, fdata)
     end
-
-
-
   end
 
   # Create git init project files
