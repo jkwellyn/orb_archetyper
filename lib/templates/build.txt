@@ -23,7 +23,7 @@ main() {
 
     #Grab rvm version from the gemspec
     #TODO is there a better way to do this??
-	rvmVersion=`grep -o 'required_ruby_version.*' orb-archetyper.gemspec`
+	rvmVersion=`grep -o 'required_ruby_version.*' {project_name}.gemspec`
     reg_pattern='\".* ([0-9.]+)\"'
     [[ $rvmVersion =~ $reg_pattern ]]
     rvmVersionStr=''
