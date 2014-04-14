@@ -52,29 +52,31 @@ Note: Include, exclude is comma separated and contains no white space.
 Based on the following command, where project name = "command-line":
 `$ orb-archetyper -t cli -p command-line -x coverage -i licence`
 
-* Included licence into cli archetype.
-* Excluded coverage from cli archetype.
-* created `command-line`
-* created `command-line`/logs
-* created `command-line`/rdoc
-* created `command-line`/resources
-* created `command-line`/bin
-* created `command-line`/bin/`command-line`
-* created `command-line`/.gitignore
-* created `command-line`/Gemfile
-* created `command-line`/`command-line`.gemspec
-* created `command-line`/lib
-* created `command-line`/lib/`command-line`.rb
-* created `command-line`/LICENCE
-* created `command-line`/Rakefile
-* created `command-line`/README.md
-* created `command-line`/test
-* created `command-line`/test/`command-line_test`.rb
-* created `command-line`/lib/`command-line`
-* created `command-line`/lib/`command-line`/version.rb
+
+    Included licence into cli archetype.
+    Excluded coverage from cli archetype.
+    created `command-line`
+    created `command-line`/logs
+    created `command-line`/rdoc
+    created `command-line`/resources
+    created `command-line`/bin
+    created `command-line`/bin/`command-line`
+    created `command-line`/.gitignore
+    created `command-line`/Gemfile
+    created `command-line`/`command-line`.gemspec
+    created `command-line`/lib
+    created `command-line`/lib/`command-line`.rb
+    created `command-line`/LICENCE
+    created `command-line`/Rakefile
+    created `command-line`/README.md
+    created `command-line`/test
+    created `command-line`/test/`command-line_test`.rb
+    created `command-line`/lib/`command-line`
+    created `command-line`/lib/`command-line`/version.rb
   
 
 #### 1. Command Line Applications
+A standardized CLI project.
 
 #### 2. Test
 An RSPEC test project that can be configured to be executed against a number of deployment tiers.
