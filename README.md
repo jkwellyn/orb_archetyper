@@ -2,14 +2,14 @@
 
 Command line application to generate an auto-wired project type for AQA. 
 
-Supported project types inlcude:
+Supported project types include:
 1. Command line applications
 2. Test Project (aka test launcher)
 3. Utility Project (e.g. a client for a service)
 4. Core project (e.g. SQL or Rest Connection manager) 
 
-Projects are created with a predefined structure and are autorired with a set configuration. 
-This inlcudes:
+Projects are created with a predefined structure and are autowired with a set configuration.
+This includes:
 
 1. Rspec
  + Configured to only accept: the new expect syntax
@@ -35,47 +35,43 @@ This inlcudes:
 
 `$ orb-archetyper --help`
 `$ orb-archetyper -h`
-`$ orb-archetyper -h`
 
 Show all subproject types:
 `$ orb-archetyper -e`
-  
 
 ### Create a new project
-Where "project-a "is the name of your project.
+Where "my_project "is the name of your project.
 
 `$ orb-archetyper -t cli -p my_project -x coverage -i spec,spec_help -x logs -g`
 
-Note: Inlcude, exlcude is comma separated and comtains no white spaces.
+Note: Include, exclude is comma separated and contains no white space.
 -g does a git init for ya.
-
-`$ orb-archetyper -t cli -p my_project -x coverage -i spec,spec_help -x logs -g`
 
 ###Output
 
-Based om the following command, where project name = "command-line":
-`$ orb-archetyper -t cli -p comand-line -x coverage -i licence`
+Based on the following command, where project name = "command-line":
+`$ orb-archetyper -t cli -p command-line -x coverage -i licence`
 
 * Included licence into cli archetype.
 * Excluded coverage from cli archetype.
-* created `comand-line`
-* created `comand-line`/logs
-* created `comand-line`/rdoc
-* created `comand-line`/resources
-* created `comand-line`/bin
-* created `comand-line`/bin/`comand-line`
-* created `comand-line`/.gitignore
-* created `comand-line`/Gemfile
-* created `comand-line`/`comand-line`.gemspec
-* created `comand-line`/lib
-* created `comand-line`/lib/`comand-line`.rb
-* created `comand-line`/LICENCE
-* created `comand-line`/Rakefile
-* created `comand-line`/README.md
-* created `comand-line`/test
-* created `comand-line`/test/`comand-line_test`.rb
-* created `comand-line`/lib/`comand-line`
-* created `comand-line`/lib/`comand-line`/version.rb
+* created `command-line`
+* created `command-line`/logs
+* created `command-line`/rdoc
+* created `command-line`/resources
+* created `command-line`/bin
+* created `command-line`/bin/`command-line`
+* created `command-line`/.gitignore
+* created `command-line`/Gemfile
+* created `command-line`/`command-line`.gemspec
+* created `command-line`/lib
+* created `command-line`/lib/`command-line`.rb
+* created `command-line`/LICENCE
+* created `command-line`/Rakefile
+* created `command-line`/README.md
+* created `command-line`/test
+* created `command-line`/test/`command-line_test`.rb
+* created `command-line`/lib/`command-line`
+* created `command-line`/lib/`command-line`/version.rb
   
 
 #### 1. Command Line Applications
