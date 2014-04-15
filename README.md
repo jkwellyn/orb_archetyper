@@ -3,6 +3,7 @@
 Command line application to generate an auto-wired project type for AQA. 
 
 Supported project types include:
+
 1. Command line applications
 2. Test Project (aka test launcher)
 3. Utility Project (e.g. a client for a service)
