@@ -18,7 +18,7 @@ module OrbArchetyper
 				it "has the correct archetypes" do
 					
 					a = []
-						TemplateManager.new("x", "y").archetypes.each do |key, value|
+						TemplateManager.new("x", "y").project_type_to_file_types.each do |key, value|
 					  a + value
 					end
 					a.uniq.sort == [:binf, :config, :coverage, :gemfile, :gemlock, :gemspec, :gitignore, :libf, :logs, :rake, :rdoc, :readme, :resources, :results, :rvmrc, :spec, :test, :version]
@@ -30,10 +30,10 @@ module OrbArchetyper
 				it "supports project args" do
 					temp_manager = TemplateManager.new("project", "module")
 					
-					expect(temp_manager.archetypes.nil?).to eq(false)
-					expect(temp_manager.folders.nil?).to eq(false)
-					expect(temp_manager.files.nil?).to eq(false)
-					expect(temp_manager.substitutes.nil?).to eq(false)
+					expect(temp_manager.project_type_to_file_types.nil?).to eq(false)
+					expect(temp_manager.file_type_to_path.nil?).to eq(false)
+					expect(temp_manager.file_type_to_template_data.nil?).to eq(false)
+					expect(temp_manager.file_type_to_template_variables.nil?).to eq(false)
 					expect(temp_manager.subtypes.nil?).to eq(false)
 				end
 		end
@@ -43,14 +43,14 @@ module OrbArchetyper
 				it "supports project args" do
 					temp_manager = TemplateManager.new("project", "module")
 					
-					expect(temp_manager.folders[:base]).to eq("project")
+					expect(temp_manager.file_type_to_path[:base]).to eq("project")
 
 				end
 
 				it "supports module args" do
 					temp_manager = TemplateManager.new("project", "module")
 					
-					expect(temp_manager.substitutes[:gemspec][:module_name][1]).to eq("module")
+					expect(temp_manager.file_type_to_template_variables[:gemspec][:module_name][1]).to eq("module")
 
 				end
 
@@ -64,7 +64,7 @@ module OrbArchetyper
 					#tests are executed from rake file to no need to .. 
 					libdir = File.expand_path('lib', Dir.pwd)
 				
-					temp_manager.files.each do |key, file_array|
+					temp_manager.file_type_to_template_data.each do |key, file_array|
 						filepath = File.join(libdir, file_array[1])
 						expect(File.exists?(filepath)).to be_true
 					end

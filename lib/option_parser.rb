@@ -7,7 +7,7 @@ class OptionParser
 	# Parse the command line args
 	def self.parse(args)
 
-		options = Hash.new 
+		options = {}
 
 		options[:github] = false
 		
