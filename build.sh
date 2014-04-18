@@ -28,13 +28,15 @@ main() {
 	#ensure using rvm1.9.3
 	#rvm use ruby-1.9.3 --fuzzy
 
+	#grab the ruby file
 	RUBY_VERSION=`cat RUBY_VERSION`
 	echo RUBY_VERSION is \'$RUBY_VERSION\'
 
 	rvm $RUBY_VERSION exec bundle install --path vendor/bundle
-	rvm $RUBY_VERSION exec bundle rake spec_unit_ci
-	rvm $RUBY_VERSION exec bundle metrics:all
-	rvm $RUBY_VERSION exec bundle code_metrics:stats
+
+	rvm $RUBY_VERSION exec rake spec_unit_ci
+	rvm $RUBY_VERSION exec rake metrics:all
+	rvm $RUBY_VERSION exec rake code_metrics:stats
 
 	#bundle install
 	#bundle exec 
