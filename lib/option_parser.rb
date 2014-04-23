@@ -1,9 +1,9 @@
 require 'optparse'
-require_relative 'template_manager'
 require_relative 'orb-archetyper/version'
 
 # read options from command line and return as hash 
 class OptionParser
+
 	# Parse the command line args
 	def self.parse(args)
 
@@ -19,7 +19,8 @@ class OptionParser
 			opts.separator "Specific options:"
 
 			# list of choices
-			opts.on("-t", "--type [TYPE]", TemplateManager.types, 
+      # TODO print template options here
+			opts.on("-t", "--type [TYPE]",
 				"Select project type (cli, core, utility, test).") do |t|
 					options[:type] = t
 			end 
@@ -50,11 +51,12 @@ class OptionParser
 			opts.separator ""
 			opts.separator "Helper options:"
 
+      #TODO fix this
 			# display file/folder components
-			opts.on_tail("-e", "--expand", "Display file/folder choices.") do
-		 		puts TemplateManager.new(options[:project],options[:project]).subtypes
-		 		exit
-			end
+			#opts.on_tail("-e", "--expand", "Display file/folder choices.") do
+		 	#	puts TemplateManager.new(options[:project],options[:project]).subtypes
+		 	#	exit
+			#end
 
 			# display version
 			opts.on_tail("-v", "--version", "Display version") do

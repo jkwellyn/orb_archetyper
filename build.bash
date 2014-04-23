@@ -37,10 +37,10 @@ main() {
         rvmVersionStr+=${BASH_REMATCH[$i]}
         let i++
     done
-	rvm use $rvmVersionStr --fuzzy
+	rvm use $rvmVersionStr
 
 	bundle install
-	bundle exec rake spec_unit_ci
+	bundle exec rake spec:ci:full
 	bundle exec rake metrics:all
 	bundle exec rake code_metrics:stats
 

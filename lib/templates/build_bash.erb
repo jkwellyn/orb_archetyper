@@ -12,18 +12,18 @@ BETA=$2
 
 #Begin
 echo "*************************************"
-echo "Running build script:"
+echo "Running build script..."
 echo "PWD :"$SOURCE_DIR
 echo "Build args: $1 $2"
 
 main() {
 
-	echo "Executing..."
+	echo "*************************************"
 	startTime=$(date +%s)
 
     #Grab rvm version from the gemspec
     #TODO is there a better way to do this??
-	rvmVersion=`grep -o 'required_ruby_version.*' {project_name}.gemspec`
+	rvmVersion=`grep -o 'required_ruby_version.*' <%= project_name %>.gemspec`
     reg_pattern='\".* ([0-9.]+)\"'
     [[ $rvmVersion =~ $reg_pattern ]]
     rvmVersionStr=''
@@ -34,12 +34,10 @@ main() {
         rvmVersionStr+=${BASH_REMATCH[$i]}
         let i++
     done
-	rvm use $rvmVersionStr --fuzzy
-
-	#execute
+	rvm use $rvmVersionStr
 
 	bundle install
-	bundle exec rake spec_unit_ci
+	bundle exec rake spec:ci:full
 	bundle exec rake metrics:all
 	bundle exec rake code_metrics:stats
 
@@ -53,6 +51,3 @@ main() {
 
 #RUN
 main
-
-
-

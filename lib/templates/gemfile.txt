@@ -1,4 +1,0 @@
-source 'http://gemserver.va.opower.it'
-
-  # Specify your gem's dependencies in {project_name}.gemspec
-  gemspec

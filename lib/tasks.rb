@@ -8,38 +8,58 @@ require 'rdoc/task'
 require 'rake/notes/rake_task'
 require 'metric_fu'
 require 'fuubar'
+require 'logger'
+
+SANDBOX = File.join('spec', 'sandbox')
+LOG = Logger.new(STDOUT)
 
 def timestamp
 	Time.now.strftime("%Y%m%d_%H%M%S")
 end
 
-RSpec::Core::RakeTask.new(:spec_unit_ci_2 => ["ci:setup:rspec"]) do |t|
-  spec_opts = "--format html --out tmp/results/unit/#{timestamp}_results.html"
-  ENV["SPEC_OPTS"] = "#{ENV['SPEC_OPTS']} #{spec_opts}"
-  t.pattern = 'spec/**/*test.rb'
+def build_rspec_opts(test_type, task)
+  task.rspec_opts = ['-c']
+  task.rspec_opts << '--format' << 'NyanCatFormatter'
+  task.rspec_opts << '--require' << 'rspec-extra-formatters'
+  task.rspec_opts << '--format' << 'html'
+  task.rspec_opts << '--out' << "tmp/results/#{test_type}/#{timestamp}_results.html"
+  task.pattern = "spec/#{test_type}/*test.rb"
 end
 
-RSpec::Core::RakeTask.new(:spec_unit) do |t|
-  t.rspec_opts = ['-c']
-  t.rspec_opts << '--format' << 'NyanCatFormatter'
-  t.rspec_opts << '--require' << 'rspec-extra-formatters'
-  t.rspec_opts << '--format' << 'html'
-  t.rspec_opts << '--out' << "tmp/results/unit/#{timestamp}_results.html"
-  t.pattern = 'spec/unit/*test.rb'
-end
+namespace :spec do
+  namespace :local do
 
-RSpec::Core::RakeTask.new(:spec_unit_ci) do |t|
-  t.rspec_opts = ['-c']
-  t.rspec_opts << '--require' << 'fuubar'
-  t.rspec_opts << '--format' << Fuubar
-  t.rspec_opts << '--require' << 'rspec-extra-formatters'
-  t.rspec_opts << '--format' << JUnitFormatter
-  t.rspec_opts << '--out' << "tmp/results/unit/#{timestamp}_results.xml"
-  t.rspec_opts << '--format' << 'html'
-  t.rspec_opts << '--out' << "tmp/results/unit/#{timestamp}_results.html"
-  t.pattern = 'spec/unit/*test.rb'
-end
+    RSpec::Core::RakeTask.new(:unit) do |task|
+      build_rspec_opts('unit', task)
+    end
 
+    RSpec::Core::RakeTask.new(:e2e => ['clobber:e2e']) do |task|
+      LOG.info("Creating new #{SANDBOX}")
+      Dir.mkdir(SANDBOX)
+      build_rspec_opts('e2e', task)
+    end
+  end
+
+  namespace :ci do
+
+    RSpec::Core::RakeTask.new(:full2 => ["ci:setup:rspec", 'spec:local:unit', 'spec:local:e2e']) do |t|
+      spec_opts = "--format html --out tmp/results/unit/#{timestamp}_results.html"
+      ENV["SPEC_OPTS"] = "#{ENV['SPEC_OPTS']} #{spec_opts}"
+    end
+
+    RSpec::Core::RakeTask.new(:full => ['spec:local:unit', 'spec:local:e2e'])  do |task|
+      task.rspec_opts = ['-c']
+      task.rspec_opts << '--require' << 'fuubar'
+      task.rspec_opts << '--format' << Fuubar
+      task.rspec_opts << '--require' << 'rspec-extra-formatters'
+      task.rspec_opts << '--format' << JUnitFormatter
+      task.rspec_opts << '--out' << "tmp/results/unit/#{timestamp}_results.xml"
+      task.rspec_opts << '--format' << 'html'
+      task.rspec_opts << '--out' << "tmp/results/unit/#{timestamp}_results.html"
+    end
+
+  end
+end
 
 RDoc::Task.new(:rdoc) do |rdoc|
     rdoc.rdoc_dir = 'tmp/rdoc'
@@ -58,36 +78,48 @@ Rubocop::RakeTask.new(:rubocop) do |task|
   #task.options << '-o' << "coverage/rubocop_#{timestamp}.txt"
 end
 
-desc "Remove Simplecov files"
-  task :clobber_coverage do
+namespace :clobber do
+
+  desc "Removing #{SANDBOX}"
+  task :e2e do
+    if Dir.exist?(SANDBOX)
+        LOG.info("Deleting old #{SANDBOX}")
+      FileUtils.rm_rf(SANDBOX)
+    end
+  end
+
+  desc "Remove Simplecov files"
+  task :coverage do
     puts "Clearing the coverage directory..."
     `rm -rf tmp/coverage/*`
     puts "Done."
-end
+  end
 
-desc "Remove ALL Tmp files"
-  task :clobber_tmp do
+  desc "Remove ALL Tmp files"
+  task :tmp do
     puts "Clearing the root tmp directory..."
     `rm -rf tmp/*`
     puts "Done."
-end
+  end
 
-desc "Remove Unit Test Results files"
-  task :clobber_unit do
+  desc "Remove Unit Test Results files"
+  task :unit do
     puts "Clearing the unit test directory..."
     `rm -rf tmp/results/unit/*`
     puts "Done."
-end
+  end
 
-desc "Remove metrics results files"
-  task :clobber_metrics do
+  desc "Remove metrics results files"
+  task :metrics do
     puts "Clearing the metrics directory..."
     `rm -rf tmp/metric_fu/*`
     puts "Done."
+  end
+
 end
 
 desc "Open latest unit test results in your yer browser"
  task :open_unit_results do
   file = `find tmp/results/unit/ -regex ".*\.\html" | tail -1`
   `open #{file}`
-end
+ end

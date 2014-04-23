@@ -1,0 +1,5 @@
+source 'http://gemserver.va.opower.it'
+
+<% gem_data.each do |gem_data| -%>
+    gem <%= gem_data.gemfile_entry %>
+<% end %>

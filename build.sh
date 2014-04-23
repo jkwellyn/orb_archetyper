@@ -34,7 +34,7 @@ main() {
 
 	rvm $RUBY_VERSION exec bundle install --path vendor/bundle
 
-	rvm $RUBY_VERSION exec rake spec_unit_ci
+	rvm $RUBY_VERSION exec rake spec:ci:full
 	rvm $RUBY_VERSION exec rake metrics:all
 	rvm $RUBY_VERSION exec rake code_metrics:stats
 

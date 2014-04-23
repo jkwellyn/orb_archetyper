@@ -64,6 +64,8 @@ module OrbArchetyper
         expect_invalid_characters_error('aa %%^ ^&&a a')
 			end
 
-		end
+    end
+
+
 	end
 end
