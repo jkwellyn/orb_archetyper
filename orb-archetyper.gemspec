@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
  spec.version       =  OrbArchetyper::VERSION
  spec.summary       = "Orb archetyper: Project cookie cutter."
  spec.description   = "Generate template AQA projects: command line applications, core, test and utility projects."
- spec.homepage      = "https://github.va.opower.it/euan-davidson/orb-archetyper"
+ spec.homepage      = "https://github.va.opower.it/auto/orb-archetyper"
  spec.requirements << 'Ruby, v1.9.3.'
 
  spec.authors       = ["euan.davidson"]
@@ -30,9 +30,7 @@ Gem::Specification.new do |spec|
  spec.add_development_dependency('rspec-extra-formatters', '0.4')
  spec.add_development_dependency('rubocop', '0.16.0')
  spec.add_development_dependency('simplecov', '0.7.1')
- spec.add_development_dependency('ci_reporter')
  spec.add_development_dependency('fuubar', '1.3.2')
- spec.add_development_dependency('nyan-cat-formatter', '0.5.2')
 
 #Runtime dependencies
  spec.add_runtime_dependency('ansi', '1.4.3')
