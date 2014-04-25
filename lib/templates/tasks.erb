@@ -1,5 +1,4 @@
 #!/usr/bin/env rake
-require 'ci/reporter/rake/rspec'
 require 'rspec/core/rake_task'
 require 'rspec-extra-formatters'
 require 'rspec/core'
@@ -14,68 +13,19 @@ SANDBOX = File.join('spec', 'sandbox')
 LOG = Logger.new(STDOUT)
 
 def timestamp
-	Time.now.strftime("%Y%m%d_%H%M%S")
+  Time.now.strftime("%Y%m%d_%H%M%S")
 end
 
 def build_rspec_opts(test_type, task)
   task.rspec_opts = ['-c']
-  task.rspec_opts << '--format' << 'NyanCatFormatter'
+  task.rspec_opts << '--require' << 'fuubar'
+  task.rspec_opts << '--format' << Fuubar
   task.rspec_opts << '--require' << 'rspec-extra-formatters'
+  task.rspec_opts << '--format' << JUnitFormatter
+  task.rspec_opts << '--out' << "tmp/results/#{test_type}/#{timestamp}_results.xml"
   task.rspec_opts << '--format' << 'html'
   task.rspec_opts << '--out' << "tmp/results/#{test_type}/#{timestamp}_results.html"
-  task.pattern = "spec/#{test_type}/*test.rb"
-end
-
-namespace :spec do
-  namespace :local do
-
-    RSpec::Core::RakeTask.new(:unit) do |task|
-      build_rspec_opts('unit', task)
-    end
-
-    RSpec::Core::RakeTask.new(:e2e => ['clobber:e2e']) do |task|
-      LOG.info("Creating new #{SANDBOX}")
-      Dir.mkdir(SANDBOX)
-      build_rspec_opts('e2e', task)
-    end
-  end
-
-  namespace :ci do
-
-    RSpec::Core::RakeTask.new(:full2 => ["ci:setup:rspec", 'spec:local:unit', 'spec:local:e2e']) do |t|
-      spec_opts = "--format html --out tmp/results/unit/#{timestamp}_results.html"
-      ENV["SPEC_OPTS"] = "#{ENV['SPEC_OPTS']} #{spec_opts}"
-    end
-
-    RSpec::Core::RakeTask.new(:full => ['spec:local:unit', 'spec:local:e2e'])  do |task|
-      task.rspec_opts = ['-c']
-      task.rspec_opts << '--require' << 'fuubar'
-      task.rspec_opts << '--format' << Fuubar
-      task.rspec_opts << '--require' << 'rspec-extra-formatters'
-      task.rspec_opts << '--format' << JUnitFormatter
-      task.rspec_opts << '--out' << "tmp/results/unit/#{timestamp}_results.xml"
-      task.rspec_opts << '--format' << 'html'
-      task.rspec_opts << '--out' << "tmp/results/unit/#{timestamp}_results.html"
-    end
-
-  end
-end
-
-RDoc::Task.new(:rdoc) do |rdoc|
-    rdoc.rdoc_dir = 'tmp/rdoc'
-    rdoc.title = 'orb-archetyper'
-    rdoc.main = 'README.md'
-    rdoc.rdoc_files.include('README*', 'lib/**/*.rb')
-end
-
-desc 'Run RuboCop on the lib directory'
-Rubocop::RakeTask.new(:rubocop) do |task|
-  task.patterns = ['lib/**/*.rb']
-  # only show the files with failures
-  #task.formatters = ['files', 'offences']
-  # don't abort rake on failure
-  task.fail_on_error = false
-  #task.options << '-o' << "coverage/rubocop_#{timestamp}.txt"
+  task.pattern = "spec/#{test_type}/**/*_test.rb"
 end
 
 namespace :clobber do
@@ -83,7 +33,7 @@ namespace :clobber do
   desc "Removing #{SANDBOX}"
   task :e2e do
     if Dir.exist?(SANDBOX)
-        LOG.info("Deleting old #{SANDBOX}")
+      LOG.info("Deleting old #{SANDBOX}")
       FileUtils.rm_rf(SANDBOX)
     end
   end
@@ -118,8 +68,39 @@ namespace :clobber do
 
 end
 
+namespace :spec do
+  RSpec::Core::RakeTask.new(:unit => %w{clobber:tmp}) do |task|
+    build_rspec_opts('unit', task)
+  end
+
+  RSpec::Core::RakeTask.new(:e2e => %w{clobber:tmp clobber:e2e}) do |task|
+    LOG.info("Creating new #{SANDBOX}")
+    Dir.mkdir(SANDBOX)
+    build_rspec_opts('e2e', task)
+  end
+
+  RSpec::Core::RakeTask.new(:full => %w{spec:unit spec:e2e})
+end
+
+RDoc::Task.new(:rdoc) do |rdoc|
+  rdoc.rdoc_dir = 'tmp/rdoc'
+  rdoc.title = 'orb-archetyper'
+  rdoc.main = 'README.md'
+  rdoc.rdoc_files.include('README*', 'lib/**/*.rb')
+end
+
+desc 'Run RuboCop on the lib directory'
+Rubocop::RakeTask.new(:rubocop) do |task|
+  task.patterns = ['lib/**/*.rb']
+  # only show the files with failures
+  #task.formatters = ['files', 'offences']
+  # don't abort rake on failure
+  task.fail_on_error = false
+  #task.options << '-o' << "coverage/rubocop_#{timestamp}.txt"
+end
+
 desc "Open latest unit test results in your yer browser"
- task :open_unit_results do
+task :open_unit_results do
   file = `find tmp/results/unit/ -regex ".*\.\html" | tail -1`
   `open #{file}`
- end
+end

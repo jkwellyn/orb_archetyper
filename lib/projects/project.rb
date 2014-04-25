@@ -21,7 +21,6 @@ module Projects
 
     #TODO break the specifier into own element?
     GEMS = [
-        %w{ci_reporter},
         %w{metric_fu ~> 4.8.0},
         %w{rake ~> 10.1.1},
         %w{rake-notes ~> 0.2.0},
@@ -31,7 +30,6 @@ module Projects
         %w{rubocop 0.16.0},
         %w{simplecov 0.7.1},
         %w{fuubar 1.3.2},
-        %w{nyan-cat-formatter 0.5.2}
     ]
 
     def initialize(project_name)
