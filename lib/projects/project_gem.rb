@@ -11,5 +11,10 @@ module Projects
       @template_classes.concat([TemplateGemfileGem, TemplateGemspec, TemplateSpecTest, TemplateMain])
     end
 
+    def generate_project
+      super do
+        FileUtils.mkdir_p(File.join(@project_name, 'spec', 'unit'))
+      end
+    end
   end
 end

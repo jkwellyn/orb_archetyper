@@ -16,6 +16,5 @@ module Projects
         FileUtils.mkdir_p(File.join(@project_name, 'resources'))
       end
     end
-
   end
 end
