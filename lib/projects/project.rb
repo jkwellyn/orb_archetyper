@@ -21,17 +21,17 @@ module Projects
 
     #TODO break the specifier into own element?
     GEMS = [
-        ['ci_reporter'],
-        ['metric_fu', '~> 4.8.0'],
-        ['rake', '~> 10.1.1'],
-        ['rake-notes', '~> 0.2.0'],
-        ['rdoc', '> 2.4.2'],
-        ['rspec', '2.14.1'],
-        ['rspec-extra-formatters', '0.4'],
-        ['rubocop', '0.16.0'],
-        ['simplecov', '0.7.1'],
-        ['fuubar', '1.3.2'],
-        ['nyan-cat-formatter', '0.5.2']
+        %w{ci_reporter},
+        %w{metric_fu ~> 4.8.0},
+        %w{rake ~> 10.1.1},
+        %w{rake-notes ~> 0.2.0},
+        %w{rdoc > 2.4.2},
+        %w{rspec 2.14.1},
+        %w{rspec-extra-formatters 0.4},
+        %w{rubocop 0.16.0},
+        %w{simplecov 0.7.1},
+        %w{fuubar 1.3.2},
+        %w{nyan-cat-formatter 0.5.2}
     ]
 
     def initialize(project_name)
