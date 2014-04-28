@@ -14,7 +14,11 @@ class Template
   end
 
   def render
-    ERB.new(File.read(template_path), nil, '-').result(binding)
+    render_erb(self.template_file)
+  end
+
+  def partial(partial_file_name)
+    render_erb(partial_file_name)
   end
 
   def output_directory
@@ -31,7 +35,11 @@ class Template
 
   private
 
-  def template_path
-    File.join(TEMPLATE_LOCATION, self.template_file)
+  def template_lookup(template_file)
+    File.join(TEMPLATE_LOCATION, template_file)
+  end
+
+  def render_erb(file_path)
+    ERB.new(File.read(template_lookup(file_path)), nil, '-').result(binding)
   end
 end

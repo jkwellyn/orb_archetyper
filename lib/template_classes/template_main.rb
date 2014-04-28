@@ -7,7 +7,7 @@ class TemplateMain < Template
   end
 
   def output_file
-    apply_conventions("#@project_name.rb")
+    "#@project_name.rb"
   end
 
   def output_directory

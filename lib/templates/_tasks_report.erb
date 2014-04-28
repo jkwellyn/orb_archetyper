@@ -8,7 +8,6 @@ require 'rake/notes/rake_task'
 require 'metric_fu'
 require 'fuubar'
 require 'logger'
-require_relative 'orb-archetyper/constants'
 
 LOG = Logger.new(STDOUT)
 
@@ -43,13 +42,6 @@ end
 
 namespace :clobber do
 
-  desc "Removing #{Constants::SANDBOX}"
-  task :e2e do
-    delete_dir_with_output(Constants::SANDBOX) do
-      FileUtils.rm_rf(Constants::SANDBOX)
-    end
-  end
-
   desc "Remove Simplecov files"
   task :coverage do
     delete_tmp_directory('coverage')
@@ -62,29 +54,10 @@ namespace :clobber do
     end
   end
 
-  desc "Remove Unit Test Results files"
-  task :unit do
-    delete_tmp_directory(File.join('results', 'unit'))
-  end
-
   desc "Remove metrics results files"
   task :metrics do
     delete_tmp_directory('metric_fu')
   end
-end
-
-namespace :spec do
-  RSpec::Core::RakeTask.new(:unit => %w{clobber:tmp}) do |task|
-    build_rspec_opts('unit', task)
-  end
-
-  RSpec::Core::RakeTask.new(:e2e => %w{clobber:tmp clobber:e2e}) do |task|
-    LOG.info("Creating new #{Constants::SANDBOX}")
-    FileUtils.mkdir_p(Constants::SANDBOX)
-    build_rspec_opts('e2e', task)
-  end
-
-  RSpec::Core::RakeTask.new(:full => %w{spec:unit spec:e2e})
 end
 
 RDoc::Task.new(:rdoc) do |rdoc|
@@ -109,3 +82,4 @@ task :open_unit_results do
   file = `find tmp/results/unit/ -regex ".*\.\html" | tail -1`
   `open #{file}`
 end
+

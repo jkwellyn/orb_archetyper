@@ -50,7 +50,6 @@ module Projects
           TemplateRakefile,
           TemplateReadme,
           TemplateDotRspec,
-          TemplateTasks,
           TemplateSpecHelper,
           TemplateVersion
       ]

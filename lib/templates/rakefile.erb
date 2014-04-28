@@ -1,1 +1,1 @@
-require File.join(File.dirname(__FILE__), 'lib/tasks.rb')
+require_relative 'lib/tasks'

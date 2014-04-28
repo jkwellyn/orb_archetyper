@@ -1,6 +1,6 @@
-module E2EHelper
+require_relative '../../lib/orb-archetyper/constants'
 
-  SANDBOX = File.join('spec', 'sandbox')
+module E2EHelper
 
   def expect_path_to_exist(should_exist, *path)
     if should_exist
@@ -11,6 +11,6 @@ module E2EHelper
   end
 
   shared_context 'in sandbox directory' do
-    Dir.chdir(SANDBOX)
+    Dir.chdir(Constants::SANDBOX)
   end
 end

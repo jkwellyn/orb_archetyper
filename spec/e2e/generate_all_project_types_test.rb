@@ -5,7 +5,6 @@ require_relative 'e2e_spec_helper'
 
 RSpec.configure do |config|
   config.include E2EHelper
-  config.include OrbArchetyper::Rules::NamingConventions::FileNames
 end
 
 module Projects
@@ -44,7 +43,7 @@ module Projects
         end
 
         project_gem_expectations(project_type) do
-          expected_file_name = apply_conventions("#{project_name}.rb")
+          expected_file_name = "#{project_name}.rb"
           expect_path_to_exist(true, project_name, 'lib', expected_file_name)
         end
       end

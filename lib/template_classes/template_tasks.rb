@@ -14,4 +14,7 @@ class TemplateTasks < Template
     'tasks.rb'
   end
 
+  def partial_files
+    %w{_tasks_reports.rb }
+  end
 end

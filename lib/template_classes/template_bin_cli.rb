@@ -16,7 +16,7 @@ class TemplateBinCli < Template
   end
 
   def required_file
-    apply_conventions("#@project_name.rb")
+    "#@project_name.rb"
   end
 
   def post_install_actions(file_path)

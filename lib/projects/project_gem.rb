@@ -8,7 +8,7 @@ module Projects
 
     def initialize(project_name)
       super(project_name)
-      @template_classes.concat([TemplateGemfileGem, TemplateGemspec, TemplateSpecTest, TemplateMain])
+      @template_classes.concat([TemplateGemfileGem, TemplateGemspec, TemplateSpecTest, TemplateMain, TemplateTasks,])
     end
 
     def generate_project
