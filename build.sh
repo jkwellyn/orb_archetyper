@@ -16,6 +16,9 @@ main() {
 	#ensure using rvm1.9.3
 	#rvm use ruby-1.9.3 --fuzzy
 
+	echo  WHICH rvm is `which rvm`
+	echo RVM LIST is `rvm list`
+
 	#grab the ruby file
 	RUBY_VERSION=`cat RUBY_VERSION`
 	echo RUBY_VERSION is \'$RUBY_VERSION\'
