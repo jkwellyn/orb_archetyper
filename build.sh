@@ -1,12 +1,4 @@
-#!/bin/bash
-#davidsone
-#24/2/2014
-
-# Tell bash that we want the whole script to fail if any part fails.
-#set -e
-
-# http://rvm.io/rvm/basics rvm must be loaded as a function
-#source "$rvm_path/scripts/rvm"
+#!/bin/sh
 
 SOURCE_DIR=`pwd`
 
@@ -41,6 +33,5 @@ main() {
 	echo "Finished."
 
 }
-
 #RUN
 main
