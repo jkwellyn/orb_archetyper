@@ -8,11 +8,7 @@
 # http://rvm.io/rvm/basics rvm must be loaded as a function
 #source "$rvm_path/scripts/rvm"
 
-#Global Variables
 SOURCE_DIR=`pwd`
-#Build args
-ALPHA=$1
-BETA=$2
 
 #Begin
 echo "*************************************"
@@ -34,14 +30,9 @@ main() {
 
 	rvm $RUBY_VERSION exec bundle install --path vendor/bundle
 
-	rvm $RUBY_VERSION exec rake spec:ci:full
+	rvm $RUBY_VERSION exec rake spec:full
 	rvm $RUBY_VERSION exec rake metrics:all
 	rvm $RUBY_VERSION exec rake code_metrics:stats
-
-	#bundle install
-	#bundle exec 
-	#bundle exec rake 
-	#bundle exec rake code_metrics:stats
 
 	endTime=$(date +%s)
 	timeDifference=$(( $endTime - $startTime ))
