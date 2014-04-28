@@ -1,5 +1,4 @@
 #!/bin/sh
-
 SOURCE_DIR=`pwd`
 
 #Begin
@@ -16,7 +15,7 @@ main() {
 	#ensure using rvm1.9.3
 	#rvm use ruby-1.9.3 --fuzzy
 
-	echo  WHICH rvm is `which rvm`
+	echo WHICH rvm is `which rvm`
 	echo RVM LIST is `rvm list`
 
 	#grab the ruby file
