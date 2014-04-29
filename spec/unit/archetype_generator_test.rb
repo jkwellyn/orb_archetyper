@@ -1,12 +1,13 @@
 require_relative '../spec_helper'
 require_relative '../../lib/archetype_generator'
+require_relative '../../lib/orb-archetyper/log/orb_logger'
 
 module OrbArchetyper
 
 	describe ArchetypeGenerator do
 
 		before(:all) do
-	  	log = OrbLogger.new.logger
+	  	log = Log::OrbLogger.new.logger
 	  	log.info("called in: " + self.class.name + "," + File.basename(__FILE__))
 	  end
 
@@ -63,9 +64,6 @@ module OrbArchetyper
 			it "Correctly handles invalid project names" do			
         expect_invalid_characters_error('aa %%^ ^&&a a')
 			end
-
     end
-
-
 	end
 end

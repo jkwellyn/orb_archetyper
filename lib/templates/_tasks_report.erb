@@ -1,7 +1,6 @@
 #!/usr/bin/env rake
 require 'rspec/core/rake_task'
 require 'rspec-extra-formatters'
-require 'rspec/core'
 require 'rubocop/rake_task'
 require 'rdoc/task'
 require 'rake/notes/rake_task'
@@ -41,11 +40,6 @@ def delete_tmp_directory(dir_name)
 end
 
 namespace :clobber do
-
-  desc "Remove Simplecov files"
-  task :coverage do
-    delete_tmp_directory('coverage')
-  end
 
   desc "Remove ALL Tmp files"
   task :tmp do

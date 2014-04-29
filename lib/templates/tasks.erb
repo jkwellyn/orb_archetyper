@@ -20,6 +20,11 @@ namespace :clobber do
     `rm -rf tmp/results/unit/*`
     puts "Done."
   end
+
+  desc "Remove Simplecov files"
+  task :coverage do
+    delete_tmp_directory('coverage')
+  end
 end
 
 namespace :spec do

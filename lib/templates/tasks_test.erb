@@ -2,10 +2,10 @@
 <%= partial('_tasks_report.erb')%>
 # End partial
 
-
 def build_rake_task(task_name)
   RSpec::Core::RakeTask.new(task_name.to_sym) do |task|
     build_rspec_opts(task_name, task)
+    task.pattern = "spec/accept/#{task_name}/**/*_test.rb"
   end
 end
 
@@ -15,27 +15,4 @@ namespace :spec do
 <% end -%>
 
   RSpec::Core::RakeTask.new(:full => <%= test_types.map{ |test_type| "spec:#{test_type}"} %>)
-end
-
-RDoc::Task.new(:rdoc) do |rdoc|
-  rdoc.rdoc_dir = 'tmp/rdoc'
-  rdoc.title = 'orb-archetyper'
-  rdoc.main = 'README.md'
-  rdoc.rdoc_files.include('README*', 'lib/**/*.rb')
-end
-
-desc 'Run RuboCop on the lib directory'
-Rubocop::RakeTask.new(:rubocop) do |task|
-  task.patterns = ['lib/**/*.rb']
-  # only show the files with failures
-  #task.formatters = ['files', 'offences']
-  # don't abort rake on failure
-  task.fail_on_error = false
-  #task.options << '-o' << "coverage/rubocop_#{timestamp}.txt"
-end
-
-desc "Open latest unit test results in your yer browser"
-task :open_unit_results do
-  file = `find tmp/results/unit/ -regex ".*\.\html" | tail -1`
-  `open #{file}`
 end

@@ -1,13 +1,16 @@
+require 'fileutils'
 require_relative 'project_app'
 require_relative '../../lib/template_classes/template_tasks_test'
-require 'fileutils'
+require_relative '../../lib/template_classes/template_smoke_test'
+require_relative '../../lib/template_classes/template_spec_helper_test'
+
 
 module Projects
   class ProjectTest < ProjectApp
 
     def initialize(project_name)
       super(project_name)
-      @template_classes.concat([TemplateTasksTest])
+      @template_classes.concat([TemplateTasksTest, TemplateSmokeTest, TemplateSpecHelperTest])
     end
 
     def generate_project
@@ -19,6 +22,5 @@ module Projects
         additional_files << File.join(FileUtils.mkdir_p(File.join(@project_name, 'resources')))
       end
     end
-
   end
 end

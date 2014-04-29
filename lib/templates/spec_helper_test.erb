@@ -1,12 +1,3 @@
-require 'simplecov'
-
-SimpleCov.start do
-	coverage_dir 'tmp/coverage/unit'
-  add_filter 'tmp/'
-	add_filter 'spec/'
-  add_filter 'resources/'
-end	
-
 RSpec.configure do |config|
   # Only accept expect syntax do not allow old should syntax
   config.expect_with :rspec do |c|
@@ -37,13 +28,13 @@ end
 # Logger init as log level info
 class OrbLogger
   attr_reader :logger
-  
+
   def initialize
     log_file = File.open('tmp/logfile.log', 'a')
     @logger = Logger.new MultiIO.new(STDOUT, log_file)
-    
+
     # TODO : this is set by default here but should be moved to be a config file
     @logger.level = Logger::INFO
-    @logger.info("Logging initialized in spec_help.rb")
+    @logger.info("Logging initialized.")
   end
 end

@@ -14,4 +14,7 @@ class TemplateSpecTest < Template
     File.join("#{super}/spec/unit")
   end
 
+  def require_spec_helper
+    '../spec_helper'
+  end
 end

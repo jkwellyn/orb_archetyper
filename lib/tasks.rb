@@ -9,8 +9,9 @@ require 'metric_fu'
 require 'fuubar'
 require 'logger'
 require_relative 'orb-archetyper/constants'
+require_relative 'orb-archetyper/log/orb_logger'
 
-LOG = Logger.new(STDOUT)
+LOG = OrbArchetyper::Log::OrbLogger.new.logger
 
 def timestamp
   Time.now.strftime("%Y%m%d_%H%M%S")

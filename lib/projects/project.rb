@@ -25,11 +25,10 @@ module Projects
         %w{rake ~> 10.1.1},
         %w{rake-notes ~> 0.2.0},
         %w{rdoc > 2.4.2},
-        %w{rspec 2.14.1},
-        %w{rspec-extra-formatters 0.4},
-        %w{rubocop 0.16.0},
-        %w{simplecov 0.7.1},
-        %w{fuubar 1.3.2},
+        ['rspec', '', '2.14.1'],
+        ['rspec-extra-formatters', '', '0.4'],
+        ['rubocop', '',  '0.16.0'],
+        ['fuubar', '', '1.3.2'],
     ]
 
     def initialize(project_name)
@@ -50,7 +49,6 @@ module Projects
           TemplateRakefile,
           TemplateReadme,
           TemplateDotRspec,
-          TemplateSpecHelper,
           TemplateVersion
       ]
     end
@@ -77,6 +75,10 @@ module Projects
 
     def generate_file_with_output
       puts "\t" + ANSI.green{"created"} + " #{yield}"
+    end
+
+    def self.gems
+      GEMS
     end
 
     private
