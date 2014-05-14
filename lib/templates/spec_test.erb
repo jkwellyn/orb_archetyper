@@ -1,12 +1,14 @@
 #http://betterspecs.org/
 
+# For examples of mocks, see https://github.com/rspec/rspec-mocks
+
 require_relative '<%= require_spec_helper %>'
 
 module <%= module_name %>
 
 	  describe <%= module_name %> do
 
-	  #TODO: Global set up goes here 
+	  #TODO: Global set up goes here
 	  before(:all) do
 	  	log = OrbLogger.new.logger
 	  	log.info("called in: " + self.class.name + "," + File.basename(__FILE__))
@@ -18,9 +20,9 @@ module <%= module_name %>
 	  end
 
 	#use let to declare your variables
-	let(:dude_wheres_my_var?) {nil} 
+	let(:dude_wheres_my_var?) {nil}
 
-		context "exanpke single expectation test" do
+		context "example single expectation test" do
 			it {expect(true).to eq(true) }
 		end
 
@@ -41,7 +43,7 @@ module <%= module_name %>
 
 			#BUG: ID-123 and ref
 			it "TC1 rspec will keep running this test checking if its a pass. If they do start to pass, and the test is still marked as pending, an exceotion will occur." do
-					
+
 				pending("Defect ID-123 P1 Functional Area X") do
 					expect(true).to eq(false)
 				end
@@ -49,25 +51,25 @@ module <%= module_name %>
 
 			#BUG: ID-123 and ref
 			it "TC2 rspec will keep running until its a  pass. If they do start to pass and the test is still marked as pending, an exception will occur " do
-					
+
 				pending("Defect ID-123 P1:Functional Area X") do
 
 					expect(true).to eq(true)
 
 				end
-					
+
 			end
 
 			#TODO: Complete this test case
 			it "TC3 rspec can also use pending for tests that still need to be written " do
 				pending "these tests require to be run"
-				
+
 			end
 
 			#TODO: complete this test case
 			it "TC4 this test case still needs to be completed"
-				#example It statement, with no do and no pending statements 
-				
+				#example It statement, with no do and no pending statements
+
 		end
 
 	end

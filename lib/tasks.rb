@@ -85,7 +85,8 @@ namespace :spec do
     build_rspec_opts('e2e', task)
   end
 
-  RSpec::Core::RakeTask.new(:full => %w{spec:unit spec:e2e})
+  desc "Run all tests"
+  task :full => %w{spec:unit spec:e2e}
 end
 
 RDoc::Task.new(:rdoc) do |rdoc|
