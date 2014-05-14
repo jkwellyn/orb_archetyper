@@ -24,7 +24,7 @@ This includes:
 7. Annotations - Rake notes (TODO, FIXME, OPTIMIZE) and orb-moon-raker
 8. Rake tasks
 9. Git project initialization
-10. A jenkins build.bash script to simplify how jenkins executes/invokes commands
+10. A jenkins build.sh script to simplify how jenkins executes/invokes commands
 
 ## Installation
  	

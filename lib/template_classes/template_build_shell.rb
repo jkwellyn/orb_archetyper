@@ -1,13 +1,13 @@
 require_relative 'template'
 
-class TemplateBuildBash < Template
+class TemplateBuildShell < Template
 
   def output_file
-    'build.bash'
+    'build.sh'
   end
 
   def template_file
-    'build_bash.erb'
+    'build_sh.erb'
   end
 
 end

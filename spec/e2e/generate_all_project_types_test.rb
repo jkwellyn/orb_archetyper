@@ -40,11 +40,13 @@ module Projects
           expect_path_to_exist(true, expected_spec_accept_path, 'primary')
           expect_path_to_exist(true, expected_spec_accept_path, 'secondary')
           expect_path_to_exist(false, project_name, 'Gemfile')
+          expect_path_to_exist(true, project_name, 'build.sh')
         end
 
         project_gem_expectations(project_type) do
           expected_file_name = "#{project_name}.rb"
           expect_path_to_exist(true, project_name, 'lib', expected_file_name)
+          expect_path_to_exist(true, project_name, 'build.sh')
         end
       end
     end

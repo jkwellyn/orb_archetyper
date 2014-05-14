@@ -1,7 +1,7 @@
 require 'ansi/code'
 require 'fileutils'
 require 'set'
-require_relative '../template_classes/template_build_bash'
+require_relative '../template_classes/template_build_shell'
 require_relative '../template_classes/template_dot_gitignore'
 require_relative '../template_classes/template_dot_metrics'
 require_relative '../template_classes/template_rakefile'
@@ -43,7 +43,7 @@ module Projects
       #:rvmrc not included? Maybe to be included via switches?
       #:main? Double check who needs it.
       @template_classes = [
-          TemplateBuildBash,
+          TemplateBuildShell,
           TemplateDotGitignore,
           TemplateDotMetrics,
           TemplateRakefile,
