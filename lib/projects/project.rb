@@ -43,7 +43,6 @@ module Projects
       #:rvmrc not included? Maybe to be included via switches?
       #:main? Double check who needs it.
       @template_classes = [
-          TemplateBuildShell,
           TemplateDotGitignore,
           TemplateDotMetrics,
           TemplateRakefile,

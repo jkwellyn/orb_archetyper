@@ -3,14 +3,21 @@ require_relative 'project_app'
 require_relative '../../lib/template_classes/template_tasks_test'
 require_relative '../../lib/template_classes/template_smoke_test'
 require_relative '../../lib/template_classes/template_spec_helper_test'
-
+require_relative '../../lib/template_classes/template_build_shell_app'
 
 module Projects
   class ProjectTest < ProjectApp
 
     def initialize(project_name)
       super(project_name)
-      @template_classes.concat([TemplateTasksTest, TemplateSmokeTest, TemplateSpecHelperTest])
+      @template_classes.concat(
+          [
+              TemplateTasksTest,
+              TemplateSmokeTest,
+              TemplateSpecHelperTest,
+              TemplateBuildShellApp
+          ]
+      )
     end
 
     def generate_project
