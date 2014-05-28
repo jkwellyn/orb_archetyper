@@ -41,6 +41,7 @@ module Projects
           expect_path_to_exist(true, expected_spec_accept_path, 'secondary')
           expect_path_to_exist(false, project_name, 'Gemfile')
           expect_path_to_exist(true, project_name, 'build.sh')
+          expect_path_to_exist(true, project_name, '.rvmrc')
         end
 
         project_gem_expectations(project_type) do

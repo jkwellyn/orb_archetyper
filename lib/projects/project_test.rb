@@ -4,6 +4,7 @@ require_relative '../../lib/template_classes/template_tasks_test'
 require_relative '../../lib/template_classes/template_smoke_test'
 require_relative '../../lib/template_classes/template_spec_helper_test'
 require_relative '../../lib/template_classes/template_build_shell_app'
+require_relative '../../lib/template_classes/template_dot_rvmrc'
 
 module Projects
   class ProjectTest < ProjectApp
@@ -15,7 +16,8 @@ module Projects
               TemplateTasksTest,
               TemplateSmokeTest,
               TemplateSpecHelperTest,
-              TemplateBuildShellApp
+              TemplateBuildShellApp,
+              TemplateDotRvmrc
           ]
       )
     end
