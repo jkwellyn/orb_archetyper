@@ -1,13 +1,13 @@
 #orb-archetyper - Project cookie cutter
 
-Command line application to generate an auto-wired project type for AQA. 
+Command line application to generate a given project type for QA.
 
 Supported project types include:
 
 1. Command line applications
-2. Test Project (aka test launcher)
-3. Utility Project (e.g. a client for a service)
-4. Core project (e.g. SQL or Rest Connection manager) 
+2. A Rspec Test Project (aka test launcher) that can be configured to be executed against a number of deployment tiers.
+3. Utility Project (e.g. a client for a service) to provide a reusable access point to a component/service/application under test.
+4. Core project (e.g. SQL or Rest Connection manager) used to facilitate automated testing common to all QA.
 
 Projects are created with a predefined structure and are autowired with a set configuration.
 This includes:
@@ -21,13 +21,13 @@ This includes:
 4. Documentation (rdoc)
 5. Static analysis (rubocop)
 6. Metrics and stats (metric_fu)
-7. Annotations - Rake notes (TODO, FIXME, OPTIMIZE) and orb-moon-raker
+7. Annotations - annotation_manager built on top of rake-notes (TODO, FIXME, OPTIMIZE)
 8. Rake tasks
 9. Git project initialization
 10. A jenkins build.sh script to simplify how jenkins executes/invokes commands
 
 ## Installation
- 	
+
 `$ gem install orb-archetyper`
 
 ## Usage
@@ -35,6 +35,7 @@ This includes:
 ###Help
 
 `$ orb-archetyper --help`
+
 `$ orb-archetyper -h`
 
 Show all subproject types:
@@ -43,50 +44,50 @@ Show all subproject types:
 ### Create a new project
 Where "my_project "is the name of your project.
 
-`$ orb-archetyper -t cli -p my_project -x coverage -i spec,spec_help -x logs -g`
+Some like it plain:
 
-Note: Include, exclude is comma separated and contains no white space.
+`$ orb-archetyper -t cli -p my_project`
+
+Want more bells and whistles?
+
 -g does a git init for ya.
 
-###Output
+-i or -x includes/excludes files.
+Note: Include, exclude is comma separated and contains no white space.
+Use the name of the files found in lib/templates, dropping the .erb at the end
 
-Based on the following command, where project name = "command-line":
-`$ orb-archetyper -t cli -p command-line -x coverage -i licence`
+####Output
 
+Based on the following command, where project name = "command-line", excluding a .metrics file and including a .rspec file:
 
-    Included licence into cli archetype.
-    Excluded coverage from cli archetype.
-    created `command-line`
-    created `command-line`/logs
-    created `command-line`/rdoc
-    created `command-line`/resources
-    created `command-line`/bin
-    created `command-line`/bin/`command-line`
-    created `command-line`/.gitignore
-    created `command-line`/Gemfile
-    created `command-line`/`command-line`.gemspec
-    created `command-line`/lib
-    created `command-line`/lib/`command-line`.rb
-    created `command-line`/LICENCE
-    created `command-line`/Rakefile
-    created `command-line`/README.md
-    created `command-line`/test
-    created `command-line`/test/`command-line_test`.rb
-    created `command-line`/lib/`command-line`
-    created `command-line`/lib/`command-line`/version.rb
-  
+`$ orb-archetyper -t cli -p command-line -x dot_metrics -i dot_rspec`
 
-#### 1. Command Line Applications
-A standardized CLI project.
+	created command-line/build.bash
+	created command-line/.gitignore
+	created command-line/Rakefile
+	created command-line/README.md
+	created command-line/.rspec
+	created command-line/lib/command-line/version.rb
+	created command-line/Gemfile
+	created command-line/command-line.gemspec
+	created command-line/spec/unit/command-line_test.rb
+	created command-line/lib/command-line.rb
+	created command-line/lib/tasks.rb
+	created command-line/spec/spec_helper.rb
+	created command-line/bin/command-line
+	created command-line/spec/unit
 
-#### 2. Test
-An RSPEC test project that can be configured to be executed against a number of deployment tiers.
+### Running my project
 
-#### 3. Utility
-A client interface to provide a reusable access point to a component/service/application under test.
+`bundle exec rake -T`
+Shows all the available rake tasks.  Some (but not nearly ALL; please explore!!) of particular interest include:
 
-#### 4. Core 
-A core project that is used to facilitate automated testing common to all AQA. 
+Tasks to run tests!
+```
+rake spec:e2e                                    # Run RSpec code examples
+rake spec:full                                   # Run all tests
+rake spec:unit                                   # Run RSpec code examples
+```
 
 ## Contributing
 
