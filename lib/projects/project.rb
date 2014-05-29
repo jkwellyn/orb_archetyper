@@ -10,6 +10,7 @@ require_relative '../template_classes/template_dot_rspec'
 require_relative '../template_classes/template_tasks'
 require_relative '../template_classes/template_spec_helper'
 require_relative '../template_classes/template_version'
+require_relative '../template_classes/template_orb_annotations_mustache'
 require_relative '../../lib/gems/gem_data'
 
 module Projects
@@ -23,7 +24,7 @@ module Projects
     GEMS = [
         %w{metric_fu ~> 4.8.0},
         %w{rake ~> 10.1.1},
-        %w{rake-notes ~> 0.2.0},
+        %w{annotation_manager ~> 0.0.1},
         %w{rdoc > 2.4.2},
         ['rspec', '', '2.14.1'],
         ['rspec-extra-formatters', '', '0.4'],
@@ -48,7 +49,8 @@ module Projects
           TemplateRakefile,
           TemplateReadme,
           TemplateDotRspec,
-          TemplateVersion
+          TemplateVersion,
+          TemplateOrbAnnotationsMustache
       ]
     end
 

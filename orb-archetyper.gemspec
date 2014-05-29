@@ -24,7 +24,7 @@ Gem::Specification.new do |spec|
 #Dev Dependencies
  spec.add_development_dependency('metric_fu', '>= 4.0')
  spec.add_development_dependency('rake', '10.1.1')
- spec.add_development_dependency('rake-notes', '0.2.0')
+ spec.add_development_dependency('annotation_manager', '0.0.1')
  spec.add_development_dependency('rdoc', '>= 4.0')#'> 2.4.2')
  spec.add_development_dependency('rspec', '2.14.1')
  spec.add_development_dependency('rspec-extra-formatters', '0.4')

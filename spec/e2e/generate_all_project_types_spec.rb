@@ -32,6 +32,7 @@ module Projects
         expect_path_to_exist(true, project_name)
         expect_path_to_exist(true, project_name, 'bin', project_name)
         expect_path_to_exist(true, project_name, '.git')
+        expect_path_to_exist(true, project_name, 'orb_annotations.mustache')
 
         project_test_expectations(project_type) do
           expected_spec_accept_path = File.join(project_name, 'spec', 'accept')
