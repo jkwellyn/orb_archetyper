@@ -26,7 +26,7 @@ def build_rspec_opts(test_type, task)
   task.rspec_opts << '--out' << "tmp/results/#{test_type}/#{timestamp}_results.xml"
   task.rspec_opts << '--format' << 'html'
   task.rspec_opts << '--out' << "tmp/results/#{test_type}/#{timestamp}_results.html"
-  task.pattern = "spec/#{test_type}/**/*_test.rb"
+  task.pattern = "spec/#{test_type}/**/*_spec.rb"
 end
 
 def delete_dir_with_output(dir_name)

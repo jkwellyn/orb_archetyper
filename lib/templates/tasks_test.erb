@@ -5,7 +5,7 @@
 def build_rake_task(task_name)
   RSpec::Core::RakeTask.new(task_name.to_sym) do |task|
     build_rspec_opts(task_name, task)
-    task.pattern = "spec/accept/#{task_name}/**/*_test.rb"
+    task.pattern = "spec/accept/#{task_name}/**/*_spec.rb"
   end
 end
 

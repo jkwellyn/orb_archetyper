@@ -22,9 +22,7 @@ module Projects
           expect(project.additional_templates).to eq([TemplateLicense, TemplateVersion])
           expect(project.rejected_templates).to eq([TemplateBinCli])
         end
-
       end
-
     end
   end
 end

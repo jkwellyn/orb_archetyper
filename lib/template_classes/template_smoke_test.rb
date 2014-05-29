@@ -1,6 +1,6 @@
-require_relative 'template_spec_test'
+require_relative 'template_example_spec'
 
-class TemplateSmokeTest < TemplateSpecTest
+class TemplateSmokeTest < TemplateExampleSpec
 
   def output_directory
     File.join(@project_name, %w{spec accept smoke})

@@ -12,7 +12,6 @@ describe TemplateBinCli do
         expect(@bin_cli_template.render).not_to match(template_markup)
       end
     end
-
   end
 end
 

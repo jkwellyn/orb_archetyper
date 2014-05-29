@@ -1,13 +1,13 @@
 require_relative 'template'
 
-class TemplateSpecTest < Template
+class TemplateExampleSpec < Template
 
   def template_file
-    'spec_test.erb'
+    'example_spec.erb'
   end
 
   def output_file
-    File.join("#{@project_name}_test.rb")
+    File.join("#{@project_name}_spec.rb")
   end
 
   def output_directory
