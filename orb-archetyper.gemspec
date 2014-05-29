@@ -31,6 +31,7 @@ Gem::Specification.new do |spec|
  spec.add_development_dependency('rubocop', '0.16.0')
  spec.add_development_dependency('simplecov', '0.7.1')
  spec.add_development_dependency('fuubar', '1.3.2')
+ spec.add_development_dependency('opower-deployment')
 
 #Runtime dependencies
  spec.add_runtime_dependency('ansi', '1.4.3')
