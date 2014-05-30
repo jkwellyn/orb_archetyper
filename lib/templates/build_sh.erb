@@ -18,34 +18,34 @@ echo "Build args: $1 $2"
 
 main() {
 
-	echo "*************************************"
-	startTime=$(date +%s)
+  echo "*************************************"
+  startTime=$(date +%s)
 
-    #Grab rvm version from the gemspec
-    #TODO is there a better way to do this??
-	rvmVersion=`grep -o 'required_ruby_version.*' <%= project_name %>.gemspec`
-    reg_pattern='\".* ([0-9.]+)\"'
-    [[ $rvmVersion =~ $reg_pattern ]]
-    rvmVersionStr=''
-    i=1
-    n=${#BASH_REMATCH[*]}
-    while [[ $i -lt $n ]]
-    do
-        rvmVersionStr+=${BASH_REMATCH[$i]}
-        let i++
-    done
-	rvm use $rvmVersionStr
+  echo WHICH rvm is `which rvm`
+  echo RVM LIST is `rvm list`
 
-	bundle install
-	bundle exec rake spec:ci:full
-	bundle exec rake metrics:all
-	bundle exec rake code_metrics:stats
+  # first, use any available ruby to get opower-deployment gem
+  # we use 1.9.3 because orb-archetyper has some specific gems with ruby requirement >= 1.9.3 (e.g. activesupport)
+  rvm use 1.9.3 --fuzzy
+  bundle install --path vendor/bundle
+  # access the official ruby version in that gem
+  RUBY_VERSION_FILE="`bundle show opower-deployment`/lib/opower/APP_RUBY_VERSION"
+  RUBY_VERSION=`cat $RUBY_VERSION_FILE`
+  echo RUBY_VERSION is \'$RUBY_VERSION\'
 
-	endTime=$(date +%s)
-	timeDifference=$(( $endTime - $startTime ))
+  # use the official Opower approved ruby version to run our tests against
+  rvm use $RUBY_VERSION
 
-	echo "Execution time :" $timeDifference
-	echo "Finished."
+  bundle install
+  bundle exec rake spec:full --trace
+  bundle exec rake metrics:all
+  bundle exec rake code_metrics:stats
+
+  endTime=$(date +%s)
+  timeDifference=$(( $endTime - $startTime ))
+
+  echo "Execution time :" $timeDifference
+  echo "Finished."
 
 }
 

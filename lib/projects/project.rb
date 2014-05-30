@@ -24,12 +24,13 @@ module Projects
     GEMS = [
         %w{metric_fu ~> 4.8.0},
         %w{rake ~> 10.1.1},
-        %w{annotation_manager ~> 0.0.1},
+        %w{annotation_manager ~> 0.0.2},
         %w{rdoc > 2.4.2},
         ['rspec', '', '2.14.1'],
         ['rspec-extra-formatters', '', '0.4'],
         ['rubocop', '',  '0.16.0'],
         ['fuubar', '', '1.3.2'],
+        %w{opower-deployment}
     ]
 
     def initialize(project_name)

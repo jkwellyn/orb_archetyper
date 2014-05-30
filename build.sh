@@ -13,19 +13,19 @@ main() {
 	echo "*************************************"
 	startTime=$(date +%s)
 
-	#ensure using rvm1.9.3
-	#rvm use ruby-1.9.3 --fuzzy
-
 	echo WHICH rvm is `which rvm`
 	echo RVM LIST is `rvm list`
 
-	# using the opower-deployment standard ruby version to run our tests against
+    # first, use any available ruby to get opower-deployment gem
+    # we use 1.9.3 because orb-archetyper has some specific gems with ruby requirement >= 1.9.3 (e.g. activesupport)
     rvm use 1.9.3 --fuzzy
     bundle install --path vendor/bundle
+    # access the official ruby version in that gem
     RUBY_VERSION_FILE="`bundle show opower-deployment`/lib/opower/APP_RUBY_VERSION"
     RUBY_VERSION=`cat $RUBY_VERSION_FILE`
 	echo RUBY_VERSION is \'$RUBY_VERSION\'
 
+    # use the official Opower approved ruby version to run our tests against
 	rvm use $RUBY_VERSION
 
     bundle install  --path vendor/bundle

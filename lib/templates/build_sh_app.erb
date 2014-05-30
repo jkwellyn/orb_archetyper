@@ -11,15 +11,8 @@ main(){
   echo "*************************************"
   startTime=$(date +%s)
 
-  #ensure using rvm1.9.3
-  echo WHICH rvm is `which rvm`
-  echo RVM LIST is `rvm list`
-
-  #grab the ruby file RUBY_VERSION=`cat RUBY_VERSION`
-  echo RUBY_VERSION is \'$RUBY_VERSION\'
-
-  #bundle it
-  rvm $RUBY_VERSION exec bundle install --path vendor/bundle
+  #no need to rvm use; project comes with a .rvmrc that sets the ruby version!
+  bundle install --path vendor/bundle
 
   #rspec it
   #TODO: your rpsec tests go here!
