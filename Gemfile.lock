@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    orb-archetyper (0.0.3)
+    orb-archetyper (0.0.4pre)
       activesupport
       ansi (= 1.4.3)
       git (= 1.2.6)
@@ -63,7 +63,6 @@ GEM
     highline (1.6.21)
     hirb (0.7.1)
     i18n (0.6.9)
-    json (1.8.1)
     json_pure (1.8.1)
     main (5.3.2)
       arrayfields (>= 4.7.4)
@@ -126,9 +125,8 @@ GEM
     rake-notes (0.2.0)
       colored
       rake
-    rdoc (4.1.1)
-      json (~> 1.4)
     redcard (1.1.0)
+    redcarpet (2.3.0)
     reek (1.3.6)
       ruby2ruby (~> 2.0.7)
       ruby_parser (~> 3.2)
@@ -166,6 +164,7 @@ GEM
     simplecov-html (0.7.1)
     slop (3.5.0)
     state_machine (1.2.0)
+    yard (0.8.7.4)
 
 PLATFORMS
   ruby
@@ -177,8 +176,9 @@ DEPENDENCIES
   opower-deployment
   orb-archetyper!
   rake (= 10.1.1)
-  rdoc (>= 4.0)
+  redcarpet (~> 2.3.0)
   rspec (= 2.14.1)
   rspec-extra-formatters (= 0.4)
   rubocop (= 0.16.0)
   simplecov (= 0.7.1)
+  yard (~> 0.8.7)
