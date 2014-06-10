@@ -1,3 +1,8 @@
+# v0.0.4
+- Use Yard instead of Rdoc
+- Remove metrics:* tasks
+- Fix spacing in generated README.md
+
 # v0.0.3
 - Added annotation_manager
 - Build script renamed to build.sh; clean up of scripts using opower-deployment for ruby version

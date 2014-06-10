@@ -22,7 +22,6 @@ Gem::Specification.new do |spec|
  spec.require_paths = ["lib"]
 
 #Dev Dependencies
- spec.add_development_dependency('metric_fu', '>= 4.0')
  spec.add_development_dependency('rake', '10.1.1')
  spec.add_development_dependency('annotation_manager', '0.0.2')
  spec.add_development_dependency('yard', '~> 0.8.7')

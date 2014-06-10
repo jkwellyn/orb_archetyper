@@ -4,13 +4,14 @@ require 'rspec-extra-formatters'
 require 'rspec/core'
 require 'rubocop/rake_task'
 require 'annotation_manager/rake_task'
-require 'metric_fu'
 require 'fuubar'
 require 'logger'
 require 'yard'
 require_relative 'orb-archetyper/constants'
 require_relative 'orb-archetyper/log/orb_logger'
 
+TMP_DIR = 'tmp'
+FileUtils.mkdir(TMP_DIR) unless File.exists?(TMP_DIR)
 LOG = OrbArchetyper::Log::OrbLogger.new.logger
 
 def timestamp
@@ -23,9 +24,9 @@ def build_rspec_opts(test_type, task)
   task.rspec_opts << '--format' << Fuubar
   task.rspec_opts << '--require' << 'rspec-extra-formatters'
   task.rspec_opts << '--format' << JUnitFormatter
-  task.rspec_opts << '--out' << "tmp/results/#{test_type}/#{timestamp}_results.xml"
+  task.rspec_opts << '--out' << "#{TMP_DIR}/results/#{test_type}/#{timestamp}_results.xml"
   task.rspec_opts << '--format' << 'html'
-  task.rspec_opts << '--out' << "tmp/results/#{test_type}/#{timestamp}_results.html"
+  task.rspec_opts << '--out' << "#{TMP_DIR}/results/#{test_type}/#{timestamp}_results.html"
   task.pattern = "spec/#{test_type}/**/*_spec.rb"
 end
 
@@ -36,7 +37,7 @@ def delete_dir_with_output(dir_name)
 end
 
 def delete_tmp_directory(dir_name)
-  tmp_dir = File.join('tmp', dir_name)
+  tmp_dir = File.join(TMP_DIR, dir_name)
   delete_dir_with_output(tmp_dir) do
     FileUtils.rm_rf(tmp_dir) #TODO why is this not deleting?
   end
@@ -58,19 +59,14 @@ namespace :clobber do
 
   desc "Remove ALL Tmp files"
   task :tmp do
-    delete_dir_with_output('tmp') do
-      FileUtils.rm_rf('tmp')
+    delete_dir_with_output(TMP_DIR) do
+      FileUtils.rm_rf(TMP_DIR)
     end
   end
 
   desc "Remove Unit Test Results files"
   task :unit do
     delete_tmp_directory(File.join('results', 'unit'))
-  end
-
-  desc "Remove metrics results files"
-  task :metrics do
-    delete_tmp_directory('metric_fu')
   end
 end
 

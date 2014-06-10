@@ -3,7 +3,6 @@ require 'fileutils'
 require 'set'
 require_relative '../template_classes/template_build_shell'
 require_relative '../template_classes/template_dot_gitignore'
-require_relative '../template_classes/template_dot_metrics'
 require_relative '../template_classes/template_rakefile'
 require_relative '../template_classes/template_readme'
 require_relative '../template_classes/template_dot_rspec'
@@ -22,7 +21,6 @@ module Projects
 
     #TODO break the specifier into own element?
     GEMS = [
-        %w{metric_fu ~> 4.8.0},
         %w{rake ~> 10.1.1},
         %w{annotation_manager ~> 0.0.2},
         %w{yard ~> 0.8.7},
@@ -47,7 +45,6 @@ module Projects
       #:main? Double check who needs it.
       @template_classes = [
           TemplateDotGitignore,
-          TemplateDotMetrics,
           TemplateRakefile,
           TemplateReadme,
           TemplateDotRspec,

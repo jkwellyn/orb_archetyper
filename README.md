@@ -20,7 +20,7 @@ This includes:
 3. Unit test coverage (simplecov)
 4. Documentation (rdoc)
 5. Static analysis (rubocop)
-6. Metrics and stats (metric_fu)
+6. Metrics and stats (metric_fu removed in 0.0.4, will return in the future)
 7. Annotations - annotation_manager built on top of rake-notes (TODO, FIXME, OPTIMIZE)
 8. Rake tasks
 9. Git project initialization

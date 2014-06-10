@@ -3,7 +3,6 @@ require 'rspec/core/rake_task'
 require 'rspec-extra-formatters'
 require 'rubocop/rake_task'
 require 'annotation_manager/rake_task'
-require 'metric_fu'
 require 'fuubar'
 require 'logger'
 require 'yard'
@@ -46,11 +45,6 @@ namespace :clobber do
     delete_dir_with_output('tmp') do
       FileUtils.rm_rf('tmp')
     end
-  end
-
-  desc "Remove metrics results files"
-  task :metrics do
-    delete_tmp_directory('metric_fu')
   end
 end
 

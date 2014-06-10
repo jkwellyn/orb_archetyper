@@ -30,8 +30,6 @@ main() {
 
     bundle install  --path vendor/bundle
 	bundle exec rake spec:full --trace
-	bundle exec rake metrics:all
-	bundle exec rake code_metrics:stats
 
 	endTime=$(date +%s)
 	timeDifference=$(( $endTime - $startTime ))
