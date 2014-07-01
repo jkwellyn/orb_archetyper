@@ -1,6 +1,6 @@
 # TODO make spec_helper_gem and spec_helper_test. Take coverage out of test.
 require 'simplecov'
-SimpleCov.start do 
+SimpleCov.start do
   coverage_dir 'tmp/coverage/unit'
   add_filter 'tmp/'
   add_filter 'spec/'
@@ -36,11 +36,11 @@ end
 # Logger init as log level info
 class OrbLogger
   attr_reader :logger
-  
+
   def initialize
     log_file = File.open('tmp/logfile.log', 'a')
     @logger = Logger.new MultiIO.new(STDOUT, log_file)
-    
+
     # TODO : this is set by default here but should be moved to be a config file
     @logger.level = Logger::INFO
     @logger.info("Logging initialized.")
