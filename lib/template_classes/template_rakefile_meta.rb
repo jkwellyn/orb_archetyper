@@ -1,13 +1,13 @@
 require_relative 'template'
 
-class TemplateDotRvmrc < Template
+class TemplateRakefileMeta < Template
 
   def template_file
-    'dot_rvmrc.erb'
+    'rakefile_meta.erb'
   end
 
   def output_file
-    '.rvmrc'
+    'Rakefile'
   end
 
 end

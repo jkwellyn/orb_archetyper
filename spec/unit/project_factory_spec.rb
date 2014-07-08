@@ -14,13 +14,13 @@ module Projects
           project = ProjectFactory.make_project(
               project_type,
               expected_project_name,
-              ['license', 'version'],
+              ['license'],
               ['bin_cli']
           )
           expect(project.class).to be project_class
           expect(project.project_name).to be expected_project_name
-          expect(project.additional_templates).to eq([TemplateLicense, TemplateVersion])
-          expect(project.rejected_templates).to eq([TemplateBinCli])
+          expect(project.additional_templates[0]).to be_a TemplateLicense
+          expect(project.rejected_templates[0]).to be_a TemplateBinCli
         end
       end
     end

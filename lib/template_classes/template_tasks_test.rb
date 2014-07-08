@@ -5,8 +5,12 @@ class TemplateTasksTest < Template
     %w{smoke sanity primary secondary}
   end
 
+  def output_directory
+    File.join(@project_name, 'lib')
+  end
+
   def output_file
-    File.join('lib', 'tasks.rb')
+    'tasks.rb'
   end
 
   def template_file

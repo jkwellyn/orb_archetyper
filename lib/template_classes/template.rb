@@ -6,11 +6,13 @@ class Template
   include OrbArchetyper::Rules::NamingConventions::FileNames
   attr_reader :module_name
   attr_reader :project_name
+  attr_accessor :template_data
   TEMPLATE_LOCATION = File.join(File.dirname(__FILE__), '..', 'templates')
 
-  def initialize(project_name, module_name)
+  def initialize(project_name, module_name, template_data = {})
     @project_name = project_name
     @module_name = module_name
+    @template_data = template_data
   end
 
   def render

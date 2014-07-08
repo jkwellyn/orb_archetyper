@@ -1,0 +1,18 @@
+#!/usr/bin/env rake
+
+PROJECTS = %w() #fill in sub projects here as you generate
+
+PROJECTS.each do |project|
+#TODO fill in more tasks for each project
+  namespace project do
+
+    desc "run tests for #{project} project"
+    task :spec do
+      cmd = ""
+      cmd << "cd #{project} && "
+      cmd << "bundle exec rake spec:full"
+      sh cmd
+    end
+
+  end
+end

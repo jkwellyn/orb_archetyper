@@ -13,8 +13,11 @@ class TemplateGemspec < Template
   end
 
   def gem_data
-    # TODO change this so the templates don't know about the Projects.
-    Projects::ProjectGem.gems.map{|gem| Gems::GemData.new(*gem)}
+    @template_data[:gems].map{|gem| Gems::GemData.new(*gem)}
+  end
+
+  def version_path
+    @template_data[:version_path]
   end
 
 end

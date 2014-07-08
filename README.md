@@ -8,6 +8,7 @@ Supported project types include:
 2. A Rspec Test Project (aka test launcher) that can be configured to be executed against a number of deployment tiers.
 3. Utility Project (e.g. a client for a service) to provide a reusable access point to a component/service/application under test.
 4. Core project (e.g. SQL or Rest Connection manager) used to facilitate automated testing common to all QA.
+5. Meta project (e.g. rails) used to collect related gems into 1 meta gem 
 
 Projects are created with a predefined structure and are autowired with a set configuration.
 This includes:
@@ -88,6 +89,13 @@ rake spec:e2e                                    # Run RSpec code examples
 rake spec:full                                   # Run all tests
 rake spec:unit                                   # Run RSpec code examples
 ```
+### Meta projects
+
+#TODO this section may change as we make more modifications to the archetyper
+
+The orb-archetyper will generate an empty shell of a project when you generate with `-t meta`.  In order to hook in your sub-projects to the meta project:
+1. Generate the appropriate projec type (likely core or utility) WITHIN the meta project's folder.
+2. Add your sub-project to the list of projects within the meta project's Rakefile.
 
 ## Contributing
 

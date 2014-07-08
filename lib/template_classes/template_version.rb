@@ -1,22 +1,14 @@
-require_relative 'template'
+require_relative 'template_version_top_level'
 require_relative '../orb-archetyper/version'
 
-class TemplateVersion < Template
-
-  def version
-    OrbArchetyper::VERSION
-  end
-
-  def template_file
-    'version.erb'
-  end
+class TemplateVersion < TemplateVersionTopLevel
 
   def output_directory
     File.join(super, 'lib', super)
   end
 
-  def output_file
-    'version.rb'
+  def gemspec_require_path
+    File.join('..', 'lib', self.project_name, 'version')
   end
 
 end

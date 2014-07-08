@@ -13,8 +13,7 @@ class TemplateGemfileApp < Template
   end
 
   def gem_data
-    # TODO change this so the templates don't have to know about the projects
-    Projects::Project.gems.map{|gem| Gems::GemData.new(*gem)}
+    @template_data[:gems].map{|gem| Gems::GemData.new(*gem)}
   end
 
 end

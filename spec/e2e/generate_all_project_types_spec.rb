@@ -8,9 +8,8 @@ RSpec.configure do |config|
 end
 
 module Projects
-  describe ProjectTest do
+  describe ProjectFactory do
     include_context 'in sandbox directory'
-
     ProjectFactory::PROJECT_MAP.keys.each do |project_type|
       project_type = project_type.to_s
 
@@ -40,9 +39,9 @@ module Projects
           expect_path_to_exist(true, expected_spec_accept_path, 'sanity')
           expect_path_to_exist(true, expected_spec_accept_path, 'primary')
           expect_path_to_exist(true, expected_spec_accept_path, 'secondary')
-          expect_path_to_exist(false, project_name, 'Gemfile')
+          expect_path_to_exist(true, project_name, 'Gemfile')
           expect_path_to_exist(true, project_name, 'build.sh')
-          expect_path_to_exist(true, project_name, '.rvmrc')
+          expect_path_to_exist(true, project_name, '.ruby-version')
         end
 
         project_gem_expectations(project_type) do
@@ -60,9 +59,10 @@ module Projects
     end
 
     def project_gem_expectations(project_type)
-      if project_type != 'test'
+      if project_type == 'core' || project_type == 'utility'
         yield
       end
     end
+
   end
 end
