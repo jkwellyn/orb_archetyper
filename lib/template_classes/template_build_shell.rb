@@ -10,4 +10,8 @@ class TemplateBuildShell < Template
     'build_sh.erb'
   end
 
+  def post_install_actions(file_path)
+    File.chmod(0755, file_path)
+  end
+
 end
