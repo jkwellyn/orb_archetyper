@@ -34,10 +34,5 @@ module Projects
                                         { gems: @gems, version_path: version_path })
     end
 
-    def generate_project
-      super do
-        FileUtils.mkdir_p(File.join(@project_name, 'spec', 'unit'))
-      end
-    end
   end
 end

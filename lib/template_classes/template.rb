@@ -27,12 +27,35 @@ class Template
     @project_name
   end
 
+  def create
+    output_dir = File.join(FileUtils.mkdir_p(output_directory))
+    full_path = File.join(output_dir, output_file)
+    File.write(full_path, render)
+    post_install_actions(full_path)
+    full_path
+  end
+
   def post_install_actions(file_path)
     #Sublcasses should override if necessary.
   end
 
   def self.convert_to_templates_class(template_name)
     "template_#{template_name}".camelize.constantize
+  end
+
+  # override == because include uses this
+  def ==(template2)
+    template2.class == self.class && @project_name == template2.project_name && @module_name == template2.send(:module_name) &&
+        @template_data == template2.template_data
+  end
+
+  # override eql? and hash in order to do set math in project.rb's make_template_set because hashing uses those 2
+  def eql?(template2)
+    self == template2
+  end
+
+  def hash
+    @project_name.hash ^ @module_name.hash ^ self.class.hash
   end
 
   private

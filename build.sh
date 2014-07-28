@@ -1,4 +1,5 @@
 #!/bin/bash --login
+# we use a login shell in order to have RVM already loaded to the path and available for use
 
 SOURCE_DIR=`pwd`
 

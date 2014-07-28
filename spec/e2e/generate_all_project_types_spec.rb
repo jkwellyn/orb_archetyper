@@ -49,6 +49,10 @@ module Projects
           expect_path_to_exist(true, project_name, 'lib', expected_file_name)
           expect_path_to_exist(true, project_name, 'build.sh')
         end
+
+        project_utility_expectations(project_type) do
+          expect_path_to_exist(true, project_name, 'config')
+        end
       end
     end
 
@@ -60,6 +64,12 @@ module Projects
 
     def project_gem_expectations(project_type)
       if project_type == 'core' || project_type == 'utility'
+        yield
+      end
+    end
+
+    def project_utility_expectations(project_type)
+      if project_type == 'utility'
         yield
       end
     end

@@ -11,10 +11,11 @@ class TemplateExampleSpec < Template
   end
 
   def output_directory
-    File.join("#{super}/spec/unit")
+    if @template_data[:test_directory]
+      File.join(super, @template_data[:test_directory])
+    else
+      File.join("#{super}/spec/unit")
+    end
   end
 
-  def require_spec_helper
-    '../spec_helper'
-  end
 end

@@ -18,6 +18,7 @@ module Projects
     attr_reader :project_name
     attr_accessor :additional_templates
     attr_accessor :rejected_templates
+    attr_accessor :additional_directories
 
     def initialize(project_name)
       @project_name = project_name
@@ -58,15 +59,15 @@ module Projects
       end
     end
 
+    def create_empty_dir_template(*paths)
+      @templates << TemplateEmptyDir.new(@project_name, @module_name, {directory_name: File.join(*paths)})
+    end
+
     def generate_project
       checked_generate_project do
         make_template_set.each do |template|
           generate_file_with_output do
-            output_directory = File.join(FileUtils.mkdir_p(template.output_directory))
-            full_path = File.join(output_directory, template.output_file)
-            File.write(full_path, template.render)
-            template.post_install_actions(full_path)
-            full_path
+            template.create
           end
         end
 
