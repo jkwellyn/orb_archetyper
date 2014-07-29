@@ -18,6 +18,7 @@ module Projects
     attr_reader :project_name
     attr_accessor :additional_templates
     attr_accessor :rejected_templates
+    attr_accessor :additional_directories
 
     def initialize(project_name)
       @project_name = project_name
