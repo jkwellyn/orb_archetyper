@@ -28,16 +28,11 @@ module Projects
       )
 
       # templates that require additional data
-      version_path = TemplateVersionTopLevel.new(@project_name, @module_name).gemspec_require_path
+      version_path = TemplateVersion.new(@project_name, @module_name).gemspec_require_path
       @templates << TemplateGemspec.new(@project_name,
                                         @module_name,
                                         { gems: @gems, version_path: version_path })
     end
 
-    def generate_project
-      super do
-        FileUtils.mkdir_p(File.join(@project_name, 'spec', 'unit'))
-      end
-    end
   end
 end

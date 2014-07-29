@@ -8,11 +8,13 @@ PROJECTS.each do |project|
 
     desc "run tests for #{project} project"
     task :spec do
-      cmd = ""
-      cmd << "cd #{project} && "
-      cmd << "bundle exec rake spec:full"
-      sh cmd
+      Dir.chdir "#{project}" do
+        Bundler.with_clean_env do
+          cmd = "bundle install && "
+          cmd << "bundle exec rake spec:full"
+          sh cmd
+        end
+      end
     end
-
   end
 end

@@ -9,8 +9,6 @@ class OptionParser
 
     options = {}
 
-    options[:github] = false
-
     opt_parser = OptionParser.new do |opts|
       opts.separator "\n"
       opts.banner = "Orb Archetype Generator:"
@@ -19,9 +17,23 @@ class OptionParser
       opts.separator "Specific options:"
 
       # list of choices
+      opts.on("-f", "--fork [STRING]",
+        "A full Github repository name including organization prefix, i.e. 'opower/foo_project'. Forks the provided project.") do |f|
+          options[:fork] = f
+      end
+
+      opts.on("-u", "--upload-organization [STRING]",
+        "A Github organization name i.e. 'opower' or 'eng_main' or 'auto'. If parameter is empty, uploads the project under the current user.") do |u|
+        if u.nil?
+          options[:upload_user] = true
+        else
+          options[:upload_organization] = u
+        end
+      end
+
       # TODO print template options here
       opts.on("-t", "--type [TYPE]",
-        "Select project type (cli, core, utility, test).") do |t|
+        "Select project type (cli, core, meta, test, utility).") do |t|
           options[:type] = t
       end
 
@@ -41,11 +53,9 @@ class OptionParser
       end
 
       # optional arguement, true if declared
-      opts.on("-g", "--[no-]github", "Create the git repo for the project,",
+      opts.on("--no-github", "Do not create the git repo for the project,",
         "False if omitted, true if declared.") do |g|
-          unless g.nil?
-            options[:github] = g
-          end
+        options[:no_github] = g.nil? ? false : true
       end
 
       opts.separator ""
@@ -75,9 +85,15 @@ class OptionParser
     opt_parser.parse(args)
 
     # raise an exception if we have not found a project name option or type is unsupported
-    raise OptionParser::MissingArgument if options[:project].nil?
-    raise OptionParser::InvalidArgument if options[:type].nil?
-
+    unless options[:fork]
+      raise OptionParser::MissingArgument if options[:project].nil?
+      raise OptionParser::InvalidArgument if options[:type].nil?
+      if options[:no_github]
+        if options[:upload_organization] || options[:upload_user]
+          raise OptionParser::InvalidArgument
+        end
+      end
+    end
     return options
   end
 end

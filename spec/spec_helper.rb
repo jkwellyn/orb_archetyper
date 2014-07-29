@@ -1,4 +1,5 @@
 require 'simplecov'
+require 'rspec/mocks'
 
 SimpleCov.start do
 	coverage_dir 'tmp/coverage/unit'

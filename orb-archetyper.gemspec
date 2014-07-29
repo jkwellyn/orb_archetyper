@@ -37,7 +37,7 @@ Gem::Specification.new do |spec|
  spec.add_runtime_dependency('ansi', '1.4.3')
  spec.add_runtime_dependency('git', '1.2.6')
  spec.add_runtime_dependency('activesupport')
-
+ spec.add_runtime_dependency('github_project', '0.0.2')
 
  spec.post_install_message = "Welcome to the oRb."
 end

@@ -1,10 +1,11 @@
 PATH
   remote: .
   specs:
-    orb-archetyper (0.0.4pre)
+    orb-archetyper (0.0.4.pre)
       activesupport
       ansi (= 1.4.3)
       git (= 1.2.6)
+      github_project (= 0.0.2)
 
 GEM
   remote: http://gemserver.va.opower.it/
@@ -12,6 +13,7 @@ GEM
     activesupport (3.2.17)
       i18n (~> 0.6, >= 0.6.4)
       multi_json (~> 1.0)
+    addressable (2.3.6)
     annotation_manager (0.0.2)
       mustache-patched
       rake-notes (~> 0.2.0)
@@ -31,13 +33,19 @@ GEM
     colored (1.2)
     daemons (1.1.9)
     diff-lcs (1.2.5)
+    faraday (0.9.0)
+      multipart-post (>= 1.2, < 3)
     fuubar (1.3.2)
       rspec (>= 2.14.0, < 3.1.0)
       ruby-progressbar (~> 1.3)
     git (1.2.6)
+    github_project (0.0.2)
+      git (~> 1.2)
+      octokit (~> 2.7)
     highline (1.6.21)
     i18n (0.6.9)
     multi_json (1.9.2)
+    multipart-post (2.0.0)
     mustache-patched (0.99.5)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -46,6 +54,8 @@ GEM
     net-ssh (2.9.0)
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
+    octokit (2.7.2)
+      sawyer (~> 0.5.2)
     opower-deployment (0.1.2)
       bluepill (~> 0.0.60)
       capistrano (~> 2.15.1)
@@ -78,6 +88,9 @@ GEM
     ruby-progressbar (1.4.2)
     rvm-capistrano (1.3.4)
       capistrano (>= 2.0.0)
+    sawyer (0.5.4)
+      addressable (~> 2.3.5)
+      faraday (~> 0.8, < 0.10)
     simplecov (0.7.1)
       multi_json (~> 1.0)
       simplecov-html (~> 0.7.1)

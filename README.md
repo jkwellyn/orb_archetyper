@@ -1,8 +1,63 @@
-#orb-archetyper - Project cookie cutter
+# orb-archetyper - Project cookie cutter
 
 Command line application to generate a given project type for QA.
 
-Supported project types include:
+# Usage
+
+## Installation
+
+`$ gem install orb-archetyper`
+
+##Help
+
+`$ orb-archetyper -h`
+
+Show all subproject types:
+`$ orb-archetyper -e`
+
+## Create a new project
+
+### A new CLI project not pushed to Github
+
+`$ orb-archetyper -t cli -p <project>`
+
+### A new CLI project immediately pushed to a new Github repo owned by you 
+
+`$ orb-archetyper -t cli -p <project> -u`
+
+### A new CLI project immediately pushed to an upstream Github organization and your fork
+
+`$ orb-archetyper -t cli -p <project> -u <organization>`
+
+### Fork an existing project from a given organization
+
+You must specify the upstream organization and the project name separated by '/'
+
+`$ orb-archetyper -f auto/orb-archetyper`
+
+### Running the New Project
+
+Shows all the available rake tasks:
+
+`bundle exec rake -T`
+
+Tasks to run tests:
+
+```
+rake spec:e2e                                    # Run RSpec code examples
+rake spec:full                                   # Run all tests
+rake spec:unit                                   # Run RSpec code examples
+```
+
+## Github Access
+In order for the Github interactions to work, please do the following:
+
+1. Go to https://github.va.opower.it/settings/applications
+2. Create a new token
+3. Add the following to your .bashrc: `export GITHUB_ACCESS_TOKEN=<token>`
+4. `. ~/.bashrc`
+
+### Supported project types
 
 1. Command line applications
 2. A Rspec Test Project (aka test launcher) that can be configured to be executed against a number of deployment tiers.
@@ -27,68 +82,7 @@ This includes:
 9. Git project initialization
 10. A jenkins build.sh script to simplify how jenkins executes/invokes commands
 
-## Installation
 
-`$ gem install orb-archetyper`
-
-## Usage
-
-###Help
-
-`$ orb-archetyper --help`
-
-`$ orb-archetyper -h`
-
-Show all subproject types:
-`$ orb-archetyper -e`
-
-### Create a new project
-Where "my_project "is the name of your project.
-
-Some like it plain:
-
-`$ orb-archetyper -t cli -p my_project`
-
-Want more bells and whistles?
-
--g does a git init for ya.
-
--i or -x includes/excludes files.
-Note: Include, exclude is comma separated and contains no white space.
-Use the name of the files found in lib/templates, dropping the .erb at the end
-
-####Output
-
-Based on the following command, where project name = "command-line", excluding a .metrics file and including a .rspec file:
-
-`$ orb-archetyper -t cli -p command-line -x dot_metrics -i dot_rspec`
-
-	created command-line/build.bash
-	created command-line/.gitignore
-	created command-line/Rakefile
-	created command-line/README.md
-	created command-line/.rspec
-	created command-line/lib/command-line/version.rb
-	created command-line/Gemfile
-	created command-line/command-line.gemspec
-	created command-line/spec/unit/command-line_test.rb
-	created command-line/lib/command-line.rb
-	created command-line/lib/tasks.rb
-	created command-line/spec/spec_helper.rb
-	created command-line/bin/command-line
-	created command-line/spec/unit
-
-### Running my project
-
-`bundle exec rake -T`
-Shows all the available rake tasks.  Some (but not nearly ALL; please explore!!) of particular interest include:
-
-Tasks to run tests!
-```
-rake spec:e2e                                    # Run RSpec code examples
-rake spec:full                                   # Run all tests
-rake spec:unit                                   # Run RSpec code examples
-```
 ### Meta projects
 
 #TODO this section may change as we make more modifications to the archetyper

@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/bin/bash --login
+# we use a login shell in order to have RVM already loaded to the path and available for use
+
 # Tell bash that we want the whole script to fail if any part fails.
 set -e
-
-source "$rvm_path/scripts/rvm"
 
 #Global Variables
 SOURCE_DIR=`pwd`
@@ -38,8 +38,6 @@ main() {
 
   bundle install
   bundle exec rake spec:full --trace
-  bundle exec rake metrics:all
-  bundle exec rake code_metrics:stats
 
   endTime=$(date +%s)
   timeDifference=$(( $endTime - $startTime ))
