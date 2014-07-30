@@ -1,7 +1,6 @@
 require_relative 'template'
 
 class TemplateLicense < Template
-
   def template_file
     'license.erb'
   end

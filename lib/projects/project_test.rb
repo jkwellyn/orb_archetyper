@@ -7,34 +7,32 @@ require_relative '../../lib/template_classes/template_dot_ruby_version'
 
 module Projects
   class ProjectTest < ProjectApp
-
     def initialize(project_name)
       super(project_name)
 
       create_standard_templates(
-          [
-              TemplateTasksTest,
-              TemplateSpecHelperTest,
-              TemplateBuildShellApp,
-              TemplateDotRubyVersion
-          ]
+        [
+          TemplateTasksTest,
+          TemplateSpecHelperTest,
+          TemplateBuildShellApp,
+          TemplateDotRubyVersion
+        ]
       )
       acceptance_test_base_dir = File.join('spec', 'accept')
 
-      %w{smoke sanity primary secondary}.map do |test_type_dir|
+      %w(smoke sanity primary secondary).map do |test_type_dir|
         create_dummy_test_files(acceptance_test_base_dir, test_type_dir)
-      #  create_empty_dir_template(acceptance_test_base_dir, test_type_dir)
+        # create_empty_dir_template(acceptance_test_base_dir, test_type_dir)
       end
       create_empty_dir_template('resources')
     end
 
-    # TODO this is only necessary right now because rspec has a bug open where it will run all the tests if the pattern
+    # TODO: this is only necessary right now because rspec has a bug open where it will run all the tests if the pattern
     # passed in does not retrieve any tests (https://github.com/rspec/rspec-core/issues/1126 and
-    # https://github.com/rspec/rspec-core/pull/1589) so we are temporarily generating files rather than empty directories
-    # until this is fixed
+    # https://github.com/rspec/rspec-core/pull/1589) so we are temporarily generating files rather than
+    # empty directories until this is fixed
     def create_dummy_test_files(*path)
-      @templates << TemplateExampleSpec.new(@project_name, @module_name, {test_directory: File.join(path)})
+      @templates << TemplateExampleSpec.new(@project_name, @module_name, test_directory: File.join(path))
     end
-
   end
 end

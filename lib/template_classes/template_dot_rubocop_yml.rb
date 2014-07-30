@@ -1,11 +1,11 @@
 require_relative 'template'
 
-class TemplateReadme < Template
+class TemplateDotRubocopYml < Template
   def template_file
-    'readme.erb'
+    'dot_rubocop_yml.erb'
   end
 
   def output_file
-    'README.md'
+    '.rubocop.yml'
   end
 end

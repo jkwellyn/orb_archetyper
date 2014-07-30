@@ -5,17 +5,15 @@ require_relative '../template_classes/template_version_top_level'
 
 module Projects
   class ProjectApp < Project
-
     def initialize(project_name)
       super(project_name)
 
       create_standard_templates([TemplateRakefile,
-                                 TemplateVersionTopLevel])
+                                 TemplateVersionTopLevel,
+                                 TemplateDotRubocopYml])
 
       # templates that require additional data
-      @templates << TemplateGemfileApp.new(@project_name, @module_name, {gems: @gems})
-
+      @templates << TemplateGemfileApp.new(@project_name, @module_name, gems: @gems)
     end
-
   end
 end

@@ -6,6 +6,7 @@ require_relative '../template_classes/template_dot_gitignore'
 require_relative '../template_classes/template_rakefile'
 require_relative '../template_classes/template_readme'
 require_relative '../template_classes/template_dot_rspec'
+require_relative '../template_classes/template_dot_rubocop_yml'
 require_relative '../template_classes/template_tasks'
 require_relative '../template_classes/template_spec_helper'
 require_relative '../template_classes/template_orb_annotations_mustache'
@@ -27,18 +28,17 @@ module Projects
       @rejected_templates = []
       @templates = []
 
-      #TODO
-      #Are we supposed to include rake tasks for a 'utility' project?
-      #:rubocop? Not for all projects?
-      #:rvmrc not included? Maybe to be included via switches?
-      #:main? Double check who needs it.
+      # TODO: Are we supposed to include rake tasks for a 'utility' project?
+      # :rubocop? Not for all projects?
+      # :rvmrc not included? Maybe to be included via switches?
+      # :main? Double check who needs it.
 
       create_standard_templates([TemplateDotGitignore,
                                  TemplateReadme,
                                  TemplateDotRspec,
                                  TemplateOrbAnnotationsMustache])
 
-      #TODO break the specifier into own element?
+      # TODO: break the specifier into own element?
       @gems = [
         ['rake', '~>', '10.1.1'],
         ['annotation_manager', '~>', '0.0.2'],
@@ -46,7 +46,7 @@ module Projects
         ['redcarpet', '~>', '2.3.0'],
         ['rspec', '', '2.14.1'],
         ['rspec-extra-formatters', '', '0.4'],
-        ['rubocop', '',  '0.16.0'],
+        ['rubocop', '',  '0.24.0'],
         ['fuubar', '', '1.3.2'],
         ['opower-deployment']
       ]
@@ -60,7 +60,7 @@ module Projects
     end
 
     def create_empty_dir_template(*paths)
-      @templates << TemplateEmptyDir.new(@project_name, @module_name, {directory_name: File.join(*paths)})
+      @templates << TemplateEmptyDir.new(@project_name, @module_name, directory_name: File.join(*paths))
     end
 
     def generate_project
@@ -71,15 +71,12 @@ module Projects
           end
         end
 
-        if block_given?
-          Array(yield).each {|additional_file| generate_file_with_output{additional_file}}
-        end
-
+        Array(yield).each { |additional_file| generate_file_with_output { additional_file } } if block_given?
       end
     end
 
     def generate_file_with_output
-      puts "\t" + ANSI.green{"created"} + " #{yield}"
+      puts "\t #{ANSI.green { 'created' }} #{yield}"
     end
 
     private
@@ -89,9 +86,8 @@ module Projects
     end
 
     def checked_generate_project
-      raise "Error. Directory already exists: #{@project_name}" if Dir.exists?(@project_name)
+      fail "Error. Directory already exists: #{@project_name}" if Dir.exist?(@project_name)
       yield
     end
-
   end
 end

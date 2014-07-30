@@ -1,7 +1,6 @@
 require_relative 'template'
 
 class TemplateRakefileMeta < Template
-
   def template_file
     'rakefile_meta.erb'
   end
@@ -9,5 +8,4 @@ class TemplateRakefileMeta < Template
   def output_file
     'Rakefile'
   end
-
 end

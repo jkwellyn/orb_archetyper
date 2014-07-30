@@ -14,7 +14,7 @@ module OrbArchetyper
 
         # TODO : this is set by default here but should be moved to be a config file
         @logger.level = Logger::INFO
-        @logger.info("Logging initialized in spec_help.rb")
+        @logger.info('Logging initialized in spec_help.rb')
       end
     end
   end

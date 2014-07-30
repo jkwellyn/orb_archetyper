@@ -2,7 +2,7 @@ require_relative 'template'
 
 class TemplateTasksTest < Template
   def test_types
-    %w{smoke sanity primary secondary}
+    %w(smoke sanity primary secondary)
   end
 
   def output_directory
@@ -18,6 +18,6 @@ class TemplateTasksTest < Template
   end
 
   def partial_files
-    %w{_tasks_reports.rb }
+    %w(_tasks_reports.rb)
   end
 end

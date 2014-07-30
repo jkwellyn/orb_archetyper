@@ -12,21 +12,19 @@ class ArchetypeGenerator
 
   PROJECT_NAME_MIN_LENGTH = 2
   PROJECT_NAME_MAX_LENGTH = 30
-  PROJECT_NAME_INVALID_LENGTH_ERROR = "Invalid Project Name Error. Project Name is either: nil or of incorrect length."
-  PROJECT_NAME_INVALID_CHARACTERS_ERROR = "Invalid Project Name: should only contain a-z, 0-9, -,_"
+  PROJECT_NAME_INVALID_LENGTH_ERROR = 'Invalid Project Name Error. Project Name is either: nil or of incorrect length.'
+  PROJECT_NAME_INVALID_CHARACTERS_ERROR = 'Invalid Project Name: should only contain a-z, 0-9, -,_'
 
   attr_reader :project_name, :module_name
 
   def initialize(project_name)
     @project_name = sanitize(project_name)
-    #TODO use active_support/inflector here?
-    @module_name = @project_name.split(/[_\-]/).map(&:capitalize).join
   end
 
   def generate(options)
     project_archetype = Projects::ProjectFactory.make_project(
       options[:type],
-      options[:project],
+      @project_name,
       options[:include],
       options[:exclude]
     )
@@ -34,7 +32,7 @@ class ArchetypeGenerator
 
     unless options[:no_github]
       SharedTasks::GithubProject::Project.initialize_git(@project_name)
-      puts "\t" + ANSI.green{'initialized git repository'}
+      puts "\t" + ANSI.green { 'initialized git repository' }
     end
 
     project_dir = options[:project]
@@ -56,7 +54,7 @@ class ArchetypeGenerator
 
   private
 
-  def upload_to_github(project_dir, &block)
+  def upload_to_github(project_dir)
     Dir.chdir(project_dir) do
       github_project = SharedTasks::GithubProject::Project.new
       github_project.commit_current_directory('Initial commit of auto-generated scaffolding.')
@@ -64,19 +62,19 @@ class ArchetypeGenerator
     end
   end
 
-# TODO use active_support/inflector here?
-# Ensure that the project name is valid
-  def sanitize(projectName)
-
-    if (projectName == nil or projectName.length < PROJECT_NAME_MIN_LENGTH or projectName.length > PROJECT_NAME_MAX_LENGTH)
-      raise PROJECT_NAME_INVALID_LENGTH_ERROR
+  # TODO: use active_support/inflector here?
+  # Ensure that the project name is valid
+  def sanitize(project_name)
+    if project_name.nil? || project_name.length < PROJECT_NAME_MIN_LENGTH ||
+        project_name.length > PROJECT_NAME_MAX_LENGTH
+      fail PROJECT_NAME_INVALID_LENGTH_ERROR
     end
-    projectName = projectName.gsub(/\s/, "_")
+    project_name = project_name.underscore
 
-    if (/^[\w_\-]+$/.match(projectName).nil?)
-      raise PROJECT_NAME_INVALID_CHARACTERS_ERROR
+    if /^[\w_\-]+$/.match(project_name).nil?
+      fail PROJECT_NAME_INVALID_CHARACTERS_ERROR
     else
-      return projectName
+      project_name
     end
   end
 end

@@ -10,7 +10,7 @@ require 'yard'
 LOG = Logger.new(STDOUT)
 
 def timestamp
-  Time.now.strftime("%Y%m%d_%H%M%S")
+  Time.now.strftime('%Y%m%d_%H%M%S')
 end
 
 def build_rspec_opts(test_type, task)
@@ -28,19 +28,19 @@ end
 def delete_dir_with_output(dir_name)
   LOG.info("Deleting the #{dir_name} directory...")
   yield
-  LOG.info("Deleted.")
+  LOG.info('Deleted.')
 end
 
 def delete_tmp_directory(dir_name)
   tmp_dir = File.join('tmp', dir_name)
   delete_dir_with_output(tmp_dir) do
-    FileUtils.rm_rf(tmp_dir) #TODO why is this not deleting?
+    FileUtils.rm_rf(tmp_dir) # TODO: why is this not deleting?
   end
 end
 
 namespace :clobber do
 
-  desc "Remove ALL Tmp files"
+  desc 'Remove ALL Tmp files'
   task :tmp do
     delete_dir_with_output('tmp') do
       FileUtils.rm_rf('tmp')
@@ -53,18 +53,17 @@ YARD::Rake::YardocTask.new do |task|
 end
 
 desc 'Run RuboCop on the lib directory'
-Rubocop::RakeTask.new(:rubocop) do |task|
+RuboCop::RakeTask.new(:rubocop) do |task|
   task.patterns = ['lib/**/*.rb']
   # only show the files with failures
-  #task.formatters = ['files', 'offences']
+  # task.formatters = ['files', 'offences']
   # don't abort rake on failure
   task.fail_on_error = false
-  #task.options << '-o' << "coverage/rubocop_#{timestamp}.txt"
+  # task.options << '-o' << "coverage/rubocop_#{timestamp}.txt"
 end
 
-desc "Open latest unit test results in your yer browser"
+desc 'Open latest unit test results in your yer browser'
 task :open_unit_results do
   file = `find tmp/results/unit/ -regex ".*\.\html" | tail -1`
   `open #{file}`
 end
-

@@ -8,11 +8,11 @@ require_relative '../template_classes/template'
 module Projects
   class ProjectFactory
     PROJECT_MAP = {
-        cli: ProjectCLI,
-        core: ProjectCore,
-        meta: ProjectMeta,
-        test: ProjectTest,
-        utility: ProjectUtility
+      cli: ProjectCLI,
+      core: ProjectCore,
+      meta: ProjectMeta,
+      test: ProjectTest,
+      utility: ProjectUtility
     }
 
     def self.make_project(project_type, project_name, additional_templates = [], rejected_templates = [])

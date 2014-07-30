@@ -1,7 +1,6 @@
 require_relative 'template'
 
 class TemplateDotRubyVersion < Template
-
   def template_file
     'dot_ruby_version.erb'
   end
@@ -9,5 +8,4 @@ class TemplateDotRubyVersion < Template
   def output_file
     '.ruby-version'
   end
-
 end

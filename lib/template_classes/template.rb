@@ -16,7 +16,7 @@ class Template
   end
 
   def render
-    render_erb(self.template_file)
+    render_erb(template_file)
   end
 
   def partial(partial_file_name)
@@ -35,8 +35,8 @@ class Template
     full_path
   end
 
-  def post_install_actions(file_path)
-    #Sublcasses should override if necessary.
+  def post_install_actions(_args)
+    # Subclasses should override if necessary
   end
 
   def self.convert_to_templates_class(template_name)
@@ -44,9 +44,9 @@ class Template
   end
 
   # override == because include uses this
-  def ==(template2)
-    template2.class == self.class && @project_name == template2.project_name && @module_name == template2.send(:module_name) &&
-        @template_data == template2.template_data
+  def ==(other)
+    other.class == self.class && @project_name == other.project_name && @module_name == other.send(:module_name) &&
+        @template_data == other.template_data
   end
 
   # override eql? and hash in order to do set math in project.rb's make_template_set because hashing uses those 2

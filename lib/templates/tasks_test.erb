@@ -1,7 +1,4 @@
-# Start partial
 <%= partial('_tasks_report.erb')%>
-# End partial
-
 def build_rake_task(task_name)
   RSpec::Core::RakeTask.new(task_name.to_sym) do |task|
     build_rspec_opts(task_name, task)
@@ -11,8 +8,8 @@ end
 
 namespace :spec do
 <% test_types.each do |test_type| -%>
-    build_rake_task('<%= test_type %>')
+  build_rake_task('<%= test_type %>')
 <% end -%>
 
-  RSpec::Core::RakeTask.new(:full => <%= test_types.map{ |test_type| "spec:#{test_type}"} %>)
+  RSpec::Core::RakeTask.new(full: <%= test_types.map{ |test_type| 'spec:#{test_type}'} %>)
 end

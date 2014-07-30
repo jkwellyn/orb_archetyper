@@ -1,7 +1,6 @@
 require_relative 'template'
 
 class TemplateGemfileGem < Template
-
   def template_file
     'gemfile_gem.erb'
   end
@@ -9,5 +8,4 @@ class TemplateGemfileGem < Template
   def output_file
     'Gemfile'
   end
-
 end

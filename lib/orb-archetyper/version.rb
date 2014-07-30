@@ -1,3 +1,3 @@
-  module OrbArchetyper
-    VERSION = "0.0.4.pre"
-  end
+module OrbArchetyper
+  VERSION = '0.0.4.pre'
+end

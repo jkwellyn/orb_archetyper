@@ -2,7 +2,6 @@ require_relative 'template'
 require_relative '../orb-archetyper/rules/naming_conventions/file_names'
 
 class TemplateBinCli < Template
-
   def template_file
     'bin_cli.erb'
   end
@@ -16,11 +15,10 @@ class TemplateBinCli < Template
   end
 
   def required_file
-    "#@project_name.rb"
+    "#{@project_name}.rb"
   end
 
   def post_install_actions(file_path)
     File.chmod(0755, file_path)
   end
-
 end

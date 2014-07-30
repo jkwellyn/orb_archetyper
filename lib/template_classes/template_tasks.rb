@@ -1,7 +1,6 @@
 require_relative 'template'
 
 class TemplateTasks < Template
-
   def template_file
     'tasks.erb'
   end
@@ -15,6 +14,6 @@ class TemplateTasks < Template
   end
 
   def partial_files
-    %w{_tasks_reports.rb }
+    %w(_tasks_reports.rb)
   end
 end

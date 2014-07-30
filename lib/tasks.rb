@@ -11,11 +11,11 @@ require_relative 'orb-archetyper/constants'
 require_relative 'orb-archetyper/log/orb_logger'
 
 TMP_DIR = 'tmp'
-FileUtils.mkdir(TMP_DIR) unless File.exists?(TMP_DIR)
+FileUtils.mkdir(TMP_DIR) unless File.exist?(TMP_DIR)
 LOG = OrbArchetyper::Log::OrbLogger.new.logger
 
 def timestamp
-  Time.now.strftime("%Y%m%d_%H%M%S")
+  Time.now.strftime('%Y%m%d_%H%M%S')
 end
 
 def build_rspec_opts(test_type, task)
@@ -33,18 +33,17 @@ end
 def delete_dir_with_output(dir_name)
   LOG.info("Deleting the #{dir_name} directory...")
   yield
-  LOG.info("Deleted.")
+  LOG.info('Deleted.')
 end
 
 def delete_tmp_directory(dir_name)
   tmp_dir = File.join(TMP_DIR, dir_name)
   delete_dir_with_output(tmp_dir) do
-    FileUtils.rm_rf(tmp_dir) #TODO why is this not deleting?
+    FileUtils.rm_rf(tmp_dir) # TODO: why is this not deleting?
   end
 end
 
 namespace :clobber do
-
   desc "Removing #{Constants::SANDBOX}"
   task :e2e do
     delete_dir_with_output(Constants::SANDBOX) do
@@ -52,37 +51,37 @@ namespace :clobber do
     end
   end
 
-  desc "Remove Simplecov files"
+  desc 'Remove Simplecov files'
   task :coverage do
     delete_tmp_directory('coverage')
   end
 
-  desc "Remove ALL Tmp files"
+  desc 'Remove ALL Tmp files'
   task :tmp do
     delete_dir_with_output(TMP_DIR) do
       FileUtils.rm_rf(TMP_DIR)
     end
   end
 
-  desc "Remove Unit Test Results files"
+  desc 'Remove Unit Test Results files'
   task :unit do
     delete_tmp_directory(File.join('results', 'unit'))
   end
 end
 
 namespace :spec do
-  RSpec::Core::RakeTask.new(:unit => %w{clobber:tmp}) do |task|
+  RSpec::Core::RakeTask.new(unit: %w(clobber:tmp)) do |task|
     build_rspec_opts('unit', task)
   end
 
-  RSpec::Core::RakeTask.new(:e2e => %w{clobber:tmp clobber:e2e}) do |task|
+  RSpec::Core::RakeTask.new(e2e: %w(clobber:tmp clobber:e2e)) do |task|
     LOG.info("Creating new #{Constants::SANDBOX}")
     FileUtils.mkdir_p(Constants::SANDBOX)
     build_rspec_opts('e2e', task)
   end
 
-  desc "Run all tests"
-  task :full => %w{spec:unit spec:e2e}
+  desc 'Run all tests'
+  task full: %w(spec:unit spec:e2e)
 end
 
 YARD::Rake::YardocTask.new do |task|
@@ -90,16 +89,16 @@ YARD::Rake::YardocTask.new do |task|
 end
 
 desc 'Run RuboCop on the lib directory'
-Rubocop::RakeTask.new(:rubocop) do |task|
+RuboCop::RakeTask.new(:rubocop) do |task|
   task.patterns = ['lib/**/*.rb']
   # only show the files with failures
-  #task.formatters = ['files', 'offences']
+  # task.formatters = ['files', 'offences']
   # don't abort rake on failure
   task.fail_on_error = false
-  #task.options << '-o' << "coverage/rubocop_#{timestamp}.txt"
+  # task.options << '-o' << "coverage/rubocop_#{timestamp}.txt"
 end
 
-desc "Open latest unit test results in your yer browser"
+desc 'Open latest unit test results in your yer browser'
 task :open_unit_results do
   file = `find tmp/results/unit/ -regex ".*\.\html" | tail -1`
   `open #{file}`

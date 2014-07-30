@@ -11,9 +11,11 @@ module Gems
     end
 
     def version_string
-      return '' if @version.nil?
-      return ", '#@range_specifier #@version'"
+      if @version.nil?
+        ''
+      else
+        ", '#{@range_specifier} #{@version}'"
+      end
     end
-
   end
 end

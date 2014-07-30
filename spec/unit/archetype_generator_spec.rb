@@ -15,7 +15,6 @@ module OrbArchetyper
 
         generator = ArchetypeGenerator.new("project_a")
         expect(generator.project_name).to eq("project_a")
-        expect(generator.module_name).to eq("ProjectA")
 
       end
     end

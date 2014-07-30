@@ -31,6 +31,7 @@ main() {
 
     bundle install  --path vendor/bundle
 	bundle exec rake spec:full --trace
+  bundle exec rake rubocop
 
 	endTime=$(date +%s)
 	timeDifference=$(( $endTime - $startTime ))

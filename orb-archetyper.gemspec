@@ -28,7 +28,7 @@ Gem::Specification.new do |spec|
  spec.add_development_dependency('redcarpet', '~> 2.3.0')
  spec.add_development_dependency('rspec', '2.14.1')
  spec.add_development_dependency('rspec-extra-formatters', '0.4')
- spec.add_development_dependency('rubocop', '0.16.0')
+ spec.add_development_dependency('rubocop', '0.24.0')
  spec.add_development_dependency('simplecov', '0.7.1')
  spec.add_development_dependency('fuubar', '1.3.2')
  spec.add_development_dependency('opower-deployment')

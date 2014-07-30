@@ -1,8 +1,7 @@
-# Start partial
 <%= partial('_tasks_report.erb')%>
-# End partial
+SANDBOX = File.join('tmp', 'sandbox')
+ENV['TMPDIR'] = SANDBOX    # necessary for test_support contexts to generate directories in the right location
 
-SANDBOX = File.join('spec', 'sandbox')
 namespace :clobber do
 
   desc "Removing #{SANDBOX}"
@@ -13,32 +12,31 @@ namespace :clobber do
     end
   end
 
-  desc "Remove Unit Test Results files"
+  desc 'Remove Unit Test Results files'
   task :unit do
     delete_tmp_directory('unit')
-    puts "Clearing the unit test directory..."
+    puts 'Clearing the unit test directory...'
     `rm -rf tmp/results/unit/*`
-    puts "Done."
+    puts 'Done.'
   end
 
-  desc "Remove Simplecov files"
+  desc 'Remove Simplecov files'
   task :coverage do
     delete_tmp_directory('coverage')
   end
 end
 
 namespace :spec do
-  RSpec::Core::RakeTask.new(:unit => %w{clobber:tmp}) do |task|
+  RSpec::Core::RakeTask.new(unit: %w(clobber:tmp)) do |task|
     build_rspec_opts('unit', task)
   end
 
-  RSpec::Core::RakeTask.new(:e2e => %w{clobber:tmp clobber:e2e}) do |task|
+  RSpec::Core::RakeTask.new(e2e: %w(clobber:tmp clobber:e2e)) do |task|
     LOG.info("Creating new #{SANDBOX}")
     Dir.mkdir(SANDBOX)
     build_rspec_opts('e2e', task)
   end
 
-  desc "Run all tests"
-  task :full => %w{spec:unit spec:e2e}
+  desc 'Run all tests'
+  task full: %w(spec:unit spec:e2e)
 end
-

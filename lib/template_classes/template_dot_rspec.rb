@@ -1,7 +1,6 @@
 require_relative 'template'
 
 class TemplateDotRspec < Template
-
   def template_file
     'dot_rspec.erb'
   end
@@ -9,5 +8,4 @@ class TemplateDotRspec < Template
   def output_file
     '.rspec'
   end
-
 end

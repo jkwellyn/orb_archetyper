@@ -1,7 +1,6 @@
 require_relative 'template'
 
 class TemplateExampleSpec < Template
-
   def template_file
     'example_spec.erb'
   end
@@ -17,5 +16,4 @@ class TemplateExampleSpec < Template
       File.join("#{super}/spec/unit")
     end
   end
-
 end
