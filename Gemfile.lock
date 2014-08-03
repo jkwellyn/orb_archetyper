@@ -106,6 +106,7 @@ GEM
     simplecov-html (0.7.1)
     slop (3.5.0)
     state_machine (1.2.0)
+    test_support (0.0.1)
     thread_safe (0.3.4)
     tzinfo (0.3.40)
     yard (0.8.7.4)
@@ -124,4 +125,5 @@ DEPENDENCIES
   rspec-extra-formatters (= 0.4)
   rubocop (= 0.24.0)
   simplecov (= 0.7.1)
+  test_support (= 0.0.1)
   yard (~> 0.8.7)

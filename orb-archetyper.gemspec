@@ -32,6 +32,7 @@ Gem::Specification.new do |spec|
  spec.add_development_dependency('simplecov', '0.7.1')
  spec.add_development_dependency('fuubar', '1.3.2')
  spec.add_development_dependency('opower-deployment')
+ spec.add_development_dependency('test_support', '0.0.1')
  spec.add_dependency('orb_logger', '0.0.1')
 
 #Runtime dependencies
