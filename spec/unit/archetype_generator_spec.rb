@@ -1,13 +1,11 @@
 require_relative '../../lib/archetype_generator'
-require_relative '../../lib/orb-archetyper/log/orb_logger'
 
 module OrbArchetyper
 
   describe ArchetypeGenerator do
 
-    before(:all) do
-      log = Log::OrbLogger.new.logger
-      log.info("called in: " + self.class.name + "," + File.basename(__FILE__))
+    before do
+      LOG.info("called in: " + self.class.name + "," + File.basename(__FILE__))
     end
 
     context "Initialization" do

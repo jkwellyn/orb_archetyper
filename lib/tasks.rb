@@ -5,14 +5,14 @@ require 'rspec/core'
 require 'rubocop/rake_task'
 require 'annotation_manager/rake_task'
 require 'fuubar'
-require 'logger'
 require 'yard'
 require_relative 'orb-archetyper/constants'
-require_relative 'orb-archetyper/log/orb_logger'
+require 'orb_logger'
 
 TMP_DIR = 'tmp'
 FileUtils.mkdir(TMP_DIR) unless File.exist?(TMP_DIR)
-LOG = OrbArchetyper::Log::OrbLogger.new.logger
+LOG ||= OrbLogger::OrbLogger.new
+LOG.progname = 'Rake Tasks'
 
 def timestamp
   Time.now.strftime('%Y%m%d_%H%M%S')

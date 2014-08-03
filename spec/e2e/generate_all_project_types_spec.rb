@@ -15,7 +15,7 @@ module Projects
 
       #TODO break this up into multiple 'it' statements
       it "should generate a #{project_type} project correctly" do
-
+        LOG.info "running generation for #{project_type}"
         options = {
             project: "test-project-#{project_type}",
             type: project_type,

@@ -5,6 +5,10 @@ class TemplateTasksTest < Template
     %w(smoke sanity primary secondary)
   end
 
+  def spec_tasks
+    test_types.map { |test_type| "spec:#{test_type}" }.to_s.gsub("\"", "\'")
+  end
+
   def output_directory
     File.join(@project_name, 'lib')
   end

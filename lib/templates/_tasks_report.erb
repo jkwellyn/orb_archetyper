@@ -4,10 +4,11 @@ require 'rspec-extra-formatters'
 require 'rubocop/rake_task'
 require 'annotation_manager/rake_task'
 require 'fuubar'
-require 'logger'
+require 'orb_logger'
 require 'yard'
 
-LOG = Logger.new(STDOUT)
+LOG ||= OrbLogger::OrbLogger.new
+LOG.progname = 'Rake Tasks'
 
 def timestamp
   Time.now.strftime('%Y%m%d_%H%M%S')

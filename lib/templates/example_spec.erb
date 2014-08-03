@@ -8,8 +8,7 @@ module <%= module_name %>
 
     #TODO: Global set up goes here
     before(:all) do
-      log = OrbLogger.new.logger
-      log.info("called in: " + self.class.name + "," + File.basename(__FILE__))
+      LOG.info("called in: " + self.class.name + "," + File.basename(__FILE__))
     end
 
     #TODO: Local set up goes here

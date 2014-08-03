@@ -2,10 +2,14 @@ require 'ansi/code'
 
 # Helper Utilities for File and Directory Management
 class FileUtility
+  attr_accessor :logger
+
   # Create a directory
   def self.dir_creator(dir_path)
+    @logger = LOG || OrbLogger::OrbLogger.new
+    @logger.progname = self.class
     Dir.mkdir(dir_path)
-    puts "\t#{ANSI.green { 'created' }} #{dir_path}"
+    @logger.info "#{ANSI.green { 'created' }} #{dir_path}"
     dir_path
   end
 
@@ -15,6 +19,6 @@ class FileUtility
     file = open(file_dir, 'w')
     file.write(file_contents)
     file.close
-    puts "\t#{ANSI.green { 'created' }} #{file_dir}"
+    @logger.info "#{ANSI.green { 'created' }} #{file_dir}"
   end
 end

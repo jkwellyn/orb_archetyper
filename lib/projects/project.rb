@@ -20,6 +20,7 @@ module Projects
     attr_accessor :additional_templates
     attr_accessor :rejected_templates
     attr_accessor :additional_directories
+    attr_accessor :logger
 
     def initialize(project_name)
       @project_name = project_name
@@ -27,6 +28,8 @@ module Projects
       @additional_templates = []
       @rejected_templates = []
       @templates = []
+      @logger = LOG || OrbLogger::OrbLogger.new
+      @logger.progname = self.class
 
       # TODO: Are we supposed to include rake tasks for a 'utility' project?
       # :rubocop? Not for all projects?
@@ -48,7 +51,8 @@ module Projects
         ['rspec-extra-formatters', '', '0.4'],
         ['rubocop', '',  '0.24.0'],
         ['fuubar', '', '1.3.2'],
-        ['opower-deployment']
+        ['opower-deployment'],
+        ['orb_logger', '', '0.0.1']
       ]
     end
 
@@ -76,7 +80,7 @@ module Projects
     end
 
     def generate_file_with_output
-      puts "\t #{ANSI.green { 'created' }} #{yield}"
+      @logger.info "#{ANSI.green { 'created' }} #{yield}"
     end
 
     private

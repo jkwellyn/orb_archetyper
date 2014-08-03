@@ -11,5 +11,5 @@ namespace :spec do
   build_rake_task('<%= test_type %>')
 <% end -%>
 
-  RSpec::Core::RakeTask.new(full: <%= test_types.map{ |test_type| 'spec:#{test_type}'} %>)
+  RSpec::Core::RakeTask.new(full: <%= spec_tasks %>)
 end
