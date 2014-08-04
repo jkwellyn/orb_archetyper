@@ -17,16 +17,12 @@ module Projects
     attr_accessor :gems
     attr_reader :templates
     attr_reader :project_name
-    attr_accessor :additional_templates
-    attr_accessor :rejected_templates
     attr_accessor :additional_directories
     attr_accessor :logger
 
     def initialize(project_name)
       @project_name = project_name
       @module_name = @project_name.split(/[_\-]/).map(&:capitalize).join
-      @additional_templates = []
-      @rejected_templates = []
       @templates = []
       @logger = LOG || OrbLogger::OrbLogger.new
       @logger.progname = self.class
@@ -87,7 +83,7 @@ module Projects
     private
 
     def make_template_set
-      Set.new(@templates - @rejected_templates + @additional_templates)
+      Set.new(@templates)
     end
 
     def checked_generate_project

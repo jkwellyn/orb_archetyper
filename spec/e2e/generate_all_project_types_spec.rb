@@ -19,8 +19,8 @@ module Projects
         options = {
             project: "test-project-#{project_type}",
             type: project_type,
-            include: ['bin_cli'],
-            exclude: ['gemfile_app'], #gemfile_app only applies to non-gem projects, like test
+            # include: ['bin_cli'],
+            # exclude: ['gemfile_app'], #gemfile_app only applies to non-gem projects, like test
         }
 
         generator = ArchetypeGenerator.new(options[:project])
@@ -28,7 +28,6 @@ module Projects
         project_name = generator.project_name
 
         expect_path_to_exist(true, project_name)
-        expect_path_to_exist(true, project_name, 'bin', project_name)
         expect_path_to_exist(true, project_name, '.git')
         expect_path_to_exist(true, project_name, 'orb_annotations.mustache')
 

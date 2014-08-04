@@ -42,16 +42,6 @@ class OptionParser
       opts.separator ''
       opts.separator 'Configuration options:'
 
-      opts.on('-x', '--exclude x,y,z', Array,
-              'Explicitly state the files/folders you wish to EXCLUDE from the archetype.') do |x|
-        options[:exclude] = x
-      end
-
-      opts.on('-i', '--include x,y,z', Array,
-              'Explicitly state the files/folders you wish to INCLUDE into the archetype.') do |i|
-        options[:include] = i
-      end
-
       # optional arguement, true if declared
       opts.on('--no-github', 'Do not create the git repo for the project,',
               'False if omitted, true if declared.') do |g|

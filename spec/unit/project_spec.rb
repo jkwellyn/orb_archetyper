@@ -17,15 +17,6 @@ module Projects
         expect(project.templates).to include(TemplateEmptyDir.new('project_name', 'ProjectName', 
           {directory_name: 'monkey/chicken/turkey'}))
       end
-
-      it "should create a complete list of templates to generate" do
-        includeTemplate = TemplateDotRubyVersion.new('project_name', 'ProjectName')
-        excludeTemplate = TemplateReadme.new('project_name', 'ProjectName')
-        project.additional_templates << includeTemplate
-        project.rejected_templates << excludeTemplate
-        expect(project.send(:make_template_set)).to include(includeTemplate)
-        expect(project.send(:make_template_set)).not_to include(excludeTemplate)
-      end
     end
 
     # Not going to test all project sub-classes, arbitrary chose Gem project to test it's constructor

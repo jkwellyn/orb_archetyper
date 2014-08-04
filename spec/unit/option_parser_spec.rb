@@ -66,39 +66,9 @@ module OrbArchetyper
         expect(options[:upload_organization]).to eql 'auto'
       end
 
-      it "supports optional include arr arguments as expected" do
-        args = ['-t', 'cli']
-        args << '-p' << 'name'
-        args << '-i' << 'license,spec_helper'
-
-        options = OptionParser.parse(args)
-
-        expect(options.key?(:include)).to be_true
-
-        expect(options[:include].length).to eq(2)
-        expect(options[:include]).to eq(['license', 'spec_helper'])
-
-      end
-
-      it "supports optional exclude arr arguments as expected" do
-        args = ['-t', 'cli']
-        args << '-p' << 'name'
-        args << '-x' << 'license'
-
-        options = OptionParser.parse(args)
-
-        expect(options.key?(:exclude)).to be_true
-
-        expect(options[:exclude].length).to eq(1)
-        expect(options[:exclude]).to eq(['license'])
-
-      end
-
       it "supports all arguments as expected" do
         args = ['-t', 'cli']
         args << '-p' << 'name'
-        args << '-i' << 'license,spec_helper'
-        args << '-x' << 'license'
         args << '-f' << 'opower/foo_project'
         args << '-u' << 'opower'
 
@@ -106,22 +76,9 @@ module OrbArchetyper
 
         expect(options.key?(:project)).to be_true
         expect(options.key?(:type)).to be_true
-        expect(options.key?(:include)).to be_true
-        expect(options.key?(:exclude)).to be_true
         expect(options.key?(:fork)).to be_true
         expect(options.key?(:upload_organization)).to be_true
         expect(options.key?(:project)).to be_true
-      end
-
-      it 'should convert template names into template classes' do
-        args = ['-t', 'cli']
-        args << '-p' << 'name'
-        args << '-i' << 'license,spec_helper'
-        args << '-x' << 'license'
-
-        options = OptionParser.parse(args)
-        expect(options[:include]).to eq ['license', 'spec_helper']
-        expect(options[:exclude]).to eq ['license']
       end
     end
 

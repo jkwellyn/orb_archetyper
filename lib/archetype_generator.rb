@@ -30,9 +30,7 @@ class ArchetypeGenerator
   def generate(options)
     project_archetype = Projects::ProjectFactory.make_project(
       options[:type],
-      @project_name,
-      options[:include],
-      options[:exclude]
+      @project_name
     )
     project_archetype.generate_project
 

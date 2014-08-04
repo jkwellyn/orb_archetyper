@@ -15,18 +15,8 @@ module Projects
       utility: ProjectUtility
     }
 
-    def self.make_project(project_type, project_name, additional_templates = [], rejected_templates = [])
-      project = PROJECT_MAP[project_type.to_sym].new(project_name.to_s)
-
-      project.additional_templates = Array(additional_templates).map do |template|
-        Template.convert_to_templates_class(template).new(project_name, project_name.camelize)
-      end
-
-      project.rejected_templates = Array(rejected_templates).map do |template|
-        Template.convert_to_templates_class(template).new(project_name, project_name.camelize)
-      end
-
-      project
+    def self.make_project(project_type, project_name)
+      PROJECT_MAP[project_type.to_sym].new(project_name.to_s)
     end
   end
 end

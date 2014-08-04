@@ -13,14 +13,10 @@ module Projects
         it "should create #{project_type.to_s} projects correctly" do
           project = ProjectFactory.make_project(
               project_type,
-              expected_project_name,
-              ['license'],
-              ['bin_cli']
+              expected_project_name
           )
           expect(project.class).to be project_class
           expect(project.project_name).to be expected_project_name
-          expect(project.additional_templates[0]).to be_a TemplateLicense
-          expect(project.rejected_templates[0]).to be_a TemplateBinCli
         end
       end
     end
