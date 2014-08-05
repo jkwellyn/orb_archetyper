@@ -13,14 +13,12 @@ module Projects
     ProjectFactory::PROJECT_MAP.keys.each do |project_type|
       project_type = project_type.to_s
 
-      #TODO break this up into multiple 'it' statements
+      # TODO: break this up into multiple 'it' statements
       it "should generate a #{project_type} project correctly" do
         LOG.info "running generation for #{project_type}"
         options = {
-            project: "test-project-#{project_type}",
-            type: project_type,
-            # include: ['bin_cli'],
-            # exclude: ['gemfile_app'], #gemfile_app only applies to non-gem projects, like test
+          project: "test-project-#{project_type}",
+          type: project_type
         }
 
         generator = ArchetypeGenerator.new(options[:project])
@@ -55,22 +53,18 @@ module Projects
     end
 
     def project_test_expectations(project_type)
-      if project_type == 'test'
-        yield
-      end
+      return unless project_type == 'test'
+      yield
     end
 
     def project_gem_expectations(project_type)
-      if project_type == 'core' || project_type == 'utility'
-        yield
-      end
+      return unless project_type == 'core' || project_type == 'utility'
+      yield
     end
 
     def project_utility_expectations(project_type)
-      if project_type == 'utility'
-        yield
-      end
+      return unless project_type == 'utility'
+      yield
     end
-
   end
 end

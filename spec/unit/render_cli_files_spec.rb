@@ -14,4 +14,3 @@ describe TemplateBinCli do
     end
   end
 end
-

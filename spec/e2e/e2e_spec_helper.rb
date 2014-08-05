@@ -1,7 +1,6 @@
 require_relative '../../lib/orb-archetyper/constants'
 
 module E2EHelper
-
   def expect_path_to_exist(should_exist, *path)
     if should_exist
       expect(File).to exist(File.join(*path))

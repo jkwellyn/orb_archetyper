@@ -3,9 +3,9 @@ require 'rspec/mocks'
 require 'test_support/filesystem_helper'
 
 SimpleCov.start do
-	coverage_dir 'tmp/coverage/unit'
+  coverage_dir 'tmp/coverage/unit'
   add_filter 'tmp/'
-	add_filter 'spec/'
+  add_filter 'spec/'
   add_filter 'resources/'
 end
 

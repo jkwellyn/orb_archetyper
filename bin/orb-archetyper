@@ -6,4 +6,3 @@ require_relative '../lib/fork_generator'
 options = OptionParser.parse(ARGV)
 generator = options[:fork] ? ForkGenerator.new : ArchetypeGenerator.new(options[:project])
 generator.generate(options)
-

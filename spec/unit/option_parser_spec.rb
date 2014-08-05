@@ -3,38 +3,37 @@ require_relative '../../lib/template_classes/template_license'
 require_relative '../../lib/template_classes/template_spec_helper'
 
 module OrbArchetyper
-
   describe OptionParser do
 
-    context "test missing arguements" do
+    context 'test missing arguements' do
 
-      it "throws MissingArgument when no args given" do
+      it 'throws MissingArgument when no args given' do
         args = []
         expect { OptionParser.parse(args) }.to raise_error OptionParser::MissingArgument
       end
 
-      it "throws MissingArgument when project name is omitted" do
+      it 'throws MissingArgument when project name is omitted' do
         args = ['-t cli']
         expect { OptionParser.parse(args) }.to raise_error OptionParser::MissingArgument
       end
 
-      it "throws InvalidArgument when type is missing" do
+      it 'throws InvalidArgument when type is missing' do
         args = ['-p project_x']
         expect { OptionParser.parse(args) }.to raise_error OptionParser::InvalidArgument
       end
 
     end
 
-    context "options are valid" do
+    context 'options are valid' do
 
-      it "initializes as expected" do
+      it 'initializes as expected' do
         args = ['-t', 'cli']
         args << '-p' << 'name'
 
         options = OptionParser.parse(args)
 
         expect(options.key?(:project)).to be_true
-        expect(options[:project]).to eq("name")
+        expect(options[:project]).to eq('name')
 
         expect(options.key?(:type)).to be_true
         expect(options[:type]).to eq('cli')
@@ -44,7 +43,7 @@ module OrbArchetyper
 
       end
 
-      it "supports uploading to the current user repository" do
+      it 'supports uploading to the current user repository' do
         args = ['-t', 'cli']
         args << '-p' << 'name'
         args << '-u'
@@ -56,7 +55,7 @@ module OrbArchetyper
         expect(options[:upload_user]).to be_true
       end
 
-      it "supports uploading to an organization" do
+      it 'supports uploading to an organization' do
         args = ['-u', 'auto']
         args << '-p' << 'name'
         args << '-t' << 'cli'
@@ -66,7 +65,7 @@ module OrbArchetyper
         expect(options[:upload_organization]).to eql 'auto'
       end
 
-      it "supports all arguments as expected" do
+      it 'supports all arguments as expected' do
         args = ['-t', 'cli']
         args << '-p' << 'name'
         args << '-f' << 'opower/foo_project'
@@ -82,35 +81,35 @@ module OrbArchetyper
       end
     end
 
-    context "helper arguments" do
+    context 'helper arguments' do
 
-      #TODO fix this
-      #it "throws SystemExit after displaying options" do
+      # TODO: fix this
+      # it 'throws SystemExit after displaying options' do
       #	args = ['-e']
       #	expect{OptionParser.parse(args)}.to raise_error SystemExit
-      #end
+      # end
 
-      it "throws SystemExit after displaying options" do
+      it 'throws SystemExit after displaying options' do
         args = ['-h']
         expect { OptionParser.parse(args) }.to raise_error SystemExit
       end
 
-      it "throws SystemExit after displaying options" do
+      it 'throws SystemExit after displaying options' do
         args = ['--help']
         expect { OptionParser.parse(args) }.to raise_error SystemExit
       end
 
-      it "throws SystemExit after displaying options" do
+      it 'throws SystemExit after displaying options' do
         args = ['-v']
         expect { OptionParser.parse(args) }.to raise_error SystemExit
       end
 
-      it "throws SystemExit after displaying options" do
+      it 'throws SystemExit after displaying options' do
         args = ['--version']
         expect { OptionParser.parse(args) }.to raise_error SystemExit
       end
 
-      it "throws InvalidArgument if --no-gihub and -u defined" do
+      it 'throws InvalidArgument if --no-gihub and -u defined' do
         args = ['-t', 'cli']
         args << '-p' << 'foo'
         args << '--no-github'

@@ -10,7 +10,7 @@ module Projects
       ProjectFactory::PROJECT_MAP.each do |project_type, project_class|
         expected_project_name = 'rpsec-test-project'
 
-        it "should create #{project_type.to_s} projects correctly" do
+        it "should create #{project_type} projects correctly" do
           project = ProjectFactory.make_project(
               project_type,
               expected_project_name
