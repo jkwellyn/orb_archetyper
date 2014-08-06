@@ -4,6 +4,7 @@ require 'ansi'
 require 'erb'
 require 'github_project/project'
 require 'ostruct'
+require 'orb_logger'
 
 # Archetype generator
 class ArchetypeGenerator
@@ -23,7 +24,7 @@ class ArchetypeGenerator
 
   def initialize(project_name)
     @project_name = sanitize(project_name)
-    @logger = LOG || OrbLogger::OrbLogger.new
+    @logger =  OrbLogger::OrbLogger.new
     @logger.progname = self.class
   end
 

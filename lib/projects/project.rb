@@ -1,6 +1,7 @@
 require 'ansi/code'
 require 'fileutils'
 require 'set'
+require 'orb_logger'
 require_relative '../template_classes/template_build_shell'
 require_relative '../template_classes/template_dot_gitignore'
 require_relative '../template_classes/template_rakefile'
@@ -24,7 +25,7 @@ module Projects
       @project_name = project_name
       @module_name = @project_name.split(/[_\-]/).map(&:capitalize).join
       @templates = []
-      @logger = LOG || OrbLogger::OrbLogger.new
+      @logger = OrbLogger::OrbLogger.new
       @logger.progname = self.class
 
       # TODO: Are we supposed to include rake tasks for a 'utility' project?
