@@ -40,7 +40,7 @@ class ArchetypeGenerator
       @logger.info ANSI.green { 'initialized git repository' }
     end
 
-    project_dir = options[:project]
+    project_dir = @project_name
     if options[:upload_organization]
       github_organization = options[:upload_organization]
       upload_to_github(project_dir) do |github_project|
