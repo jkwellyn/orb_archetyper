@@ -10,7 +10,6 @@ require 'orb_logger'
 class ArchetypeGenerator
   # Create new generator instance given a project name
   # Project name is validated
-  attr_accessor :logger
 
   PROJECT_NAME_MIN_LENGTH = 2
   PROJECT_NAME_MAX_LENGTH = 30
@@ -18,14 +17,13 @@ class ArchetypeGenerator
   PROJECT_NAME_INVALID_CHARACTERS_ERROR = 'Invalid Project Name: should only contain a-z, 0-9, -,_'
 
   # initialize logger
-  # LOG = OrbLogger::OrbLogger.new
+  LOG ||= OrbLogger::OrbLogger.new
 
   attr_reader :project_name, :module_name
 
   def initialize(project_name)
     @project_name = sanitize(project_name)
-    @logger =  OrbLogger::OrbLogger.new
-    @logger.progname = self.class
+    LOG.progname = self.class
   end
 
   def generate(options)
@@ -37,7 +35,7 @@ class ArchetypeGenerator
 
     unless options[:no_github]
       SharedTasks::GithubProject::Project.initialize_git(@project_name)
-      @logger.info ANSI.green { 'initialized git repository' }
+      LOG.info ANSI.green { 'initialized git repository' }
     end
 
     project_dir = @project_name

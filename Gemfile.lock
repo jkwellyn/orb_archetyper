@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    orb-archetyper (0.0.4.pre)
+    orb-archetyper (0.0.4)
       activesupport
       ansi (= 1.4.3)
       git (= 1.2.6)
@@ -106,7 +106,8 @@ GEM
     simplecov-html (0.7.1)
     slop (3.5.0)
     state_machine (1.2.0)
-    test_support (0.0.1)
+    test_support (0.0.2)
+      orb_logger (= 0.0.1)
     thread_safe (0.3.4)
     tzinfo (0.3.40)
     yard (0.8.7.4)
@@ -125,5 +126,5 @@ DEPENDENCIES
   rspec-extra-formatters (= 0.4)
   rubocop (= 0.24.0)
   simplecov (= 0.7.1)
-  test_support (= 0.0.1)
+  test_support (= 0.0.2)
   yard (~> 0.8.7)

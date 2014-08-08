@@ -1,53 +1,11 @@
 #!/usr/bin/env rake
-require 'rspec/core/rake_task'
-require 'rspec-extra-formatters'
 require 'rubocop/rake_task'
 require 'annotation_manager/rake_task'
-require 'fuubar'
 require 'orb_logger'
 require 'yard'
 
-LOG ||= OrbLogger::OrbLogger.new
-LOG.progname = 'Rake Tasks'
-
-def timestamp
-  Time.now.strftime('%Y%m%d_%H%M%S')
-end
-
-def build_rspec_opts(test_type, task)
-  task.rspec_opts = ['-c']
-  task.rspec_opts << '--require' << 'fuubar'
-  task.rspec_opts << '--format' << Fuubar
-  task.rspec_opts << '--require' << 'rspec-extra-formatters'
-  task.rspec_opts << '--format' << JUnitFormatter
-  task.rspec_opts << '--out' << "tmp/results/#{test_type}/#{timestamp}_results.xml"
-  task.rspec_opts << '--format' << 'html'
-  task.rspec_opts << '--out' << "tmp/results/#{test_type}/#{timestamp}_results.html"
-  task.pattern = "spec/#{test_type}/**/*_spec.rb"
-end
-
-def delete_dir_with_output(dir_name)
-  LOG.info("Deleting the #{dir_name} directory...")
-  yield
-  LOG.info('Deleted.')
-end
-
-def delete_tmp_directory(dir_name)
-  tmp_dir = File.join('tmp', dir_name)
-  delete_dir_with_output(tmp_dir) do
-    FileUtils.rm_rf(tmp_dir) # TODO: why is this not deleting?
-  end
-end
-
-namespace :clobber do
-
-  desc 'Remove ALL Tmp files'
-  task :tmp do
-    delete_dir_with_output('tmp') do
-      FileUtils.rm_rf('tmp')
-    end
-  end
-end
+RAKE_LOG ||= OrbLogger::OrbLogger.new
+RAKE_LOG.progname = 'Rake Tasks'
 
 YARD::Rake::YardocTask.new do |task|
   task.options = ['--output-dir=tmp/yard']
@@ -57,23 +15,7 @@ desc 'Run RuboCop on lib and spec directories, Gemfile, gemspec, Rakefile; Overr
 RuboCop::RakeTask.new(:rubocop, :pattern) do |task, args|
   task.patterns = ['lib/**/*.rb', 'spec/**/*.rb', 'Gemfile', '*.gemspec', 'Rakefile']
   task.patterns = args[:pattern].split(' ') if args[:pattern] # override default pattern
-  LOG.info("Running RuboCop against #{task.patterns}")
+  RAKE_LOG.info("Running RuboCop against #{task.patterns}")
   # don't abort rake on failure
   task.fail_on_error = false
-end
-
-desc 'Run RuboCop on the lib directory'
-RuboCop::RakeTask.new(:rubocop) do |task|
-  task.patterns = ['lib/**/*.rb']
-  # only show the files with failures
-  # task.formatters = ['files', 'offences']
-  # don't abort rake on failure
-  task.fail_on_error = false
-  # task.options << '-o' << "coverage/rubocop_#{timestamp}.txt"
-end
-
-desc 'Open latest unit test results in your yer browser'
-task :open_unit_results do
-  file = `find tmp/results/unit/ -regex ".*\.\html" | tail -1`
-  `open #{file}`
 end
