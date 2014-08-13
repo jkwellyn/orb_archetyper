@@ -1,7 +1,14 @@
 # v0.0.4
 - Use Yard instead of Rdoc
-- Remove metrics:* tasks
+- Remove metrics:* tasks and metrics_fu gem from dependencies
 - Fix spacing in generated README.md
+- New meta project type
+- Git workflow options -f and -u when generating projects
+- Removed exclude and include (-e and -i) options when generating projects
+- Added logging through orb_logger gem
+- Moved test rake tasks into test_support gem
+- Fixed all rubocop violations that were being generated; upgraded rubocop to 0.24.0
+- Added rubocop to build script to be executed every time
 
 # v0.0.3
 - Added annotation_manager
