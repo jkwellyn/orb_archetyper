@@ -83,12 +83,6 @@ module OrbArchetyper
 
     context 'helper arguments' do
 
-      # TODO: fix this
-      # it 'throws SystemExit after displaying options' do
-      #	args = ['-e']
-      #	expect{OptionParser.parse(args)}.to raise_error SystemExit
-      # end
-
       it 'throws SystemExit after displaying options' do
         args = ['-h']
         expect { OptionParser.parse(args) }.to raise_error SystemExit

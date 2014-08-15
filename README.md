@@ -12,9 +12,6 @@ Command line application to generate a given project type for QA.
 
 `$ orb-archetyper -h`
 
-Show all subproject types:
-`$ orb-archetyper -e`
-
 ## Create a new project
 
 ### A new CLI project not pushed to Github
@@ -25,7 +22,7 @@ Show all subproject types:
 
 `$ orb-archetyper -t cli -p <project> -u`
 
-### A new CLI project immediately pushed to an upstream Github organization and your fork
+### A new CLI project immediately pushed to an upstream Github organization (assuming proper credentials) and your fork
 
 `$ orb-archetyper -t cli -p <project> -u <organization>`
 
@@ -75,20 +72,21 @@ This includes:
 2. Logging - console and logfile
 3. Unit test coverage (simplecov)
 4. Documentation (rdoc)
-5. Static analysis (rubocop)
-6. Metrics and stats (metric_fu removed in 0.0.4, will return in the future)
-7. Annotations - annotation_manager built on top of rake-notes (TODO, FIXME, OPTIMIZE)
-8. Rake tasks
-9. Git project initialization
-10. A jenkins build.sh script to simplify how jenkins executes/invokes commands
+5. Style check (rubocop)
+6. Annotations - annotation_manager built on top of rake-notes (TODO, FIXME, OPTIMIZE)
+7. Rake tasks
+8. Git project initialization
+9. A jenkins build.sh script to simplify how jenkins executes/invokes commands
 
 
 ### Meta projects
 
-#TODO this section may change as we make more modifications to the archetyper
+#### TODO this section may change as we make more modifications to the archetyper
 
 The orb-archetyper will generate an empty shell of a project when you generate with `-t meta`.  In order to hook in your sub-projects to the meta project:
-1. Generate the appropriate projec type (likely core or utility) WITHIN the meta project's folder.
+
+1. Generate the appropriate project type (likely core or utility) WITHIN the meta project's folder.
+
 2. Add your sub-project to the list of projects within the meta project's Rakefile.
 
 ## Contributing

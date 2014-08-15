@@ -51,13 +51,6 @@ class OptionParser
       opts.separator ''
       opts.separator 'Helper options:'
 
-      # TODO: fix this
-      # display file/folder components
-      # opts.on_tail("-e", "--expand", "Display file/folder choices.") do
-      # puts TemplateManager.new(options[:project],options[:project]).subtypes
-      # exit
-      # end
-
       # display version
       opts.on_tail('-v', '--version', 'Display version') do
         puts OrbArchetyper::VERSION
