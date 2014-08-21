@@ -23,7 +23,8 @@ module Projects
           TemplateSpecHelper,
           TemplateBuildShell,
           TemplateVersion,
-          TemplateDotRubocopYml
+          TemplateDotRubocopYml,
+          TemplateChangelog
         ]
       )
 

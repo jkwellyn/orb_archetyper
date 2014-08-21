@@ -14,7 +14,8 @@ module Projects
 
       create_standard_templates([TemplateGemfileGem,
                                  TemplateVersionTopLevel,
-                                 TemplateRakefileMeta])
+                                 TemplateRakefileMeta,
+                                 TemplateChangelog])
 
       # templates that require additional data
       version_path = TemplateVersionTopLevel.new(@project_name, @module_name).gemspec_require_path

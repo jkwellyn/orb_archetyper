@@ -1,3 +1,6 @@
+# v0.0.5
+- Add CHANGELOG.md template
+
 # v0.0.4
 - Use Yard instead of Rdoc
 - Remove metrics:* tasks and metrics_fu gem from dependencies

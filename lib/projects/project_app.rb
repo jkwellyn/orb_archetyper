@@ -10,7 +10,8 @@ module Projects
 
       create_standard_templates([TemplateRakefile,
                                  TemplateVersionTopLevel,
-                                 TemplateDotRubocopYml])
+                                 TemplateDotRubocopYml,
+                                 TemplateChangelog])
 
       # templates that require additional data
       @templates << TemplateGemfileApp.new(@project_name, @module_name, gems: @gems)

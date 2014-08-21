@@ -44,10 +44,12 @@ module Projects
           expected_file_name = "#{project_name}.rb"
           expect_path_to_exist(true, project_name, 'lib', expected_file_name)
           expect_path_to_exist(true, project_name, 'build.sh')
+          expect_path_to_exist(true, project_name, 'CHANGELOG.md')
         end
 
         project_utility_expectations(project_type) do
           expect_path_to_exist(true, project_name, 'config')
+          expect_path_to_exist(true, project_name, 'CHANGELOG.md')
         end
       end
     end
