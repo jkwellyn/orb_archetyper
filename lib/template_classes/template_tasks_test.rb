@@ -2,11 +2,11 @@ require_relative 'template'
 
 class TemplateTasksTest < Template
   def test_types
-    %w(smoke sanity primary secondary)
+    '%w(smoke sanity primary secondary)'
   end
 
-  def spec_tasks
-    test_types.map { |test_type| "spec:#{test_type}" }.to_s.gsub("\"", "\'")
+  def file_pattern
+    'spec/accept/#{task_name}/**/*_spec.rb'
   end
 
   def output_directory
