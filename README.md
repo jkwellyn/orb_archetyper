@@ -91,6 +91,11 @@ The orb-archetyper will generate an empty shell of a project when you generate w
 
 ## Contributing
 
+#### Contacts
++ John Crimmins (john.crimmins@opower.com)
++ Crystal Hsiung (crystal@opower.com)
+
+#### Process
 1. Fork it ( https://github.va.opower.it/auto/orb-archetyper )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
