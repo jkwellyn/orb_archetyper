@@ -9,4 +9,3 @@ class TemplateChangelog < Template
     'CHANGELOG.md'
   end
 end
-

@@ -1,9 +1,10 @@
 require 'fileutils'
 require_relative 'project_app'
-require_relative '../../lib/template_classes/template_tasks_test'
-require_relative '../../lib/template_classes/template_spec_helper_test'
-require_relative '../../lib/template_classes/template_build_shell_app'
-require_relative '../../lib/template_classes/template_dot_ruby_version'
+require_relative '../template_classes/template_tasks_test'
+require_relative '../template_classes/template_spec_helper_test'
+require_relative '../template_classes/template_build_shell_app'
+require_relative '../template_classes/template_dot_ruby_version'
+require_relative '../template_classes/template_config_yml_test'
 
 module Projects
   class ProjectTest < ProjectApp
@@ -15,7 +16,8 @@ module Projects
           TemplateTasksTest,
           TemplateSpecHelperTest,
           TemplateBuildShellApp,
-          TemplateDotRubyVersion
+          TemplateDotRubyVersion,
+          TemplateConfigYmlTest
         ]
       )
       acceptance_test_base_dir = File.join('spec', 'accept')

@@ -3,6 +3,7 @@ require 'rubocop/rake_task'
 require 'annotation_manager/rake_task'
 require 'orb_logger'
 require 'yard'
+require 'test_support/tasks/spec_config'
 
 RAKE_LOG ||= OrbLogger::OrbLogger.new
 RAKE_LOG.progname = 'Rake Tasks'

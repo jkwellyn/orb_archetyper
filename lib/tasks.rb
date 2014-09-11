@@ -6,7 +6,7 @@ require 'yard'
 require_relative 'orb-archetyper/constants'
 require 'orb_logger'
 require 'test_support/tasks/clean'
-require 'test_support/tasks/spec'
+require 'test_support/tasks/spec_gem'
 
 RAKE_LOG ||= OrbLogger::OrbLogger.new
 RAKE_LOG.progname = 'Rake Tasks'

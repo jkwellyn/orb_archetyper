@@ -68,6 +68,9 @@ GEM
       opower-tier (~> 0.1.0)
       rvm-capistrano (~> 1.3.0)
     opower-tier (0.1.1)
+    orb_configuration (0.0.1)
+      orb_logger (= 0.0.1)
+      recursive-open-struct
     orb_logger (0.0.1)
     parser (2.2.0.pre.3)
       ast (>= 1.1, < 3.0)
@@ -78,6 +81,7 @@ GEM
     rake-notes (0.2.0)
       colored
       rake
+    recursive-open-struct (0.5.0)
     redcarpet (2.3.0)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
@@ -106,7 +110,8 @@ GEM
     simplecov-html (0.7.1)
     slop (3.5.0)
     state_machine (1.2.0)
-    test_support (0.0.2)
+    test_support (0.0.3)
+      orb_configuration (= 0.0.1)
       orb_logger (= 0.0.1)
     thread_safe (0.3.4)
     tzinfo (0.3.40)
@@ -126,5 +131,5 @@ DEPENDENCIES
   rspec-extra-formatters (= 0.4)
   rubocop (= 0.24.0)
   simplecov (= 0.7.1)
-  test_support (= 0.0.2)
+  test_support (= 0.0.3)
   yard (~> 0.8.7)
