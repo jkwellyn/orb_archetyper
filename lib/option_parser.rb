@@ -1,5 +1,5 @@
 require 'optparse'
-require_relative 'orb-archetyper/version'
+require_relative 'orb_archetyper/version'
 
 # read options from command line and return as hash
 class OptionParser
@@ -11,7 +11,7 @@ class OptionParser
       opts.separator "\n"
       opts.banner = 'Orb Archetype Generator:'
 
-      opts.separator 'Usage: orb-archetyper [OPTIONS]'
+      opts.separator 'Usage: orb_archetyper [OPTIONS]'
       opts.separator 'Specific options:'
 
       # list of choices
@@ -59,7 +59,7 @@ class OptionParser
 
       # display help
       opts.on_tail('-h', '--help', 'Show help') do
-        puts 'For full documentation: https://github.va.opower.it/auto/orb-archetyper/blob/master/README.md'
+        puts 'For full documentation: https://github.va.opower.it/auto/orb_archetyper/blob/master/README.md'
         puts opts
         exit
       end

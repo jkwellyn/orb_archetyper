@@ -1,12 +1,12 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/orb-archetyper/version', __FILE__)
+require File.expand_path('../lib/orb_archetyper/version', __FILE__)
 
 Gem::Specification.new do |spec|
-  spec.name          = 'orb-archetyper'
+  spec.name          = 'orb_archetyper'
   spec.version       =  OrbArchetyper::VERSION
   spec.summary       = 'Orb archetyper: Project cookie cutter.'
   spec.description   = 'Generate template AQA projects: command line applications, core, test and utility projects.'
-  spec.homepage      = 'https://github.va.opower.it/auto/orb-archetyper'
+  spec.homepage      = 'https://github.va.opower.it/auto/orb_archetyper'
   spec.requirements << 'Ruby, v1.9.3.'
 
   spec.authors       = ['euan.davidson']

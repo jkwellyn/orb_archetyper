@@ -1,6 +1,6 @@
 require 'erb'
 require 'active_support/inflector'
-require_relative '../orb-archetyper/rules/naming_conventions/file_names'
+require_relative '../orb_archetyper/rules/naming_conventions/file_names'
 
 class Template
   include OrbArchetyper::Rules::NamingConventions::FileNames

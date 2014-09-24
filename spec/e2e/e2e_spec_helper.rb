@@ -1,4 +1,4 @@
-require_relative '../../lib/orb-archetyper/constants'
+require_relative '../../lib/orb_archetyper/constants'
 
 module E2EHelper
   def expect_path_to_exist(should_exist, *path)

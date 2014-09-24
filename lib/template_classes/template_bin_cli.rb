@@ -1,5 +1,5 @@
 require_relative 'template'
-require_relative '../orb-archetyper/rules/naming_conventions/file_names'
+require_relative '../orb_archetyper/rules/naming_conventions/file_names'
 
 class TemplateBinCli < Template
   def template_file

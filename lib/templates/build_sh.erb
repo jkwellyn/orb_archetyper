@@ -25,7 +25,7 @@ main() {
   echo RVM LIST is `rvm list`
 
   # first, use any available ruby to get opower-deployment gem
-  # we use 1.9.3 because orb-archetyper has some specific gems with ruby requirement >= 1.9.3 (e.g. activesupport)
+  # we use 1.9.3 because orb_archetyper has some specific gems with ruby requirement >= 1.9.3 (e.g. activesupport)
   rvm use 1.9.3 --fuzzy
   bundle install --path vendor/bundle
   # access the official ruby version in that gem

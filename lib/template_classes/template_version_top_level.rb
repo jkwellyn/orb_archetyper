@@ -1,5 +1,5 @@
 require_relative 'template'
-require_relative '../orb-archetyper/version'
+require_relative '../orb_archetyper/version'
 
 class TemplateVersionTopLevel < Template
   def version

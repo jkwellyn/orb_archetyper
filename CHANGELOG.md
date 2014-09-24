@@ -25,4 +25,4 @@
 - New templating/project structure
 
 # v0.0.1
-- Initial orb-archetyper
+- Initial orb_archetyper

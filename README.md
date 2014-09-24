@@ -1,4 +1,4 @@
-# orb-archetyper - Project cookie cutter
+# orb_archetyper - Project cookie cutter
 
 Command line application to generate a given project type for QA.
 
@@ -6,31 +6,31 @@ Command line application to generate a given project type for QA.
 
 ## Installation
 
-`$ gem install orb-archetyper`
+`$ gem install orb_archetyper`
 
 ##Help
 
-`$ orb-archetyper -h`
+`$ orb_archetyper -h`
 
 ## Create a new project
 
 ### A new CLI project not pushed to Github
 
-`$ orb-archetyper -t cli -p <project>`
+`$ orb_archetyper -t cli -p <project>`
 
 ### A new CLI project immediately pushed to a new Github repo owned by you 
 
-`$ orb-archetyper -t cli -p <project> -u`
+`$ orb_archetyper -t cli -p <project> -u`
 
 ### A new CLI project immediately pushed to an upstream Github organization (assuming proper credentials) and your fork
 
-`$ orb-archetyper -t cli -p <project> -u <organization>`
+`$ orb_archetyper -t cli -p <project> -u <organization>`
 
 ### Fork an existing project from a given organization
 
 You must specify the upstream organization and the project name separated by '/'
 
-`$ orb-archetyper -f auto/orb-archetyper`
+`$ orb_archetyper -f auto/orb_archetyper`
 
 ### Running the New Project
 
@@ -83,7 +83,7 @@ This includes:
 
 #### TODO this section may change as we make more modifications to the archetyper
 
-The orb-archetyper will generate an empty shell of a project when you generate with `-t meta`.  In order to hook in your sub-projects to the meta project:
+The orb_archetyper will generate an empty shell of a project when you generate with `-t meta`.  In order to hook in your sub-projects to the meta project:
 
 1. Generate the appropriate project type (likely core or utility) WITHIN the meta project's folder.
 
@@ -96,7 +96,7 @@ The orb-archetyper will generate an empty shell of a project when you generate w
 + Crystal Hsiung (crystal@opower.com)
 
 #### Process
-1. Fork it ( https://github.va.opower.it/auto/orb-archetyper )
+1. Fork it ( https://github.va.opower.it/auto/orb_archetyper )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
