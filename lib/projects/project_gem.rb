@@ -11,7 +11,7 @@ module Projects
     def initialize(project_name)
       super(project_name)
 
-      @gems.concat([['simplecov', '', '0.7.1']])
+      @dev_gems.concat([['simplecov', '', '0.7.1']])
 
       create_standard_templates(
         [
@@ -31,7 +31,7 @@ module Projects
       # templates that require additional data
       version_path = TemplateVersion.new(@project_name, @module_name).gemspec_require_path
       @templates << TemplateGemspec.new(@project_name, @module_name,
-                                        gems: @gems, version_path: version_path)
+                                        dev_gems: @dev_gems, runtime_gems: @runtime_gems, version_path: version_path)
     end
   end
 end

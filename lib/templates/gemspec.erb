@@ -22,7 +22,10 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(/^(test|spec|features)\//)
   spec.require_paths = ['lib']
 
-<% gem_data.each do |gem_data| -%>
+<% dev_gem_data.each do |gem_data| -%>
   spec.add_development_dependency(<%= gem_data.gemfile_entry %>)
-<% end %>
+<% end -%>
+<% runtime_gem_data.each do |gem_data| -%>
+  spec.add_runtime_dependency(<%= gem_data.gemfile_entry %>)
+<% end -%>
 end

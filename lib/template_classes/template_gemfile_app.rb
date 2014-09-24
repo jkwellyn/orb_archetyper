@@ -12,6 +12,8 @@ class TemplateGemfileApp < Template
   end
 
   def gem_data
-    @template_data[:gems].map { |gem| Gems::GemData.new(*gem) }
+    gems = @template_data[:dev_gems] unless @template_data[:dev_gems].nil?
+    gems += @template_data[:runtime_gems] unless @template_data[:runtime_gems].nil?
+    gems.map { |gem| Gems::GemData.new(*gem) }
   end
 end

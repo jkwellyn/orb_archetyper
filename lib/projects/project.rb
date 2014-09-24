@@ -16,7 +16,7 @@ require_relative '../../lib/gems/gem_data'
 
 module Projects
   class Project
-    attr_accessor :gems
+    attr_accessor :dev_gems, :runtime_gems
     attr_reader :templates
     attr_reader :project_name
     attr_accessor :additional_directories
@@ -40,7 +40,7 @@ module Projects
                                  TemplateOrbAnnotationsMustache])
 
       # TODO: break the specifier into own element?
-      @gems = [
+      @dev_gems = [
         ['rake', '~>', '10.1.1'],
         ['annotation_manager', '~>', '0.0.2'],
         ['yard', '~>', '0.8.7'],
@@ -50,7 +50,9 @@ module Projects
         ['rspec-extra-formatters', '', '0.4'],
         ['rubocop', '',  '0.24.0'],
         ['fuubar', '', '1.3.2'],
-        ['opower-deployment'],
+        ['opower-deployment']
+      ]
+      @runtime_gems = [
         ['orb_logger', '', '0.0.1']
       ]
     end

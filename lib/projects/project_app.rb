@@ -14,7 +14,7 @@ module Projects
                                  TemplateChangelog])
 
       # templates that require additional data
-      @templates << TemplateGemfileApp.new(@project_name, @module_name, gems: @gems)
+      @templates << TemplateGemfileApp.new(@project_name, @module_name, dev_gems: @dev_gems, runtime_gems: @runtime_gems)
     end
   end
 end

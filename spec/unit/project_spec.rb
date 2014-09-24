@@ -4,7 +4,7 @@ module Projects
       subject(:project) { Project.new('project_name') }
 
       it { expect(project.project_name) == 'project_name' }
-      it { expect(project.gems).not_to be_empty }
+      it { expect(project.dev_gems).not_to be_empty }
       it { expect(project.templates).not_to be_empty }
 
       it 'should create generic templates from class names' do
@@ -31,7 +31,8 @@ module Projects
 
       it 'should populate the gemspec template with the appropriate path to the version file' do
         expected_template = TemplateGemspec.new('project_gem', 'ProjectGem',
-                                                gems: project.gems, version_path: '../lib/project_gem/version')
+                                                dev_gems: project.dev_gems, runtime_gems: project.runtime_gems,
+                                                version_path: '../lib/project_gem/version')
 
         expect(project.templates).to include(expected_template)
       end

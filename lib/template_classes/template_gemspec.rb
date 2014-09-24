@@ -11,8 +11,20 @@ class TemplateGemspec < Template
     "#{@project_name}.gemspec"
   end
 
-  def gem_data
-    @template_data[:gems].map { |gem| Gems::GemData.new(*gem) }
+  def dev_gem_data
+    if @template_data[:dev_gems]
+      @template_data[:dev_gems].map { |gem| Gems::GemData.new(*gem) }
+    else
+      []
+    end
+  end
+
+  def runtime_gem_data
+    if @template_data[:runtime_gems]
+      @template_data[:runtime_gems].map { |gem| Gems::GemData.new(*gem) }
+    else
+      []
+    end
   end
 
   def version_path

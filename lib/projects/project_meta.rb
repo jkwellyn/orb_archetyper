@@ -7,7 +7,7 @@ module Projects
     def initialize(project_name)
       super(project_name)
 
-      @gems = [
+      @dev_gems = [
         %w(rake ~> 10.1.1),
         %w(yard ~> 0.8.7)
       ] # rely on sub projects to set the gems
@@ -20,7 +20,7 @@ module Projects
       # templates that require additional data
       version_path = TemplateVersionTopLevel.new(@project_name, @module_name).gemspec_require_path
       @templates << TemplateGemspec.new(@project_name, @module_name,
-                                        gems: @gems, version_path: version_path)
+                                        dev_gems: @dev_gems, runtime_gems: @runtime_gems, version_path: version_path)
     end
   end
 end
