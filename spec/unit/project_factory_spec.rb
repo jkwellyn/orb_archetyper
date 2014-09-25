@@ -18,6 +18,12 @@ module Projects
           expect(project.class).to be project_class
           expect(project.project_name).to be expected_project_name
         end
+
+        it 'throws useful exception on bad project type' do
+          expect do
+            ProjectFactory.make_project('foo', 'foo')
+          end.to raise_error
+        end
       end
     end
   end

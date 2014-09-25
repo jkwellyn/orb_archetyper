@@ -45,12 +45,8 @@ module Projects
         ['annotation_manager', '~>', '0.0.2'],
         ['yard', '~>', '0.8.7'],
         ['redcarpet', '~>', '2.3.0'],
-        ['rspec', '', '2.14.1'],
-        ['test_support', '', '0.0.3'],
-        ['rspec-extra-formatters', '', '0.4'],
-        ['rubocop', '',  '0.24.0'],
-        ['fuubar', '', '1.3.2'],
-        ['opower-deployment']
+        ['test_support', '~>', '0.0.3'],
+        ['rubocop', '',  '0.24.0']
       ]
       @runtime_gems = [
         ['orb_logger', '', '0.0.1']

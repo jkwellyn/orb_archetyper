@@ -32,14 +32,14 @@ module OrbArchetyper
 
         options = OptionParser.parse(args)
 
-        expect(options.key?(:project)).to be_true
+        expect(options.key?(:project)).to be true
         expect(options[:project]).to eq('name')
 
-        expect(options.key?(:type)).to be_true
+        expect(options.key?(:type)).to be true
         expect(options[:type]).to eq('cli')
 
-        expect(options.key?(:no_github)).to be_false
-        expect(options[:no_github]).to be_false
+        expect(options.key?(:no_github)).to be false
+        expect(options[:no_github]).to be_nil
 
       end
 
@@ -50,9 +50,9 @@ module OrbArchetyper
 
         options = OptionParser.parse(args)
 
-        expect(options.key?(:upload_organization)).to be_false
-        expect(options.key?(:upload_user)).to be_true
-        expect(options[:upload_user]).to be_true
+        expect(options.key?(:upload_organization)).to be false
+        expect(options.key?(:upload_user)).to be true
+        expect(options[:upload_user]).to be true
       end
 
       it 'supports uploading to an organization' do
@@ -61,7 +61,7 @@ module OrbArchetyper
         args << '-t' << 'cli'
         options = OptionParser.parse(args)
 
-        expect(options.key?(:upload_organization)).to be_true
+        expect(options.key?(:upload_organization)).to be true
         expect(options[:upload_organization]).to eql 'auto'
       end
 
@@ -73,11 +73,11 @@ module OrbArchetyper
 
         options = OptionParser.parse(args)
 
-        expect(options.key?(:project)).to be_true
-        expect(options.key?(:type)).to be_true
-        expect(options.key?(:fork)).to be_true
-        expect(options.key?(:upload_organization)).to be_true
-        expect(options.key?(:project)).to be_true
+        expect(options.key?(:project)).to be true
+        expect(options.key?(:type)).to be true
+        expect(options.key?(:fork)).to be true
+        expect(options.key?(:upload_organization)).to be true
+        expect(options.key?(:project)).to be true
       end
     end
 
