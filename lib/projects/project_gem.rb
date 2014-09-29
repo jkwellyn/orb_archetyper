@@ -8,8 +8,8 @@ require_relative '../template_classes/template_version'
 
 module Projects
   class ProjectGem < Project
-    def initialize(project_name)
-      super(project_name)
+    def initialize(project_name, project_type)
+      super(project_name, project_type)
 
       @dev_gems.concat([['simplecov', '', '0.7.1']])
 

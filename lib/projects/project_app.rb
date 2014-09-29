@@ -5,8 +5,8 @@ require_relative '../template_classes/template_version_top_level'
 
 module Projects
   class ProjectApp < Project
-    def initialize(project_name)
-      super(project_name)
+    def initialize(project_name, project_type)
+      super(project_name, project_type)
 
       create_standard_templates([TemplateRakefile,
                                  TemplateVersionTopLevel,

@@ -3,6 +3,7 @@ require 'fileutils'
 require 'set'
 require 'orb_logger'
 require_relative '../template_classes/template_build_shell'
+require_relative '../template_classes/template_ci_metadata'
 require_relative '../template_classes/template_changelog'
 require_relative '../template_classes/template_dot_gitignore'
 require_relative '../template_classes/template_rakefile'
@@ -19,11 +20,13 @@ module Projects
     attr_accessor :dev_gems, :runtime_gems
     attr_reader :templates
     attr_reader :project_name
+    attr_reader :project_type
     attr_accessor :additional_directories
     attr_accessor :logger
 
-    def initialize(project_name)
+    def initialize(project_name, project_type)
       @project_name = project_name
+      @project_type = project_type
       @module_name = @project_name.split(/[_\-]/).map(&:capitalize).join
       @templates = []
       @logger = OrbLogger::OrbLogger.new
@@ -38,6 +41,8 @@ module Projects
                                  TemplateReadme,
                                  TemplateDotRspec,
                                  TemplateOrbAnnotationsMustache])
+
+      @templates << TemplateArchetyperMetadata.new(@project_name, @module_name, project_type: @project_type)
 
       # TODO: break the specifier into own element?
       @dev_gems = [

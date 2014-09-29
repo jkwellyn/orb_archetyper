@@ -5,7 +5,7 @@ require_relative '../../lib/template_classes/template_rakefile_meta'
 module Projects
   class ProjectMeta < Project
     def initialize(project_name)
-      super(project_name)
+      super(project_name, :meta)
 
       @dev_gems = [
         %w(rake ~> 10.1.1),

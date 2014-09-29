@@ -9,7 +9,7 @@ require_relative '../template_classes/template_config_yml_test'
 module Projects
   class ProjectTest < ProjectApp
     def initialize(project_name)
-      super(project_name)
+      super(project_name, :test)
 
       create_standard_templates(
         [

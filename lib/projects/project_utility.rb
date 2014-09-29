@@ -4,7 +4,7 @@ require_relative '../template_classes/template_config_yml'
 module Projects
   class ProjectUtility < ProjectGem
     def initialize(project_name)
-      super(project_name)
+      super(project_name, :utility)
 
       @dev_gems.concat([['orb_configuration', '', '0.0.1']])
 
