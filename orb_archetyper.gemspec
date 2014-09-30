@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.va.opower.it/auto/orb_archetyper'
   spec.requirements << 'Ruby, v1.9.3.'
 
-  spec.authors       = ['euan.davidson']
-  spec.email         = ['euan.davidson@opower.com']
+  spec.authors = ['Automation Services']
+  spec.email = ['automation.services@opower.com']
 
   spec.required_ruby_version = '>= 1.9.3'
   spec.license       = 'MIT'

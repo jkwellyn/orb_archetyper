@@ -89,6 +89,18 @@ The orb_archetyper will generate an empty shell of a project when you generate w
 
 2. Add your sub-project to the list of projects within the meta project's Rakefile.
 
+## CI Integration
+
+Jobs for the master branch and for any PRs will automatically get created if:
++ the project has a build.sh at the top level of your project (this is automatically generated for you)
++ the fork the PR is coming from is named the same as the main project 
+
+AND your project is either:
++ in the auto Github organization OR
++ listed on the AUTO_PROJECT_WHITE_LIST whitelist of the job cutter, located here: https://github.va.opower.it/auto/jenkins-seed/blob/master/src/main/groovy/opower/xweb/jenkins/jobs/JobWhiteLists.groovy
+
+You can specify the view that your job will appear under in the ci_metadata.json file using the `jenkins_view` key. If no value is set for `jenkins_view` or no ci_metadata.json file is found, the job will appear on the "No Assigned View" views.
+
 ## Contributing
 
 #### Contacts

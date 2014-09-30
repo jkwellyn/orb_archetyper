@@ -1,5 +1,8 @@
-#!/bin/bash --login
+#!/bin/bash -l
 # we use a login shell in order to have RVM already loaded to the path and available for use
+
+# Tell bash that we want the whole script to fail if any part fails.
+set -e
 
 SOURCE_DIR=`pwd`
 
@@ -30,8 +33,8 @@ main() {
 	rvm use $RUBY_VERSION
 
     bundle install  --path vendor/bundle
+    bundle exec rake rubocop
 	bundle exec rake spec:full --trace
-  bundle exec rake rubocop
 
 	endTime=$(date +%s)
 	timeDifference=$(( $endTime - $startTime ))
