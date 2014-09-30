@@ -13,9 +13,13 @@ main(){
 
   #no need to rvm use; project comes with a .rvmrc that sets the ruby version!
   bundle install --path vendor/bundle
+  bundle exec rubocop
 
   #rspec it
   #TODO: your rpsec tests go here!
+
+  #generate TODO/FIXME/other annotations report
+  bundle exec rake notes:generate_annotations_report
 
   endTime=$(date +%s)
   timeDifference=$(( $endTime - $startTime ))
