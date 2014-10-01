@@ -14,11 +14,11 @@ echo "Build args: $1 $2"
 
 main() {
 
-	echo "*************************************"
-	startTime=$(date +%s)
+    echo "*************************************"
+    startTime=$(date +%s)
 
-	echo WHICH rvm is `which rvm`
-	echo RVM LIST is `rvm list`
+    echo WHICH rvm is `which rvm`
+    echo RVM LIST is `rvm list`
 
     # first, use any available ruby to get opower-deployment gem
     # we use 1.9.3 because orb_archetyper has some specific gems with ruby requirement >= 1.9.3 (e.g. activesupport)
@@ -27,20 +27,21 @@ main() {
     # access the official ruby version in that gem
     RUBY_VERSION_FILE="`bundle show opower-deployment`/lib/opower/APP_RUBY_VERSION"
     RUBY_VERSION=`cat $RUBY_VERSION_FILE`
-	echo RUBY_VERSION is \'$RUBY_VERSION\'
+    echo RUBY_VERSION is \'$RUBY_VERSION\'
 
     # use the official Opower approved ruby version to run our tests against
-	rvm use $RUBY_VERSION
+    rvm use $RUBY_VERSION
 
     bundle install  --path vendor/bundle
     bundle exec rake rubocop
-	bundle exec rake spec:full --trace
+    bundle exec rake spec:full --trace
+    bundle exec rake notes:generate_annotations_report
 
-	endTime=$(date +%s)
-	timeDifference=$(( $endTime - $startTime ))
+    endTime=$(date +%s)
+    timeDifference=$(( $endTime - $startTime ))
 
-	echo "Execution time :" $timeDifference
-	echo "Finished."
+    echo "Execution time :" $timeDifference
+    echo "Finished."
 
 }
 #RUN
