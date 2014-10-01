@@ -5,6 +5,7 @@ require_relative '../template_classes/template_example_spec'
 require_relative '../../lib/template_classes/template_rakefile'
 require_relative '../../lib/template_classes/template_spec_helper'
 require_relative '../template_classes/template_version'
+require_relative '../template_classes/template_dot_gitignore_gem'
 
 module Projects
   class ProjectGem < Project
@@ -15,6 +16,7 @@ module Projects
 
       create_standard_templates(
         [
+          TemplateDotGitignoreGem,
           TemplateGemfileGem,
           TemplateExampleSpec,
           TemplateMain,

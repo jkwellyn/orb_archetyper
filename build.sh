@@ -36,6 +36,7 @@ main() {
     bundle exec rake rubocop
     bundle exec rake spec:full --trace
     bundle exec rake notes:generate_annotations_report
+    gem build orb_archetyper.gemspec
 
     endTime=$(date +%s)
     timeDifference=$(( $endTime - $startTime ))

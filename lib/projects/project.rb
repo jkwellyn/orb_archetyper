@@ -5,7 +5,6 @@ require 'orb_logger'
 require_relative '../template_classes/template_build_shell'
 require_relative '../template_classes/template_ci_metadata'
 require_relative '../template_classes/template_changelog'
-require_relative '../template_classes/template_dot_gitignore'
 require_relative '../template_classes/template_rakefile'
 require_relative '../template_classes/template_readme'
 require_relative '../template_classes/template_dot_rspec'
@@ -37,8 +36,7 @@ module Projects
       # :rvmrc not included? Maybe to be included via switches?
       # :main? Double check who needs it.
 
-      create_standard_templates([TemplateDotGitignore,
-                                 TemplateReadme,
+      create_standard_templates([TemplateReadme,
                                  TemplateDotRspec,
                                  TemplateOrbAnnotationsMustache])
 

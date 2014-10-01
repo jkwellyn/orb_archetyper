@@ -5,11 +5,10 @@ require 'test_support/tasks/task_helpers'
 def build_rake_task(task_name)
   file_pattern = "<%= file_pattern %>"
   # only build the rake task if you find spec files
-  unless Dir.glob(file_pattern).empty?
-    RSpec::Core::RakeTask.new(task_name.to_sym) do |task|
-      TestSupport::Tasks::TaskHelpers.build_rspec_opts(task_name, task)
-      task.pattern = file_pattern
-    end
+  return nil if Dir.glob(file_pattern).empty?
+  RSpec::Core::RakeTask.new(task_name.to_sym) do |task|
+    TestSupport::Tasks::TaskHelpers.build_rspec_opts(task_name, task)
+    task.pattern = file_pattern
   end
 end
 
@@ -23,4 +22,3 @@ namespace :spec do
 
   task full: actual_tasks
 end
-

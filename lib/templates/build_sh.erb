@@ -39,7 +39,7 @@ main() {
   bundle install
   bundle exec rubocop
   bundle exec rake spec:full --trace
-  bundle exec gem build <%= gemspec_name %>
+  gem build <%= gemspec_name %>
 
   #generate TODO/FIXME/other annotations report
   bundle exec notes:generate_annotations_report
