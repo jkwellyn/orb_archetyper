@@ -1,12 +1,12 @@
 PATH
   remote: .
   specs:
-    orb_archetyper (0.0.5.pre)
+    orb_archetyper (1.0.0)
       activesupport
-      ansi (= 1.4.3)
-      git (= 1.2.6)
-      github_project (= 0.0.2)
-      orb_logger (= 0.0.1)
+      ansi (~> 1.4)
+      git (~> 1.2)
+      github_project (~> 1.0)
+      orb_logger (~> 1.0)
 
 GEM
   remote: http://gemserver.va.opower.it/
@@ -18,9 +18,9 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.6)
-    annotation_manager (0.0.2)
+    annotation_manager (1.0.0)
       mustache-patched
-      rake-notes (~> 0.2.0)
+      rake-notes (~> 0.2)
     ansi (1.4.3)
     ast (2.0.0)
     blue-daemons (1.1.11)
@@ -43,7 +43,7 @@ GEM
       rspec (~> 3.0)
       ruby-progressbar (~> 1.4)
     git (1.2.6)
-    github_project (0.0.2)
+    github_project (1.0.0)
       git (~> 1.2)
       octokit (~> 2.7)
     highline (1.6.21)
@@ -68,10 +68,11 @@ GEM
       opower-tier (~> 0.1.0)
       rvm-capistrano (~> 1.3.0)
     opower-tier (0.1.1)
-    orb_configuration (0.0.1)
-      orb_logger (= 0.0.1)
-      recursive-open-struct
-    orb_logger (0.0.1)
+    orb_configuration (1.0.0)
+      activesupport (>= 3.0.0)
+      recursive-open-struct (~> 0.5)
+    orb_logger (1.0.0)
+      orb_configuration (~> 1.0)
     parser (2.2.0.pre.3)
       ast (>= 1.1, < 3.0)
       slop (~> 3.4, >= 3.4.5)
@@ -117,20 +118,20 @@ GEM
     simplecov-html (0.7.1)
     slop (3.5.0)
     state_machine (1.2.0)
-    test_support (0.0.4)
-      annotation_manager (~> 0.0.2)
+    test_support (1.0.0)
+      annotation_manager (~> 1.0)
       fuubar (~> 2.0)
-      opower-deployment
-      orb_configuration (= 0.0.1)
-      orb_logger (= 0.0.1)
-      rake (~> 10.1.1)
-      redcarpet (~> 2.3.0)
+      opower-deployment (= 0.1.2)
+      orb_configuration (~> 1.0)
+      orb_logger (~> 1.0)
+      rake (~> 10.1)
+      redcarpet (~> 2.3)
       rspec (~> 3.1)
       rspec-extra-formatters (~> 1.0)
       rspec-legacy_formatters (~> 1.0)
-      rubocop (= 0.24.0)
-      simplecov (= 0.7.1)
-      yard (~> 0.8.7)
+      rubocop (~> 0.24)
+      simplecov (~> 0.7)
+      yard (~> 0.8)
     thread_safe (0.3.4)
     tzinfo (0.3.40)
     yard (0.8.7.4)
@@ -139,12 +140,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  annotation_manager (= 0.0.2)
-  opower-deployment
+  annotation_manager (~> 1.0)
+  opower-deployment (= 0.1.2)
   orb_archetyper!
-  rake (= 10.1.1)
-  redcarpet (~> 2.3.0)
-  rubocop (= 0.24.0)
-  simplecov (= 0.7.1)
-  test_support (~> 0.0.4)
-  yard (~> 0.8.7)
+  rake (~> 10.1)
+  redcarpet (~> 2.3)
+  rubocop (~> 0.24)
+  simplecov (~> 0.7)
+  test_support (~> 1.0)
+  yard (~> 0.8)
