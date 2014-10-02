@@ -20,6 +20,4 @@ RuboCop::RakeTask.new(:rubocop, :pattern) do |task, args|
   task.patterns = ['lib/**/*.rb', 'spec/**/*.rb', 'Gemfile', '*.gemspec', 'Rakefile']
   task.patterns = args[:pattern].split(' ') if args[:pattern] # override default pattern
   RAKE_LOG.info("Running RuboCop against #{task.patterns}")
-  # don't abort rake on failure
-  task.fail_on_error = false
 end
