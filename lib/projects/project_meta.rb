@@ -9,9 +9,9 @@ module Projects
       super(project_name, :meta)
 
       @dev_gems = [
-        ['rake', '~>', '10.1.1'],
-        ['yard', '~>', '0.8.7'],
-        ['opower-deployment', '', '0.1.2']
+        %w(rake ~> 10.1),
+        %w(yard ~> 0.8),
+        %w(opower-deployment = 0.1.2)
       ] # rely on sub projects to set the gems
 
       create_standard_templates([TemplateGemfileGem,

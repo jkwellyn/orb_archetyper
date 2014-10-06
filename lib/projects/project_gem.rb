@@ -12,7 +12,7 @@ module Projects
     def initialize(project_name, project_type)
       super(project_name, project_type)
 
-      @dev_gems.concat([['simplecov', '', '0.7.1']])
+      @dev_gems.concat([%w(simplecov ~> 0.7)])
 
       create_standard_templates(
         [

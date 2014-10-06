@@ -44,15 +44,15 @@ module Projects
 
       # TODO: break the specifier into own element?
       @dev_gems = [
-        ['rake', '~>', '10.1.1'],
-        ['annotation_manager', '~>', '0.0.2'],
-        ['yard', '~>', '0.8.7'],
-        ['redcarpet', '~>', '2.3.0'],
-        ['test_support', '~>', '0.0.3'],
-        ['rubocop', '',  '0.24.0']
+        %w(rake ~> 10.1),
+        %w(annotation_manager ~> 1.0),
+        %w(yard ~> 0.8),
+        %w(redcarpet ~> 2.3),
+        %w(test_support ~> 1.0),
+        %w(rubocop ~> 0.24)
       ]
       @runtime_gems = [
-        ['orb_logger', '', '0.0.1']
+        %w(orb_logger ~> 1.0)
       ]
     end
 
