@@ -1,6 +1,7 @@
 require_relative 'project'
 require_relative '../template_classes/template_version_top_level'
 require_relative '../../lib/template_classes/template_rakefile_meta'
+require_relative '../template_classes/template_build_shell_meta'
 
 module Projects
   class ProjectMeta < Project
@@ -8,13 +9,15 @@ module Projects
       super(project_name, :meta)
 
       @dev_gems = [
-        %w(rake ~> 10.1.1),
-        %w(yard ~> 0.8.7)
+        ['rake', '~>', '10.1.1'],
+        ['yard', '~>', '0.8.7'],
+        ['opower-deployment', '', '0.1.2']
       ] # rely on sub projects to set the gems
 
       create_standard_templates([TemplateGemfileGem,
                                  TemplateVersionTopLevel,
                                  TemplateRakefileMeta,
+                                 TemplateBuildShellMeta,
                                  TemplateChangelog])
 
       # templates that require additional data

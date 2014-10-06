@@ -36,13 +36,7 @@ main() {
   # Use the official Opower approved ruby version to run our tests against.
   rvm use $RUBY_VERSION
 
-  bundle install
-  bundle exec rake rubocop
-  bundle exec rake spec:full --trace
-  gem build <%= gemspec_name %>
-
-  # Generate TODO/FIXME/other annotations report.
-  bundle exec rake notes:generate_annotations_report
+  bundle exec rake build
 
   endTime=$(date +%s)
   timeDifference=$(( $endTime - $startTime ))

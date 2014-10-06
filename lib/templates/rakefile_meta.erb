@@ -5,16 +5,17 @@ PROJECTS = %w() # fill in sub projects here as you generate
 PROJECTS.each do |project|
   # TODO: fill in more tasks for each project
   namespace project do
-
-    desc "run tests for #{project} project"
-    task :spec do
+    desc "Build #{project} project"
+    task :build do
       Dir.chdir "#{project}" do
         Bundler.with_clean_env do
-          cmd = 'bundle install && '
-          cmd << 'bundle exec rake spec:full'
+          cmd = './build.sh'
           sh cmd
         end
       end
     end
   end
+  task_dependencies = ''
+  desc 'Build entire project.'
+  task build: task_dependencies << "#{project}:build"
 end
