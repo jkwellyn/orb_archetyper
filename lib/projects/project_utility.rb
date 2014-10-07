@@ -6,7 +6,7 @@ module Projects
     def initialize(project_name)
       super(project_name, :utility)
 
-      @dev_gems.concat([%w(orb_configuration ~> yay1.0)])
+      @dev_gems.concat([%w(orb_configuration ~> 1.0)])
 
       create_standard_templates([TemplateConfigYml])
     end
