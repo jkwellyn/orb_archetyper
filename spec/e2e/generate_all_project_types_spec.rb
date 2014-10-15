@@ -51,6 +51,17 @@ module Projects
           expect_path_to_exist(true, project_name, 'config')
           expect_path_to_exist(true, project_name, 'CHANGELOG.md')
         end
+
+        # make sure generated projects work
+        Dir.chdir(project_name) do
+          # need to commit directory in order for git ls-files to work
+          github_project = SharedTasks::GithubProject::RepositoryGitLocal.new
+          github_project.add_all
+          github_project.commit('initial commit')
+          script_output = `./build.sh`
+          puts script_output
+          expect($CHILD_STATUS.success?).to be true
+        end
       end
     end
 

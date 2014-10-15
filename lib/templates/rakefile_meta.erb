@@ -1,6 +1,7 @@
 #!/usr/bin/env rake
 
 PROJECTS = %w() # fill in sub projects here as you generate
+task_dependencies = []
 
 PROJECTS.each do |project|
   # TODO: fill in more tasks for each project
@@ -15,7 +16,8 @@ PROJECTS.each do |project|
       end
     end
   end
-  task_dependencies = ''
-  desc 'Build entire project.'
-  task build: task_dependencies << "#{project}:build"
+  task_dependencies << "#{project}:build"
 end
+
+desc 'Build entire project.'
+task build: task_dependencies
