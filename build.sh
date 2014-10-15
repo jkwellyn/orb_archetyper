@@ -1,5 +1,5 @@
 #!/bin/bash -l
-# we use a login shell in order to have RVM already loaded to the path and available for use
+# We use a login shell in order to have RVM already loaded to the path and available for use
 
 # Tell bash that we want the whole script to fail if any part fails.
 set -e
@@ -20,10 +20,17 @@ main() {
     echo WHICH rvm is `which rvm`
     echo RVM LIST is `rvm list`
 
-    # first, use any available ruby to get opower-deployment gem
-    # we use 1.9.3 because orb_archetyper has some specific gems with ruby requirement >= 1.9.3 (e.g. activesupport)
+    # First, use any available ruby to get opower-deployment gem
+    # We use 1.9.3 because orb_archetyper has some specific gems with ruby requirement >= 1.9.3 (e.g. activesupport)
     rvm use 1.9.3 --fuzzy
-    bundle install --path vendor/bundle
+    if [ ! $DEVRUN ]
+    then
+      bundle install --path vendor/bundle
+    else
+      rm -rf vendor
+      rm -rf .bundle
+      bundle install
+    fi
     # access the official ruby version in that gem
     RUBY_VERSION_FILE="`bundle show opower-deployment`/lib/opower/APP_RUBY_VERSION"
     RUBY_VERSION=`cat $RUBY_VERSION_FILE`
@@ -32,11 +39,8 @@ main() {
     # use the official Opower approved ruby version to run our tests against
     rvm use $RUBY_VERSION
 
-    bundle install  --path vendor/bundle
-    bundle exec rake rubocop
-    bundle exec rake spec:full --trace
-    bundle exec rake notes:generate_annotations_report
-    gem build orb_archetyper.gemspec
+    bundle install
+    bundle exec rake build
 
     endTime=$(date +%s)
     timeDifference=$(( $endTime - $startTime ))

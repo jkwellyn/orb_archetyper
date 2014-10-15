@@ -2,16 +2,14 @@ require_relative 'template'
 require_relative '../orb_archetyper/rules/naming_conventions/file_names'
 
 class TemplateBinCli < Template
+  alias_method :output_file, :project_name
+
   def template_file
     'bin_cli.erb'
   end
 
   def output_directory
     File.join(@project_name, 'bin')
-  end
-
-  def output_file
-    @project_name
   end
 
   def required_file

@@ -9,7 +9,6 @@ require_relative '../template_classes/template_rakefile'
 require_relative '../template_classes/template_readme'
 require_relative '../template_classes/template_dot_rspec'
 require_relative '../template_classes/template_dot_rubocop_yml'
-require_relative '../template_classes/template_tasks'
 require_relative '../template_classes/template_spec_helper'
 require_relative '../template_classes/template_orb_annotations_mustache'
 require_relative '../../lib/gems/gem_data'
@@ -48,7 +47,6 @@ module Projects
         %w(annotation_manager ~> 1.0),
         %w(yard ~> 0.8),
         %w(redcarpet ~> 2.3),
-        %w(test_support ~> 1.0),
         %w(rubocop ~> 0.24)
       ]
       @runtime_gems = [

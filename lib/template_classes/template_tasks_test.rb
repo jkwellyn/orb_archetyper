@@ -20,8 +20,4 @@ class TemplateTasksTest < Template
   def template_file
     'tasks_test.erb'
   end
-
-  def partial_files
-    %w(_tasks_reports.rb)
-  end
 end

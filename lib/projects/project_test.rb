@@ -11,6 +11,12 @@ module Projects
     def initialize(project_name)
       super(project_name, :test)
 
+      @dev_gems.concat(
+        [
+          %w(test_support ~> 1.0)
+        ]
+      )
+
       create_standard_templates(
         [
           TemplateTasksTest,

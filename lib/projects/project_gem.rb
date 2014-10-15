@@ -2,7 +2,7 @@ require_relative 'project'
 require_relative '../template_classes/template_gemfile_gem'
 require_relative '../template_classes/template_gemspec'
 require_relative '../template_classes/template_example_spec'
-require_relative '../../lib/template_classes/template_rakefile'
+require_relative '../../lib/template_classes/template_rakefile_gem'
 require_relative '../../lib/template_classes/template_spec_helper'
 require_relative '../template_classes/template_version'
 require_relative '../template_classes/template_dot_gitignore_gem'
@@ -12,7 +12,12 @@ module Projects
     def initialize(project_name, project_type)
       super(project_name, project_type)
 
-      @dev_gems.concat([%w(simplecov ~> 0.7)])
+      @dev_gems.concat(
+        [
+          %w(simplecov ~> 0.7),
+          %w(build_lifecycle ~> 0.0.1)
+        ]
+      )
 
       create_standard_templates(
         [
@@ -20,8 +25,7 @@ module Projects
           TemplateGemfileGem,
           TemplateExampleSpec,
           TemplateMain,
-          TemplateTasks,
-          TemplateRakefile,
+          TemplateRakefileGem,
           TemplateSpecHelper,
           TemplateBuildShell,
           TemplateVersion,

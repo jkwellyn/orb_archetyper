@@ -58,8 +58,11 @@ module Projects
           github_project = SharedTasks::GithubProject::RepositoryGitLocal.new
           github_project.add_all
           github_project.commit('initial commit')
-          script_output = `./build.sh`
-          puts script_output
+          script_output = ''
+          Bundler.with_clean_env do
+            script_output = `./build.sh`
+          end
+          LOG.info(script_output)
           expect($CHILD_STATUS.success?).to be true
         end
       end

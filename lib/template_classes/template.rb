@@ -6,6 +6,7 @@ class Template
   include OrbArchetyper::Rules::NamingConventions::FileNames
   attr_reader :module_name
   attr_reader :project_name
+  alias_method :output_directory, :project_name
   attr_accessor :template_data
   TEMPLATE_LOCATION = File.join(File.dirname(__FILE__), '..', 'templates')
 
@@ -21,10 +22,6 @@ class Template
 
   def partial(partial_file_name)
     render_erb(partial_file_name)
-  end
-
-  def output_directory
-    @project_name
   end
 
   def create
@@ -50,8 +47,8 @@ class Template
   end
 
   # override eql? and hash in order to do set math in project.rb's make_template_set because hashing uses those 2
-  def eql?(template2)
-    self == template2
+  def eql?(other)
+    self == other
   end
 
   def hash
