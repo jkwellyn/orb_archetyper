@@ -38,5 +38,6 @@ namespace :spec do
     actual_tasks << "spec:#{task}" if task_added
   end
 
+  desc 'Run all tests'
   task full: actual_tasks
 end

@@ -12,7 +12,7 @@ class ArchetypeGenerator
   # Project name is validated
 
   PROJECT_NAME_MIN_LENGTH = 2
-  PROJECT_NAME_MAX_LENGTH = 30
+  PROJECT_NAME_MAX_LENGTH = 140
   PROJECT_NAME_INVALID_LENGTH_ERROR = 'Invalid Project Name Error. Project Name is either: nil or of incorrect length.'
   PROJECT_NAME_INVALID_CHARACTERS_ERROR = 'Invalid Project Name: should only contain a-z, 0-9, -,_'
 
