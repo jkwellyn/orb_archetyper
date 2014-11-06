@@ -91,6 +91,8 @@ The orb_archetyper will generate an empty shell of a project when you generate w
 
 ## CI Integration
 
+QA Jenkins Master - http://qa-jenkins-master-1002.va.opower.it:8080/
+
 Jobs for the master branch and for any PRs will automatically get created if:
 + the project has a build.sh at the top level of your project (this is automatically generated for you)
 + the fork the PR is coming from is named the same as the main project 
