@@ -23,14 +23,7 @@ main() {
     # First, use any available ruby to get opower-deployment gem
     # We use 1.9.3 because orb_archetyper has some specific gems with ruby requirement >= 1.9.3 (e.g. activesupport)
     rvm use 1.9.3 --fuzzy
-    if [ ! $DEVRUN ]
-    then
-      bundle install --path vendor/bundle
-    else
-      rm -rf vendor
-      rm -rf .bundle
-      bundle install
-    fi
+    bundle install
     # access the official ruby version in that gem
     RUBY_VERSION_FILE="`bundle show opower-deployment`/lib/opower/APP_RUBY_VERSION"
     RUBY_VERSION=`cat $RUBY_VERSION_FILE`
