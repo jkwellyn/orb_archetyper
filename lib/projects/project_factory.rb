@@ -1,7 +1,8 @@
 require_relative 'project_cli'
 require_relative 'project_core'
 require_relative 'project_utility'
-require_relative 'project_test'
+require_relative 'project_test_generic'
+require_relative 'project_test_bertha'
 require_relative 'project_meta'
 require_relative '../template_classes/template'
 
@@ -14,8 +15,9 @@ module Projects
       cli: ProjectCLI,
       core: ProjectCore,
       meta: ProjectMeta,
-      test: ProjectTest,
-      utility: ProjectUtility
+      test: ProjectTestGeneric,
+      utility: ProjectUtility,
+      bertha_test: ProjectTestBertha
     }
 
     def self.make_project(project_type, project_name)

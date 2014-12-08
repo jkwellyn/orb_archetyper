@@ -1,11 +1,11 @@
 require 'fileutils'
 require_relative 'project_app'
 require_relative '../template_classes/template_tasks_test'
-require_relative '../template_classes/template_spec_helper_test'
 require_relative '../template_classes/template_build_shell_app'
 require_relative '../template_classes/template_dot_ruby_version'
 require_relative '../template_classes/template_config_yml_test'
 
+# This class should never be directly instantiated. Use ProjectTestGeneric or ProjectTestBertha
 module Projects
   class ProjectTest < ProjectApp
     def initialize(project_name)
@@ -13,14 +13,13 @@ module Projects
 
       @dev_gems.concat(
         [
-          %w(test_support ~> 1.0)
+          %w(test_support ~> 2.0)
         ]
       )
 
       create_standard_templates(
         [
           TemplateTasksTest,
-          TemplateSpecHelperTest,
           TemplateBuildShellApp,
           TemplateDotRubyVersion,
           TemplateConfigYmlTest

@@ -56,11 +56,12 @@ In order for the Github interactions to work, please do the following:
 
 ### Supported project types
 
-1. Command line applications
-2. A Rspec Test Project (aka test launcher) that can be configured to be executed against a number of deployment tiers.
-3. Utility Project (e.g. a client for a service) to provide a reusable access point to a component/service/application under test.
-4. Core project (e.g. SQL or Rest Connection manager) used to facilitate automated testing common to all QA.
-5. Meta project (e.g. rails) used to collect related gems into 1 meta gem 
+1. `cli` - Command line applications
+2. `test` - A Rspec Test Project (aka test launcher) that can be configured to be executed against a number of deployment tiers.
+3. `bertha_test` - A Rspec Test Project (aka test launcher) specifically to test Bertha jobs
+4. `utility` - Utility Project (e.g. a client for a service) to provide a reusable access point to a component/service/application under test.
+5. `core` - Core project (e.g. SQL or Rest Connection manager) used to facilitate automated testing common to all QA.
+6. `meta` - Meta project (e.g. rails) used to collect related gems into 1 meta gem 
 
 Projects are created with a predefined structure and are autowired with a set configuration.
 This includes:

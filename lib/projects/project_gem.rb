@@ -2,8 +2,9 @@ require_relative 'project'
 require_relative '../template_classes/template_gemfile_gem'
 require_relative '../template_classes/template_gemspec'
 require_relative '../template_classes/template_example_spec'
-require_relative '../../lib/template_classes/template_rakefile_gem'
-require_relative '../../lib/template_classes/template_spec_helper'
+require_relative '../template_classes/template_main'
+require_relative '../template_classes/template_rakefile_gem'
+require_relative '../template_classes/template_spec_helper'
 require_relative '../template_classes/template_version'
 require_relative '../template_classes/template_dot_gitignore_gem'
 
@@ -15,7 +16,7 @@ module Projects
       @dev_gems.concat(
         [
           %w(simplecov ~> 0.7),
-          %w(build_lifecycle ~> 0.0.1)
+          %w(build_lifecycle ~> 0.0.2)
         ]
       )
 

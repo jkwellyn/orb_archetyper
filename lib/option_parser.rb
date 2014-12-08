@@ -31,7 +31,7 @@ class OptionParser
 
       # TODO: print template options here
       opts.on('-t', '--type [TYPE]',
-              'Select project type (cli, core, utility, test, meta).') do |t|
+              'Select project type (cli, core, utility, test, meta, bertha_test).') do |t|
         options[:type] = t
       end
 

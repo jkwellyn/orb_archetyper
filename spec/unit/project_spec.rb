@@ -1,3 +1,6 @@
+require_relative '../../lib/projects/project'
+require_relative '../../lib/template_classes/template_gemspec.rb'
+
 module Projects
   describe Project do
     context 'Generic Project' do

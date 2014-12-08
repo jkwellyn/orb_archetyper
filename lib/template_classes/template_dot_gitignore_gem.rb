@@ -30,6 +30,8 @@ class TemplateDotGitignoreGem < Template
       tmp
       vendor
       *.log
+      annotations_report.html
+      annotations.yml
     )
   end
 end

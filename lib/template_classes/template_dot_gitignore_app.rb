@@ -29,6 +29,8 @@ class TemplateDotGitignoreApp < Template
       tmp
       vendor
       *.log
+      annotations.yml
+      annotations_report.html
     )
   end
 end
