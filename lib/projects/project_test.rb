@@ -13,7 +13,8 @@ module Projects
 
       @dev_gems.concat(
         [
-          %w(test_support ~> 2.0)
+          %w(test_support ~> 3.0),
+          %w(orb_configuration ~> 1.0.4)
         ]
       )
 

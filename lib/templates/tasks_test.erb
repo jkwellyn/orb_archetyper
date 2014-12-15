@@ -15,3 +15,7 @@ end
 
 require 'test_support/tasks/spec_common'
 require 'test_support/tasks/spec_test'
+
+# Load the test execution configuration
+OrbConfiguration::Configuration.instance.load!
+require 'test_support/tasks/spec_config'
