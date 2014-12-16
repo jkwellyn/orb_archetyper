@@ -11,7 +11,6 @@ module Projects
       @dev_gems.concat(
         [
           %w(bertha_common ~> 0.0.4),
-          %w(orb_configuration ~> 1.0),
           %w(bertha_test_launcher ~> 0.0.1)
         ]
       )

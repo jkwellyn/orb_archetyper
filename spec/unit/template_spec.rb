@@ -1,3 +1,6 @@
+require_relative '../../lib/template_classes/template'
+require_relative '../../lib/template_classes/template_bin_cli'
+
 module  OrbArchetyper
   describe Template do
     context 'equality overrides' do

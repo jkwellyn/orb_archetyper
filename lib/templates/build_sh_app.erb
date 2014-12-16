@@ -18,8 +18,13 @@ main(){
   bundle install --path vendor/bundle
   bundle exec rake rubocop
 
-  # Rspec it
-  #TODO: your rpsec tests go here!
+  if [ -z "$1" ]; then
+    echo 'WARN: You must pass in a test execution key to the build script for tests to run'
+    echo 'WARN: No tests were run'
+  else
+    echo "Running tests based on $1 config key"
+    bundle exec rake spec:from_config[$1]
+  fi
 
   # Generate TODO/FIXME/other annotations report.
   bundle exec rake notes:generate_annotations_report
@@ -31,4 +36,4 @@ main(){
   echo "Finished."
 }
 #RUN
-main
+main $1
