@@ -3,9 +3,10 @@
 
 module <%= module_name %>
   describe <%= module_name %> do
-    let(:results) do
+    before(:all) do
       # TODO: Uncomment and replace with your job name and tier
-      # BerthaTestLauncher::Launcher.new('outbound-example-setup-job', 'qa').run
+      # launcher = BerthaTestLauncher::Launcher.new('outbound-example-setup-job', 'qa')
+      # @results = launcher.run
     end
 
     it 'provides a passing example' do
