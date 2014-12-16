@@ -15,6 +15,7 @@ class TemplateDotGitignoreApp < Template
       *.rbc
       .bundle
       .config
+      .rvmrc
       .yardoc
       InstalledFiles
       _yardoc
