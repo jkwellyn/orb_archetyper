@@ -15,6 +15,7 @@ class TemplateDotGitignoreGem < Template
       *.rbc
       .bundle
       .config
+      .rvmrc
       .yardoc
       Gemfile.lock
       InstalledFiles
