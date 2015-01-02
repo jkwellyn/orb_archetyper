@@ -18,6 +18,10 @@ class OrbCLI < Thor
                 aliases: ['-o', '--org', '--upload-organization'],
                 desc: "Github organization name, e.g. 'opower', 'eng_main', 'auto'"
 
+  method_option :upload_team,
+                aliases: ['-m', '--team', '--upload-team'],
+                desc: "Github team owner name, e.g. 'owners', 'outbound-operations', etc."
+
   method_option :no_github,
                 aliases: ['--no-github'],
                 type: :boolean,

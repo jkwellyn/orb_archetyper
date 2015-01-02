@@ -1,17 +1,20 @@
-### [2.5.0] - 2015-13-08
+### [2.6.0] - 2015-08-21
+- Add `upload-team` option when uploading a new repo to GitHub
+
+### [2.5.0] - 2015-08-13
 - Build status link generated into README
 
-### [2.4.0] - 2015-12-08
+### [2.4.0] - 2015-08-12
 - Ruby version should be set external to the build script now
 - Build script works with rbenv
 
-### [2.3.0] - 2015-24-07
+### [2.3.0] - 2015-07-24
 - Removed orb_annotation_manager from generated projects
 
-### [2.2.1] - 2015-17-07
+### [2.2.1] - 2015-07-17
 - Fixed e2e tests so they won't release
 
-### [2.2.0] - 2015-17-07
+### [2.2.0] - 2015-07-17
 - Updated gem templates to use orb_build_lifecycle 2.1 and new build script. 
 
 ### [2.1.3] - 2015-07-04
