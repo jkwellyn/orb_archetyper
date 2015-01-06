@@ -1,13 +1,16 @@
-# v1.2
+# 1.2.3
+- Remove "v" prefix from CHANGELOG.md versions
+
+# 1.2
 - Test projects have execution configurations
 
-# v1.1
+# 1.1
 - New bertha_test project type
 
-# v0.0.5
+# 0.0.5
 - Add CHANGELOG.md template
 
-# v0.0.4
+# 0.0.4
 - Use Yard instead of Rdoc
 - Remove metrics:* tasks and metrics_fu gem from dependencies
 - Fix spacing in generated README.md
@@ -19,16 +22,16 @@
 - Fixed all rubocop violations that were being generated; upgraded rubocop to 0.24.0
 - Added rubocop to build script to be executed every time
 
-# v0.0.3
+# 0.0.3
 - Added annotation_manager
 - Build script renamed to build.sh; clean up of scripts using opower-deployment for ruby version
 - Test files renamed from _test.rb to _spec.rb
 - Test project type generates .rvmrc file
 - Added CHANGELOG.md file
 
-# v0.0.2
+# 0.0.2
 - Clean up of rake spec tasks
 - New templating/project structure
 
-# v0.0.1
+# 0.0.1
 - Initial orb_archetyper
