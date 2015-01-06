@@ -1,3 +1,9 @@
+# v1.2
+- Test projects have execution configurations
+
+# v1.1
+- New bertha_test project type
+
 # v0.0.5
 - Add CHANGELOG.md template
 
