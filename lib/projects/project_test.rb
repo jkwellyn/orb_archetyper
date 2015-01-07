@@ -8,8 +8,8 @@ require_relative '../template_classes/template_config_yml_test'
 # This class should never be directly instantiated. Use ProjectTestGeneric or ProjectTestBertha
 module Projects
   class ProjectTest < ProjectApp
-    def initialize(project_name)
-      super(project_name, :test)
+    def initialize(project_name, project_domain)
+      super(project_name, :test, project_domain)
 
       @dev_gems.concat(
         [

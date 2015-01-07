@@ -1,3 +1,6 @@
+# 1.2.4
+- Add project domain to the README.md
+
 # 1.2.3
 - Remove "v" prefix from CHANGELOG.md versions
 

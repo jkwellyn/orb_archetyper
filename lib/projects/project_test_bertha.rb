@@ -5,8 +5,8 @@ require_relative '../template_classes/template_example_spec_bertha'
 
 module Projects
   class ProjectTestBertha < ProjectTest
-    def initialize(project_name)
-      super(project_name)
+    def initialize(project_name, project_domain)
+      super(project_name, project_domain)
 
       @dev_gems.concat(
         [
