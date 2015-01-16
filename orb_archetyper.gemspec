@@ -22,16 +22,10 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   # Dev Dependencies
-  spec.add_development_dependency('rake', '~> 10.1')
-  spec.add_development_dependency('annotation_manager', '~> 1.0')
-  spec.add_development_dependency('yard', '~> 0.8')
-  spec.add_development_dependency('redcarpet', '~> 2.3')
-  spec.add_development_dependency('rubocop', '~> 0.24')
-  spec.add_development_dependency('simplecov', '~> 0.7')
   # This is necessary for the build script. We are locking to 0.1.2 because this gem has incorrect tags
   # that cause confusion with more permissive version specifications.
   spec.add_development_dependency('opower-deployment', '0.1.2')
-  spec.add_development_dependency('build_lifecycle', '~> 0.0.1')
+  spec.add_development_dependency('build_lifecycle', '~> 1.0')
 
   # Runtime dependencies
   spec.add_dependency('orb_logger', '~> 1.0')

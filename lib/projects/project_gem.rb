@@ -15,8 +15,7 @@ module Projects
 
       @dev_gems.concat(
         [
-          %w(simplecov ~> 0.7),
-          %w(build_lifecycle ~> 0.0.2)
+          %w(build_lifecycle ~> 0.0.6)
         ]
       )
 

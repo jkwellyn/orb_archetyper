@@ -43,13 +43,7 @@ module Projects
       @templates << TemplateArchetyperMetadata.new(@project_name, @module_name, project_type: @project_type)
 
       # TODO: break the specifier into own element?
-      @dev_gems = [
-        %w(rake ~> 10.1),
-        %w(annotation_manager ~> 1.0),
-        %w(yard ~> 0.8),
-        %w(redcarpet ~> 2.3),
-        %w(rubocop ~> 0.24)
-      ]
+      @dev_gems = []
       @runtime_gems = [
         %w(orb_logger ~> 1.0)
       ]
