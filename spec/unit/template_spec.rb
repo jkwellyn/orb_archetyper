@@ -1,5 +1,6 @@
 require_relative '../../lib/template_classes/template'
 require_relative '../../lib/template_classes/template_bin_cli'
+require_relative '../../lib/template_classes/template_readme'
 
 module  OrbArchetyper
   describe Template do
@@ -28,6 +29,27 @@ module  OrbArchetyper
 
         expect(template1).not_to eq(template2)
         expect(template1).not_to eql(template2)
+      end
+    end
+
+    context 'readme' do
+      before(:all) do
+        @original_user_env_variable = ENV['USER']
+      end
+
+      after(:each) do
+        ENV['USER'] = @original_user_env_variable
+      end
+
+      it "uses <first_name-last_name> template when project domain and ENV['USER'] are nil" do
+        ENV['USER'] = nil
+        template = TemplateReadme.new(@project_name, @module_name)
+        expect(template.template_data[:project_domain]).to eq('\<first_name-last_name\>')
+      end
+
+      it "uses ENV['USER'] if project domain is not assigned" do
+        template = TemplateReadme.new(@project_name, @module_name)
+        expect(template.template_data[:project_domain]).to eq(ENV['USER'].gsub('.', '-'))
       end
     end
   end

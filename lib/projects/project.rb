@@ -23,7 +23,7 @@ module Projects
     attr_accessor :additional_directories
     attr_accessor :logger
 
-    def initialize(project_name, project_type)
+    def initialize(project_name, project_type, project_domain)
       @project_name = project_name
       @project_type = project_type
       @module_name = @project_name.split(/[_\-]/).map(&:capitalize).join
@@ -36,10 +36,9 @@ module Projects
       # :rvmrc not included? Maybe to be included via switches?
       # :main? Double check who needs it.
 
-      create_standard_templates([TemplateReadme,
-                                 TemplateDotRspec,
+      create_standard_templates([TemplateDotRspec,
                                  TemplateOrbAnnotationsMustache])
-
+      @templates << TemplateReadme.new(@project_name, @module_name, project_domain: project_domain)
       @templates << TemplateArchetyperMetadata.new(@project_name, @module_name, project_type: @project_type)
 
       # TODO: break the specifier into own element?

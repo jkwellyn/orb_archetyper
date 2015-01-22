@@ -4,8 +4,8 @@ require_relative '../template_classes/template_example_spec'
 
 module Projects
   class ProjectTestGeneric < ProjectTest
-    def initialize(project_name)
-      super(project_name)
+    def initialize(project_name, project_domain)
+      super(project_name, project_domain)
 
       create_standard_templates([TemplateSpecHelperTest])
     end

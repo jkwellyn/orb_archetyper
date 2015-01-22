@@ -18,7 +18,7 @@ module OrbArchetyper
 
     context '#generate' do
       context 'uploads generated project to an organization' do
-        let(:options) { { type: 'cli', project: 'Project-A', upload_organization: 'auto' } }
+        let(:options) { { type: 'cli', project: 'Project-A', upload_organization: 'auto', domain: 'auto' } }
         let(:generator) { ArchetypeGenerator.new(options[:project]) }
         let(:project) do
           double('Projects::ProjectCli', generate_project: {})
@@ -33,7 +33,7 @@ module OrbArchetyper
         end
 
         it 'generates a project using the sanitized name throughout' do
-          Projects::ProjectFactory.stub(:make_project).with('cli', 'project_a') { project }
+          Projects::ProjectFactory.stub(:make_project).with('cli', 'project_a', 'auto') { project }
           expect(project).to receive(:generate_project)
 
           SharedTasks::GithubProject::Project.stub(:initialize_git).with('project_a')

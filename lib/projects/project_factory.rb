@@ -20,7 +20,7 @@ module Projects
       bertha_test: ProjectTestBertha
     }
 
-    def self.make_project(project_type, project_name)
+    def self.make_project(project_type, project_name, project_domain)
       project_class = PROJECT_MAP[project_type.to_sym]
 
       if project_class.nil?
@@ -28,7 +28,7 @@ module Projects
         fail(InvalidProjectException, error_message)
       end
 
-      project_class.new(project_name.to_s)
+      project_class.new(project_name.to_s, project_domain)
     end
   end
 end

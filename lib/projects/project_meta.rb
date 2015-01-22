@@ -5,8 +5,8 @@ require_relative '../template_classes/template_build_shell_meta'
 
 module Projects
   class ProjectMeta < Project
-    def initialize(project_name)
-      super(project_name, :meta)
+    def initialize(project_name, project_domain)
+      super(project_name, :meta, project_domain)
 
       @dev_gems = [
         %w(rake ~> 10.1),

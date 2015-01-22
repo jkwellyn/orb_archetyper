@@ -13,7 +13,8 @@ module Projects
         it "creates #{project_type} projects correctly" do
           project = ProjectFactory.make_project(
               project_type,
-              expected_project_name
+              expected_project_name,
+              'opower'
           )
           expect(project.class).to be project_class
           expect(project.project_name).to be expected_project_name
@@ -21,7 +22,7 @@ module Projects
 
         it 'throws useful exception on bad project type' do
           expect do
-            ProjectFactory.make_project('foo', 'foo')
+            ProjectFactory.make_project('foo', 'foo', 'opower')
           end.to raise_error
         end
       end

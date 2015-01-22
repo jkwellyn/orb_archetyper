@@ -4,7 +4,7 @@ require_relative '../../lib/template_classes/template_gemspec.rb'
 module Projects
   describe Project do
     context 'Generic Project' do
-      subject(:project) { Project.new('project_name', 'project') }
+      subject(:project) { Project.new('project_name', 'project', 'opower') }
 
       it { expect(project.project_name) == 'project_name' }
       it { expect(project.templates).not_to be_empty }
@@ -23,7 +23,7 @@ module Projects
 
     # Not going to test all project sub-classes, arbitrary chose Gem project to test it's constructor
     context 'Gem Project' do
-      subject(:project) { ProjectGem.new('project_gem', 'project') }
+      subject(:project) { ProjectGem.new('project_gem', 'project', 'opower') }
       it { expect(project.dev_gems).not_to be_empty }
 
       # just checking a few templates, not bothering with all of them
