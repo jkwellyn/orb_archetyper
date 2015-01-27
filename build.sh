@@ -6,7 +6,7 @@ set -e
 
 SOURCE_DIR=`pwd`
 
-#Begin
+# Begin
 echo "*************************************"
 echo "Running build script..."
 echo "PWD :"$SOURCE_DIR
@@ -42,5 +42,5 @@ main() {
     echo "Finished."
 
 }
-#RUN
+# RUN
 main

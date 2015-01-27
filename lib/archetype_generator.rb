@@ -23,23 +23,23 @@ class ArchetypeGenerator
 
   def initialize(project_name)
     @project_name = sanitize(project_name)
-    LOG.progname = self.class
+    LOG.progname = self.class.name
   end
 
   def generate(options)
     project_archetype = Projects::ProjectFactory.make_project(
+      project_name,
       options[:type],
-      @project_name,
       options[:upload_organization]
     )
     project_archetype.generate_project
 
     unless options[:no_github]
-      SharedTasks::GithubProject::Project.initialize_git(@project_name)
+      SharedTasks::GithubProject::Project.initialize_git(project_name)
       LOG.info ANSI.green { 'initialized git repository' }
     end
 
-    project_dir = @project_name
+    project_dir = project_name
     if options[:upload_organization]
       github_organization = options[:upload_organization]
       upload_to_github(project_dir) do |github_project|
@@ -68,17 +68,18 @@ class ArchetypeGenerator
 
   # TODO: use active_support/inflector here?
   # Ensure that the project name is valid
-  def sanitize(project_name)
-    if project_name.nil? || project_name.length < PROJECT_NAME_MIN_LENGTH ||
-        project_name.length > PROJECT_NAME_MAX_LENGTH
+  def sanitize(proj_name)
+    if proj_name.nil? ||
+       proj_name.length < PROJECT_NAME_MIN_LENGTH ||
+       proj_name.length > PROJECT_NAME_MAX_LENGTH
       fail PROJECT_NAME_INVALID_LENGTH_ERROR
     end
-    project_name = project_name.underscore
+    proj_name = proj_name.underscore
 
-    if /^[\w_\-]+$/.match(project_name).nil?
+    if /^[\w_\-]+$/.match(proj_name).nil?
       fail PROJECT_NAME_INVALID_CHARACTERS_ERROR
     else
-      project_name
+      proj_name
     end
   end
 end

@@ -15,30 +15,26 @@ require_relative '../template_classes/template_orb_annotations_mustache'
 require_relative '../../lib/gems/gem_data'
 
 module Projects
+  # base project class
   class Project
-    attr_accessor :dev_gems, :runtime_gems
-    attr_reader :templates
-    attr_reader :project_name
-    attr_reader :project_type
-    attr_accessor :additional_directories
-    attr_accessor :logger
+    attr_accessor :dev_gems, :runtime_gems, :logger
+    attr_accessor :module_name, :project_name, :project_type, :templates
 
-    def initialize(project_name, project_type, project_domain)
-      @project_name = project_name
-      @project_type = project_type
-      @module_name = @project_name.split(/[_\-]/).map(&:capitalize).join
+    def initialize(proj_name, proj_type, proj_domain)
+      @project_name = proj_name
+      @project_type = proj_type
+      @module_name  = @project_name.split(/[_\-]/).map(&:capitalize).join
       @templates = []
       @logger = OrbLogger::OrbLogger.new
-      @logger.progname = self.class
+      @logger.progname = self.class.name
 
       # TODO: Are we supposed to include rake tasks for a 'utility' project?
       # :rubocop? Not for all projects?
       # :rvmrc not included? Maybe to be included via switches?
       # :main? Double check who needs it.
 
-      create_standard_templates([TemplateDotRspec,
-                                 TemplateOrbAnnotationsMustache])
-      @templates << TemplateReadme.new(@project_name, @module_name, project_domain: project_domain)
+      create_standard_templates([TemplateDotRspec, TemplateOrbAnnotationsMustache])
+      @templates << TemplateReadme.new(@project_name, @module_name, project_domain: proj_domain)
       @templates << TemplateArchetyperMetadata.new(@project_name, @module_name, project_type: @project_type)
 
       # TODO: break the specifier into own element?
@@ -49,14 +45,14 @@ module Projects
     end
 
     # generate templates that don't require additional data
-    def create_standard_templates(templates)
-      templates.each do |template_class|
-        @templates << template_class.new(@project_name, @module_name)
+    def create_standard_templates(a_templates)
+      a_templates.each do |template_class|
+        templates << template_class.new(project_name, module_name)
       end
     end
 
     def create_empty_dir_template(*paths)
-      @templates << TemplateEmptyDir.new(@project_name, @module_name, directory_name: File.join(*paths))
+      templates << TemplateEmptyDir.new(project_name, module_name, directory_name: File.join(*paths))
     end
 
     def generate_project
@@ -72,17 +68,17 @@ module Projects
     end
 
     def generate_file_with_output
-      @logger.info "#{ANSI.green { 'created' }} #{yield}"
+      logger.info "#{ANSI.green { 'created' }} #{yield}"
     end
 
     private
 
     def make_template_set
-      Set.new(@templates)
+      Set.new(templates)
     end
 
     def checked_generate_project
-      fail "Error. Directory already exists: #{@project_name}" if Dir.exist?(@project_name)
+      fail "Error. Directory already exists: #{project_name}" if Dir.exist?(project_name)
       yield
     end
   end

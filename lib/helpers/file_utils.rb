@@ -7,8 +7,8 @@ class FileUtility
   # Create a directory
   def self.dir_creator(dir_path)
     @logger = LOG || OrbLogger::OrbLogger.new
-    @logger.progname = self.class
-    Dir.mkdir(dir_path)
+    @logger.progname = self.class.name
+    Dir.mkdir(dir_path) unless File.exist?(dir_path)
     @logger.info "#{ANSI.green { 'created' }} #{dir_path}"
     dir_path
   end
@@ -16,9 +16,7 @@ class FileUtility
   # creates file, requires dir to exist
   def self.file_creator(dir_path, file_name, file_contents)
     file_dir = File.join(dir_path, file_name)
-    file = open(file_dir, 'w')
-    file.write(file_contents)
-    file.close
+    File.open(file_dir, 'w') { |file| file.write(file_contents) }
     @logger.info "#{ANSI.green { 'created' }} #{file_dir}"
   end
 end

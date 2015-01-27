@@ -2,17 +2,18 @@ require 'erb'
 require 'active_support/inflector'
 require_relative '../orb_archetyper/rules/naming_conventions/file_names'
 
+# base template class
 class Template
   include OrbArchetyper::Rules::NamingConventions::FileNames
-  attr_reader :module_name
-  attr_reader :project_name
+
+  attr_accessor :module_name, :project_name, :template_data
   alias_method :output_directory, :project_name
-  attr_accessor :template_data
+
   TEMPLATE_LOCATION = File.join(File.dirname(__FILE__), '..', 'templates')
 
   def initialize(project_name, module_name, template_data = {})
-    @project_name = project_name
-    @module_name = module_name
+    @project_name  = project_name
+    @module_name   = module_name
     @template_data = template_data
   end
 
@@ -26,7 +27,7 @@ class Template
 
   def create
     output_dir = File.join(FileUtils.mkdir_p(output_directory))
-    full_path = File.join(output_dir, output_file)
+    full_path  = File.join(output_dir, output_file)
     File.write(full_path, render)
     post_install_actions(full_path)
     full_path
@@ -34,6 +35,7 @@ class Template
 
   def post_install_actions(_args)
     # Subclasses should override if necessary
+    # TODO: consider raising NotImplementedError
   end
 
   def self.convert_to_templates_class(template_name)
@@ -42,8 +44,10 @@ class Template
 
   # override == because include uses this
   def ==(other)
-    other.class == self.class && @project_name == other.project_name && @module_name == other.send(:module_name) &&
-        @template_data == other.template_data
+    self.class    == other.class &&
+    project_name  == other.project_name &&
+    module_name   == other.send(:module_name) &&
+    template_data == other.template_data
   end
 
   # override eql? and hash in order to do set math in project.rb's make_template_set because hashing uses those 2
@@ -52,7 +56,7 @@ class Template
   end
 
   def hash
-    @project_name.hash ^ @module_name.hash ^ self.class.hash
+    project_name.hash ^ module_name.hash ^ self.class.hash
   end
 
   private

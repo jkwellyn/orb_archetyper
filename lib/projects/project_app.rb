@@ -6,10 +6,10 @@ require_relative '../template_classes/template_dot_gitignore_app'
 
 module Projects
   class ProjectApp < Project
-    def initialize(project_name, project_type, project_domain)
-      super(project_name, project_type, project_domain)
+    def initialize(proj_name, proj_type, proj_domain)
+      super(proj_name, proj_type, proj_domain)
 
-      @dev_gems.concat(
+      dev_gems.concat(
         [
           %w(rake ~> 10.1),
           %w(annotation_manager ~> 1.0),
@@ -19,14 +19,18 @@ module Projects
         ]
       )
 
-      create_standard_templates([TemplateDotGitignoreApp,
-                                 TemplateRakefile,
-                                 TemplateVersionTopLevel,
-                                 TemplateDotRubocopYml,
-                                 TemplateChangelog])
+      create_standard_templates(
+        [
+          TemplateDotGitignoreApp,
+          TemplateRakefile,
+          TemplateVersionTopLevel,
+          TemplateDotRubocopYml,
+          TemplateChangelog
+        ]
+      )
 
       # templates that require additional data
-      @templates << TemplateGemfileApp.new(@project_name, @module_name, dev_gems: @dev_gems, runtime_gems: @runtime_gems)
+      templates << TemplateGemfileApp.new(project_name, module_name, dev_gems: dev_gems, runtime_gems: runtime_gems)
     end
   end
 end

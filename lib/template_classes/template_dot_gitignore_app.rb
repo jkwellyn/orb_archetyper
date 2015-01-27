@@ -27,6 +27,7 @@ class TemplateDotGitignoreApp < Template
       spec/reports
       test/tmp
       test/version_tmp
+      temp
       tmp
       vendor
       *.log

@@ -6,7 +6,7 @@ class TemplateBerthaJobConfigYml < Template
   end
 
   def output_directory
-    File.join(@project_name, 'config', 'job_configurations')
+    File.join(project_name, 'config', 'job_configurations')
   end
 
   def template_file

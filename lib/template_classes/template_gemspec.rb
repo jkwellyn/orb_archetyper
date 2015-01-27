@@ -8,26 +8,26 @@ class TemplateGemspec < Template
   end
 
   def output_file
-    "#{@project_name}.gemspec"
+    "#{project_name}.gemspec"
   end
 
   def dev_gem_data
-    if @template_data[:dev_gems]
-      @template_data[:dev_gems].map { |gem| Gems::GemData.new(*gem) }
+    if template_data[:dev_gems]
+      template_data[:dev_gems].map { |gem| Gems::GemData.new(*gem) }
     else
       []
     end
   end
 
   def runtime_gem_data
-    if @template_data[:runtime_gems]
-      @template_data[:runtime_gems].map { |gem| Gems::GemData.new(*gem) }
+    if template_data[:runtime_gems]
+      template_data[:runtime_gems].map { |gem| Gems::GemData.new(*gem) }
     else
       []
     end
   end
 
   def version_path
-    @template_data[:version_path]
+    template_data[:version_path]
   end
 end

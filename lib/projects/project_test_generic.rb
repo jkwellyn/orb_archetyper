@@ -4,8 +4,8 @@ require_relative '../template_classes/template_example_spec'
 
 module Projects
   class ProjectTestGeneric < ProjectTest
-    def initialize(project_name, project_domain)
-      super(project_name, project_domain)
+    def initialize(proj_name, proj_domain)
+      super(proj_name, proj_domain)
 
       create_standard_templates([TemplateSpecHelperTest])
     end
@@ -15,7 +15,7 @@ module Projects
     # https://github.com/rspec/rspec-core/pull/1589) so we are temporarily generating files rather than
     # empty directories until this is fixed
     def create_dummy_test_files(*path)
-      @templates << TemplateExampleSpec.new(@project_name, @module_name, test_directory: File.join(path))
+      templates << TemplateExampleSpec.new(project_name, module_name, test_directory: File.join(path))
     end
   end
 end

@@ -2,7 +2,7 @@ require_relative 'template'
 
 class TemplateEmptyDir < Template
   def output_directory
-    File.join(@project_name, @template_data[:directory_name])
+    File.join(project_name, template_data[:directory_name])
   end
 
   def create

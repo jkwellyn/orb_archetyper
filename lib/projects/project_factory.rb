@@ -7,28 +7,27 @@ require_relative 'project_meta'
 require_relative '../template_classes/template'
 
 module Projects
-  class InvalidProjectException < Exception
-  end
+  InvalidProjectException = Class.new(Exception)
 
   class ProjectFactory
     PROJECT_MAP = {
-      cli: ProjectCLI,
-      core: ProjectCore,
-      meta: ProjectMeta,
-      test: ProjectTestGeneric,
-      utility: ProjectUtility,
+      cli:         ProjectCLI,
+      core:        ProjectCore,
+      meta:        ProjectMeta,
+      test:        ProjectTestGeneric,
+      utility:     ProjectUtility,
       bertha_test: ProjectTestBertha
     }
 
-    def self.make_project(project_type, project_name, project_domain)
-      project_class = PROJECT_MAP[project_type.to_sym]
+    def self.make_project(proj_name, proj_type, proj_domain)
+      project_class = PROJECT_MAP[proj_type.to_sym]
 
-      if project_class.nil?
-        error_message = "#{project_type} is an invalid project type. You must specify one of #{PROJECT_MAP.keys.map(&:to_s)}."
+      unless project_class
+        error_message = "#{proj_type} is an invalid project type. You must specify one of #{PROJECT_MAP.keys.map(&:to_s)}."
         fail(InvalidProjectException, error_message)
       end
 
-      project_class.new(project_name.to_s, project_domain)
+      project_class.new(proj_name.to_s, proj_domain)
     end
   end
 end

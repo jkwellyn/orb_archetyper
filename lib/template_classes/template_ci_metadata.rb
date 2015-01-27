@@ -11,6 +11,6 @@ class TemplateArchetyperMetadata < Template
   end
 
   def project_type
-    @template_data[:project_type]
+    template_data[:project_type]
   end
 end

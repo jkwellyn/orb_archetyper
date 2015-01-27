@@ -6,7 +6,7 @@ class TemplateSpecHelper < Template
   end
 
   def output_directory
-    File.join(@project_name, 'spec')
+    File.join(project_name, 'spec')
   end
 
   def output_file
