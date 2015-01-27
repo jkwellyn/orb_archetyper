@@ -5,13 +5,14 @@ require_relative '../template_classes/template_build_shell_app'
 require_relative '../template_classes/template_dot_ruby_version'
 require_relative '../template_classes/template_config_yml_test'
 
-# This class should never be directly instantiated. Use ProjectTestGeneric or ProjectTestBertha
 module Projects
+  # This class should never be directly instantiated. Use ProjectTestGeneric or ProjectTestBertha
+  # base test project class
   class ProjectTest < ProjectApp
-    def initialize(project_name, project_domain)
-      super(project_name, :test, project_domain)
+    def initialize(proj_name, proj_domain)
+      super(proj_name, :test, proj_domain)
 
-      @dev_gems.concat(
+      dev_gems.concat(
         [
           %w(test_support ~> 3.0),
           %w(orb_configuration ~> 1.0.4)
@@ -40,7 +41,7 @@ module Projects
     # https://github.com/rspec/rspec-core/pull/1589) so we are temporarily generating files rather than
     # empty directories until this is fixed
     def create_dummy_test_files(*path)
-      @templates << TemplateExampleSpec.new(@project_name, @module_name, test_directory: File.join(path))
+      templates << TemplateExampleSpec.new(project_name, module_name, test_directory: File.join(path))
     end
   end
 end

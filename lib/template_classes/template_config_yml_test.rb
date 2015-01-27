@@ -6,7 +6,7 @@ class TemplateConfigYmlTest < Template
   end
 
   def output_directory
-    File.join(@project_name, 'config')
+    File.join(project_name, 'config')
   end
 
   def template_file

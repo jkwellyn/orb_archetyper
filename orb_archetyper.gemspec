@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.requirements << 'Ruby, v1.9.3.'
 
   spec.authors = ['Automation Services']
-  spec.email = ['automation.services@opower.com']
+  spec.email   = ['automation.services@opower.com']
 
   spec.required_ruby_version = '>= 1.9.3'
   spec.license       = 'MIT'

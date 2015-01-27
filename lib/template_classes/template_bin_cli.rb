@@ -9,11 +9,11 @@ class TemplateBinCli < Template
   end
 
   def output_directory
-    File.join(@project_name, 'bin')
+    File.join(project_name, 'bin')
   end
 
   def required_file
-    "#{@project_name}.rb"
+    "#{project_name}.rb"
   end
 
   def post_install_actions(file_path)

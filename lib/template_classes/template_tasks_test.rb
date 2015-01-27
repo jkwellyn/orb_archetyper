@@ -10,7 +10,7 @@ class TemplateTasksTest < Template
   end
 
   def output_directory
-    File.join(@project_name, 'lib')
+    File.join(project_name, 'lib')
   end
 
   def output_file

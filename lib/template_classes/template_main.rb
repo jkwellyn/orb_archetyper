@@ -6,7 +6,7 @@ class TemplateMain < Template
   end
 
   def output_file
-    "#{@project_name}.rb"
+    "#{project_name}.rb"
   end
 
   def output_directory

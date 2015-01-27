@@ -10,10 +10,10 @@ require_relative '../template_classes/template_dot_gitignore_gem'
 
 module Projects
   class ProjectGem < Project
-    def initialize(project_name, project_type, project_domain)
-      super(project_name, project_type, project_domain)
+    def initialize(proj_name, proj_type, proj_domain)
+      super(proj_name, proj_type, proj_domain)
 
-      @dev_gems.concat(
+      dev_gems.concat(
         [
           %w(build_lifecycle ~> 0.0.6)
         ]
@@ -35,9 +35,9 @@ module Projects
       )
 
       # templates that require additional data
-      version_path = TemplateVersion.new(@project_name, @module_name).gemspec_require_path
-      @templates << TemplateGemspec.new(@project_name, @module_name,
-                                        dev_gems: @dev_gems, runtime_gems: @runtime_gems, version_path: version_path)
+      version_path = TemplateVersion.new(project_name, module_name).gemspec_require_path
+      templates   << TemplateGemspec.new(project_name, module_name,
+                                         dev_gems: dev_gems, runtime_gems: runtime_gems, version_path: version_path)
     end
   end
 end

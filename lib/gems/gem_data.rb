@@ -1,21 +1,19 @@
 module Gems
   class GemData
+    attr_accessor :name, :range_specifier, :version
+
     def initialize(name, range_specifier = '', version = nil)
-      @name = "'#{name}'"
+      @name            = "'#{name}'"
       @range_specifier = range_specifier
-      @version = version
+      @version         = version
     end
 
     def gemfile_entry
-      @name + version_string
+      name + version_string
     end
 
     def version_string
-      if @version.nil?
-        ''
-      else
-        ", '#{@range_specifier} #{@version}'"
-      end
+      version.nil? ? '' : ", '#{range_specifier} #{version}'"
     end
   end
 end

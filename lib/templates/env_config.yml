@@ -1,6 +1,6 @@
-#config/env_config.yml
+# config/env_config.yml
 
-#todo tiers in here dev, qa, etc
+# todo tiers in here dev, qa, etc
   :hosts:
     local:  'http://localhost:8080'
     dev:    'http://dev-service-5101.aws.opower.it:8080'

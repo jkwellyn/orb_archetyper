@@ -12,8 +12,8 @@ module <%= module_name %>
     def initialize
       @logger = LOG || OrbLogger::OrbLogger.new
       # TODO: replace with whatever progname you want.  The easiest way to get a pertinent progname in your log is to
-      # set the progname to self.class.
-      @logger.progname = self.class
+      # set the progname to self.class.name
+      @logger.progname = self.class.name
     end
     # TODO: ADD DESCRIPTION
     def run

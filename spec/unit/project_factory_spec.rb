@@ -12,8 +12,8 @@ module Projects
 
         it "creates #{project_type} projects correctly" do
           project = ProjectFactory.make_project(
-              project_type,
               expected_project_name,
+              project_type,
               'opower'
           )
           expect(project.class).to be project_class

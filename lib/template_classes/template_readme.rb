@@ -17,8 +17,8 @@ class TemplateReadme < Template
   private
 
   def validate_project_domain
-    return unless @template_data[:project_domain].nil?
+    return if template_data[:project_domain]
     user_name = ENV['USER'].nil? ? '\<first_name-last_name\>' : ENV['USER'].gsub('.', '-')
-    @template_data[:project_domain] = user_name
+    template_data[:project_domain] = user_name
   end
 end

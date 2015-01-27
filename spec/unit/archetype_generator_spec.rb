@@ -33,7 +33,7 @@ module OrbArchetyper
         end
 
         it 'generates a project using the sanitized name throughout' do
-          Projects::ProjectFactory.stub(:make_project).with('cli', 'project_a', 'auto') { project }
+          Projects::ProjectFactory.stub(:make_project).with('project_a', 'cli', 'auto') { project }
           expect(project).to receive(:generate_project)
 
           SharedTasks::GithubProject::Project.stub(:initialize_git).with('project_a')

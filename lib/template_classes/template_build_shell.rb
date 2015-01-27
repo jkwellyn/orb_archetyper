@@ -10,7 +10,7 @@ class TemplateBuildShell < Template
   end
 
   def gemspec_name
-    "#{@project_name}.gemspec"
+    "#{project_name}.gemspec"
   end
 
   def post_install_actions(file_path)
