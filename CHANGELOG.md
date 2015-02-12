@@ -1,3 +1,6 @@
+### 1.3.0
+- Switched from OptionParser to Thor
+
 ### 1.2.5
 - Use attr_accessors instead of instance variables
 - Style fixes (including comments)

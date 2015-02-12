@@ -1,8 +1,0 @@
-#!/usr/bin/env ruby
-require_relative '../lib/option_parser'
-require_relative '../lib/archetype_generator'
-require_relative '../lib/fork_generator'
-
-options = OptionParser.parse(ARGV)
-generator = options[:fork] ? ForkGenerator.new : ArchetypeGenerator.new(options[:project])
-generator.generate(options)
