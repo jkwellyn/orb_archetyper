@@ -21,11 +21,17 @@ class ArchetypeGenerator
 
   attr_reader :project_name, :module_name
 
+  # @param project_name [String] project name
   def initialize(project_name)
     @project_name = sanitize(project_name)
     LOG.progname = self.class.name
   end
 
+  # @param options [Hash] options for project generation
+  # @option options [String] :type Type of the project
+  # @option options [String] :upload_organization Name of the Github organization to upload to
+  # @option options [Boolean] :upload_user `true` uploads the project to github under the current user
+  # @option options [Boolean] :no_github `false` creates the git repo for the project, `true` does not
   def generate(options)
     project_archetype = Projects::ProjectFactory.make_project(
       project_name,
@@ -58,6 +64,7 @@ class ArchetypeGenerator
 
   private
 
+  # @param project_dir [String] project directory
   def upload_to_github(project_dir)
     Dir.chdir(project_dir) do
       github_project = SharedTasks::GithubProject::Project.new
@@ -68,6 +75,8 @@ class ArchetypeGenerator
 
   # TODO: use active_support/inflector here?
   # Ensure that the project name is valid
+  #
+  # @param proj_name [String] project name
   def sanitize(proj_name)
     if proj_name.nil? ||
        proj_name.length < PROJECT_NAME_MIN_LENGTH ||

@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+require 'thor'
+
+require_relative '../lib/archetype_generator'
+require_relative '../lib/fork_generator'
+require_relative '../lib/orb_archetyper/version'
+
+class OrbCLI < Thor
+
+  private
+
+  # convert all keys in a hash to symbols recursively
+  def symbolize_keys(hash)
+    case hash
+    when Array
+      hash.map { |v| symbolize_keys(v) }
+    when Hash
+      Hash[hash.map { |k, v| [k.to_sym, symbolize_keys(v)] }]
+    else
+      hash
+    end
+  end
+end
+
+# load all commands
+cmd_root = '../../lib/cmd/*'
+Dir[File.expand_path(cmd_root, __FILE__)].each { |cmd| require cmd }
+OrbCLI.start
