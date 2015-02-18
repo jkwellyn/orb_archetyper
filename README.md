@@ -64,7 +64,6 @@ In order for the Github interactions to work, please do the following:
 - `core`        - Core project (e.g. SQL or Rest Connection manager) used to facilitate automated testing common to all QA
 - `meta`        - Meta project (e.g. rails) used to collect related gems into 1 meta gem
 - `test`        - Rspec Test Project (aka test launcher) that can be configured to be executed against a number of deployment tiers
-- `utility`     - Utility Project (e.g. a client for a service) to provide a reusable access point to a component/service/application under test
 
 Projects are created with a predefined structure and are autowired with a set configuration.
 

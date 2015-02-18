@@ -7,6 +7,7 @@ require_relative '../template_classes/template_rakefile_gem'
 require_relative '../template_classes/template_spec_helper'
 require_relative '../template_classes/template_version'
 require_relative '../template_classes/template_dot_gitignore_gem'
+require_relative '../template_classes/template_config_yml'
 
 module Projects
   class ProjectGem < Project
@@ -15,7 +16,8 @@ module Projects
 
       dev_gems.concat(
         [
-          %w(build_lifecycle ~> 0.0.6)
+          %w(build_lifecycle ~> 1.0),
+          %w(orb_configuration ~> 1.0)
         ]
       )
 
@@ -30,7 +32,8 @@ module Projects
           TemplateBuildShell,
           TemplateVersion,
           TemplateDotRubocopYml,
-          TemplateChangelog
+          TemplateChangelog,
+          TemplateConfigYml
         ]
       )
 

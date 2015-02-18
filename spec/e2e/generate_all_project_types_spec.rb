@@ -18,7 +18,8 @@ module Projects
         LOG.info "running generation for #{project_type}"
         options = {
           project: "test-project-#{project_type}",
-          type: project_type
+          type: project_type,
+          no_github: true
         }
 
         generator = ArchetypeGenerator.new(options[:project])
@@ -45,11 +46,7 @@ module Projects
           expect_path_to_exist(true, project_name, 'lib', expected_file_name)
           expect_path_to_exist(true, project_name, 'build.sh')
           expect_path_to_exist(true, project_name, 'CHANGELOG.md')
-        end
-
-        project_utility_expectations(project_type) do
           expect_path_to_exist(true, project_name, 'config')
-          expect_path_to_exist(true, project_name, 'CHANGELOG.md')
         end
 
         # make sure generated projects work
@@ -74,12 +71,7 @@ module Projects
     end
 
     def project_gem_expectations(project_type)
-      return unless project_type == 'core' || project_type == 'utility'
-      yield
-    end
-
-    def project_utility_expectations(project_type)
-      return unless project_type == 'utility'
+      return unless project_type == 'core'
       yield
     end
   end
