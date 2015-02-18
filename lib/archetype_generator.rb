@@ -13,7 +13,7 @@ class ArchetypeGenerator
 
   PROJECT_NAME_MIN_LENGTH = 2
   PROJECT_NAME_MAX_LENGTH = 140
-  PROJECT_NAME_INVALID_LENGTH_ERROR = 'Invalid Project Name Error. Project Name is either: nil or of incorrect length.'
+  PROJECT_NAME_INVALID_LENGTH_ERROR     = 'Invalid Project Name Error. Project Name is either: nil or of incorrect length.'
   PROJECT_NAME_INVALID_CHARACTERS_ERROR = 'Invalid Project Name: should only contain a-z, 0-9, -,_'
 
   # initialize logger
@@ -30,32 +30,28 @@ class ArchetypeGenerator
   # @param options [Hash] options for project generation
   # @option options [String] :type Type of the project
   # @option options [String] :upload_organization Name of the Github organization to upload to
-  # @option options [Boolean] :upload_user `true` uploads the project to github under the current user
-  # @option options [Boolean] :no_github `false` creates the git repo for the project, `true` does not
+  # @option options [Boolean] :no_github `false` pushes the project to github, `true` does not
   def generate(options)
     project_archetype = Projects::ProjectFactory.make_project(
       project_name,
-      options[:type],
+      options[:type] || :core,
       options[:upload_organization]
     )
     project_archetype.generate_project
 
-    unless options[:no_github]
-      SharedTasks::GithubProject::Project.initialize_git(project_name)
-      LOG.info ANSI.green { 'initialized git repository' }
-    end
+    SharedTasks::GithubProject::Project.initialize_git(project_name)
+    LOG.info ANSI.green { 'initialized git repository' }
 
-    project_dir = project_name
-    if options[:upload_organization]
-      github_organization = options[:upload_organization]
-      upload_to_github(project_dir) do |github_project|
-        github_project.create_remote_repository(github_organization)
-        github_project.push(github_organization)
-        github_project.fork_repository(github_organization)
+    return if options[:no_github]
+
+    if (org = options[:upload_organization])
+      upload_to_github(project_name) do |project|
+        project.create_remote_repository(org)
+        project.push(org)
+        project.fork_repository(org)
       end
-
-    elsif options[:upload_user]
-      upload_to_github(project_dir) do |project|
+    else
+      upload_to_github(project_name) do |project|
         project.create_user_repository
         project.push
       end

@@ -25,7 +25,7 @@ describe 'Command Line Interface' do
 
   context '#generate command' do
     it 'is invoked' do
-      cmds = [%w(generate), %w(generate -t cli), %w(generate -p foo)]
+      cmds = [%w(generate), %w(generate -t cli)]
       cmds.each do |cmd|
         output = capture(:stderr) { OrbCLI.start(cmd) }
         expect(output).to match(/No value provided for required options/)
@@ -38,8 +38,8 @@ describe 'Command Line Interface' do
     end
 
     it 'fails on mutually exclusive arguments' do
-      msg = /ERROR MutuallyExclusiveArguments: no-github option AND github user or organization specified/
-      expect { OrbCLI.start(%w(generate -t cli -p myproj -u --no-github)) }.to raise_error.with_message(msg)
+      msg = /ERROR MutuallyExclusiveArguments: no-github option AND github organization specified/
+      expect { OrbCLI.start(%w(generate -t cli -p myproj -o auto --no-github)) }.to raise_error.with_message(msg)
     end
   end
 end
