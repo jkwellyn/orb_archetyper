@@ -1,6 +1,6 @@
 require_relative 'template'
-require_relative '../../lib/projects/project'
-require_relative '../../lib/gems/gem_data'
+require_relative '../projects/project'
+require_relative '../gems/gem_data'
 
 class TemplateGemfileApp < Template
   def template_file

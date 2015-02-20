@@ -1,7 +1,8 @@
 require_relative 'project'
 require_relative '../template_classes/template_version_top_level'
-require_relative '../../lib/template_classes/template_rakefile_meta'
+require_relative '../template_classes/template_rakefile_meta'
 require_relative '../template_classes/template_build_shell_meta'
+require_relative '../template_classes/template_readme'
 
 module Projects
   class ProjectMeta < Project
@@ -26,8 +27,9 @@ module Projects
 
       # templates that require additional data
       version_path = TemplateVersionTopLevel.new(project_name, module_name).gemspec_require_path
-      @templates  << TemplateGemspec.new(project_name, module_name,
-                                         dev_gems: dev_gems, runtime_gems: runtime_gems, version_path: version_path)
+      templates << TemplateGemspec.new(project_name, module_name,
+                                       dev_gems: dev_gems, runtime_gems: runtime_gems, version_path: version_path)
+      templates << TemplateReadme.new(project_name, module_name, project_domain: proj_domain)
     end
   end
 end

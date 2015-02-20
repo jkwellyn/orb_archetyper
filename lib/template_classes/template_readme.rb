@@ -18,7 +18,7 @@ class TemplateReadme < Template
 
   def validate_project_domain
     return if template_data[:project_domain]
-    user_name = ENV['USER'].nil? ? '\<first_name-last_name\>' : ENV['USER'].gsub('.', '-')
+    user_name = ENV['USER'] ? ENV['USER'].gsub('.', '-') : '\<first_name-last_name\>'
     template_data[:project_domain] = user_name
   end
 end

@@ -11,6 +11,10 @@ class Template
 
   TEMPLATE_LOCATION = File.join(File.dirname(__FILE__), '..', 'templates')
 
+  def self.convert_to_templates_class(template_name)
+    "template_#{template_name}".camelize.constantize
+  end
+
   def initialize(project_name, module_name, template_data = {})
     @project_name  = project_name
     @module_name   = module_name
@@ -36,10 +40,6 @@ class Template
   def post_install_actions(_args)
     # Subclasses should override if necessary
     # TODO: consider raising NotImplementedError
-  end
-
-  def self.convert_to_templates_class(template_name)
-    "template_#{template_name}".camelize.constantize
   end
 
   # override == because include uses this
