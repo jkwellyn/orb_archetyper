@@ -1,6 +1,6 @@
-require_relative '../../lib/template_classes/template'
-require_relative '../../lib/template_classes/template_bin_cli'
-require_relative '../../lib/template_classes/template_readme'
+require_relative '../../lib/template_classes/base'
+require_relative '../../lib/template_classes/bin_cli'
+require_relative '../../lib/template_classes/readme'
 
 module  OrbArchetyper
   describe Template do

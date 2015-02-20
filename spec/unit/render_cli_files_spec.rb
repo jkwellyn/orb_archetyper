@@ -1,4 +1,4 @@
-require_relative '../../lib/template_classes/template_bin_cli'
+require_relative '../../lib/template_classes/bin_cli'
 
 describe TemplateBinCli do
   context 'CLI project generation' do

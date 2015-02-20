@@ -1,7 +1,7 @@
 require_relative '../../lib/projects/project_factory'
-require_relative '../../lib/template_classes/template_bin_cli'
-require_relative '../../lib/template_classes/template_license'
-require_relative '../../lib/template_classes/template_version'
+require_relative '../../lib/template_classes/bin_cli'
+require_relative '../../lib/template_classes/license'
+require_relative '../../lib/template_classes/version'
 
 module Projects
   describe ProjectFactory do

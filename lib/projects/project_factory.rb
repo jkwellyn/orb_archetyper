@@ -1,8 +1,8 @@
-require_relative 'project_cli'
-require_relative 'project_core'
-require_relative 'project_test_generic'
-require_relative 'project_test_bertha'
-require_relative '../template_classes/template'
+require_relative 'cli'
+require_relative 'core'
+require_relative 'test_generic'
+require_relative 'test_bertha'
+require_relative '../template_classes/base'
 
 module Projects
   InvalidProjectException = Class.new(Exception)
