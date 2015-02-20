@@ -10,7 +10,7 @@ class OrbCLI < Thor
                 aliases: ['-t'],
                 required: true,
                 default: 'core',
-                enum: %w(bertha_test cli core meta test),
+                enum: %w(bertha_test cli core test),
                 desc: 'Project type'
 
   # optional
