@@ -2,7 +2,6 @@ require_relative 'project_cli'
 require_relative 'project_core'
 require_relative 'project_test_generic'
 require_relative 'project_test_bertha'
-require_relative 'project_meta'
 require_relative '../template_classes/template'
 
 module Projects
@@ -10,11 +9,10 @@ module Projects
 
   class ProjectFactory
     PROJECT_MAP = {
+      bertha_test: ProjectTestBertha,
       cli:         ProjectCLI,
       core:        ProjectCore,
-      meta:        ProjectMeta,
-      test:        ProjectTestGeneric,
-      bertha_test: ProjectTestBertha
+      test:        ProjectTestGeneric
     }
 
     def self.make_project(proj_name, proj_type, proj_domain)

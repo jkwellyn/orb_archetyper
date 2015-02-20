@@ -62,7 +62,6 @@ In order for the Github interactions to work, please do the following:
 - `bertha_test` - Rspec Test Project (aka test launcher) specifically to test Bertha jobs
 - `cli`         - Command line applications
 - `core`        - Core project (e.g. SQL or Rest Connection manager) used to facilitate automated testing common to all QA
-- `meta`        - Meta project (e.g. rails) used to collect related gems into 1 meta gem
 - `test`        - Rspec Test Project (aka test launcher) that can be configured to be executed against a number of deployment tiers
 
 Projects are created with a predefined structure and are autowired with a set configuration.
@@ -81,15 +80,6 @@ This includes:
 7. Rake tasks
 8. Git project initialization
 9. A jenkins build.sh script to simplify how jenkins executes/invokes commands
-
-### Meta projects
-
-###### TODO this section may change as we make more modifications to the archetyper
-
-The orb_archetyper will generate an empty shell of a project when you generate with `-t meta`.  In order to hook in your sub-projects to the meta project:
-
-1. Generate the appropriate project type (likely core or utility) WITHIN the meta project's folder.
-2. Add your sub-project to the list of projects within the meta project's Rakefile.
 
 ## CI Integration
 
