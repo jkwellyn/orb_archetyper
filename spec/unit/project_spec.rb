@@ -1,5 +1,5 @@
-require_relative '../../lib/projects/project'
-require_relative '../../lib/template_classes/template_gemspec.rb'
+require_relative '../../lib/projects/base'
+require_relative '../../lib/template_classes/gemspec.rb'
 
 module Projects
   describe Project do
