@@ -115,7 +115,7 @@ You can specify the view that your job will appear under in the `ci_metadata.jso
 - Crystal Hsiung (crystal@opower.com)
 
 #### Process
-1. Fork it (`https://github.va.opower.it/auto/orb_archetyper`)
+1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)

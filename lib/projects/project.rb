@@ -6,13 +6,12 @@ require_relative '../template_classes/template_build_shell'
 require_relative '../template_classes/template_ci_metadata'
 require_relative '../template_classes/template_changelog'
 require_relative '../template_classes/template_rakefile'
-require_relative '../template_classes/template_readme'
 require_relative '../template_classes/template_dot_rspec'
 require_relative '../template_classes/template_dot_rubocop_yml'
 require_relative '../template_classes/template_empty_dir'
 require_relative '../template_classes/template_spec_helper'
 require_relative '../template_classes/template_orb_annotations_mustache'
-require_relative '../../lib/gems/gem_data'
+require_relative '../gems/gem_data'
 
 module Projects
   # base project class
@@ -20,7 +19,7 @@ module Projects
     attr_accessor :dev_gems, :runtime_gems, :logger
     attr_accessor :module_name, :project_name, :project_type, :templates
 
-    def initialize(proj_name, proj_type, proj_domain)
+    def initialize(proj_name, proj_type, _proj_domain)
       @project_name = proj_name
       @project_type = proj_type
       @module_name  = @project_name.split(/[_\-]/).map(&:capitalize).join
@@ -34,7 +33,6 @@ module Projects
       # :main? Double check who needs it.
 
       create_standard_templates([TemplateDotRspec, TemplateOrbAnnotationsMustache])
-      @templates << TemplateReadme.new(@project_name, @module_name, project_domain: proj_domain)
       @templates << TemplateArchetyperMetadata.new(@project_name, @module_name, project_type: @project_type)
 
       # TODO: break the specifier into own element?

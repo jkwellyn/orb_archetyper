@@ -4,6 +4,7 @@ require_relative '../template_classes/template_gemspec'
 require_relative '../template_classes/template_example_spec'
 require_relative '../template_classes/template_main'
 require_relative '../template_classes/template_rakefile_gem'
+require_relative '../template_classes/template_readme'
 require_relative '../template_classes/template_spec_helper'
 require_relative '../template_classes/template_version'
 require_relative '../template_classes/template_dot_gitignore_gem'
@@ -39,8 +40,9 @@ module Projects
 
       # templates that require additional data
       version_path = TemplateVersion.new(project_name, module_name).gemspec_require_path
-      templates   << TemplateGemspec.new(project_name, module_name,
-                                         dev_gems: dev_gems, runtime_gems: runtime_gems, version_path: version_path)
+      templates << TemplateGemspec.new(project_name, module_name,
+                                       dev_gems: dev_gems, runtime_gems: runtime_gems, version_path: version_path)
+      templates << TemplateReadme.new(project_name, module_name, project_domain: proj_domain)
     end
   end
 end
