@@ -1,0 +1,7 @@
+class <%= module_name %>CLI < Thor
+  desc 'version', 'Show <%= project_name %> version'
+  def version
+    puts "<%= project_name %> #{<%= module_name %>::VERSION}"
+  end
+  map %w(-v --version) => :version
+end

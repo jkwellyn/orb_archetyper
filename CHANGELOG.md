@@ -1,3 +1,9 @@
+### 2.0.0
+- Cleaned up CLI
+- Added thor based support for cli projects
+- Dropped support for meta projects
+- Refactored/renamed template and project classes
+
 ### 1.3.0
 - Switched from OptionParser to Thor
 

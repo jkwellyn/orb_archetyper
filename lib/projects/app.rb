@@ -24,6 +24,7 @@ module Projects
         [
           TemplateDotGitignoreApp,
           TemplateRakefile,
+          TemplateReadmeTest,
           TemplateVersionTopLevel,
           TemplateDotRubocopYml,
           TemplateChangelog
@@ -32,7 +33,6 @@ module Projects
 
       # templates that require additional data
       templates << TemplateGemfileApp.new(project_name, module_name, dev_gems: dev_gems, runtime_gems: runtime_gems)
-      templates << TemplateReadmeTest.new(project_name, module_name, project_domain: proj_domain)
     end
   end
 end
