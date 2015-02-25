@@ -1,9 +1,18 @@
 #!/usr/bin/env ruby
-
+require 'thor'
 require_relative '../lib/<%= required_file %>'
 
-begin
-  <%= module_name %>::Main.new.run
-rescue Errno::ENOENT => err
-  abort "<%= project_name %>: #{err.message}"
+# Skeleton CLI class
+class <%= module_name %>CLI < Thor
+  # TODO: add global options using class_option method
+  check_unknown_options!
 end
+
+# Load all commands
+cmd_root = '../../lib/commands/*'
+Dir[File.expand_path(cmd_root, __FILE__)].each do |cmd|
+  require_relative cmd
+end
+
+# Prevent starting the CLI if running under rspec
+<%= module_name %>CLI.start unless $PROGRAM_NAME =~ /rspec/

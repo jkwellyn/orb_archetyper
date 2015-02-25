@@ -29,6 +29,7 @@ module Projects
           TemplateExampleSpec,
           TemplateMain,
           TemplateRakefileGem,
+          TemplateReadme,
           TemplateSpecHelper,
           TemplateBuildShell,
           TemplateVersion,
@@ -42,7 +43,6 @@ module Projects
       version_path = TemplateVersion.new(project_name, module_name).gemspec_require_path
       templates << TemplateGemspec.new(project_name, module_name,
                                        dev_gems: dev_gems, runtime_gems: runtime_gems, version_path: version_path)
-      templates << TemplateReadme.new(project_name, module_name, project_domain: proj_domain)
     end
   end
 end
