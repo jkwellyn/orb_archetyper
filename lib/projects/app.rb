@@ -25,9 +25,7 @@ module Projects
           TemplateDotGitignoreApp,
           TemplateRakefile,
           TemplateReadmeTest,
-          TemplateVersionTopLevel,
-          TemplateDotRubocopYml,
-          TemplateChangelog
+          TemplateVersionTopLevel
         ]
       )
 

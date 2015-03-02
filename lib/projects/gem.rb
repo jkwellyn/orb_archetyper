@@ -1,4 +1,5 @@
 require_relative 'base'
+require_relative '../template_classes/changelog'
 require_relative '../template_classes/gemfile_gem'
 require_relative '../template_classes/gemspec'
 require_relative '../template_classes/example_spec'
@@ -33,9 +34,8 @@ module Projects
           TemplateSpecHelper,
           TemplateBuildShell,
           TemplateVersion,
-          TemplateDotRubocopYml,
-          TemplateChangelog,
-          TemplateConfigYml
+          TemplateConfigYml,
+          TemplateChangelog
         ]
       )
 

@@ -1,3 +1,6 @@
+### 2.0.1
+- No CHANGELOG generated for test projects
+
 ### 2.0.0
 - Cleaned up CLI
 - Added thor based support for cli projects

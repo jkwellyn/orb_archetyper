@@ -32,7 +32,13 @@ module Projects
       # :rvmrc not included? Maybe to be included via switches?
       # :main? Double check who needs it.
 
-      create_standard_templates([TemplateDotRspec, TemplateOrbAnnotationsMustache])
+      create_standard_templates(
+        [
+          TemplateDotRspec,
+          TemplateOrbAnnotationsMustache,
+          TemplateDotRubocopYml
+        ]
+      )
       @templates << TemplateArchetyperMetadata.new(@project_name, @module_name, project_type: @project_type)
 
       # TODO: break the specifier into own element?
