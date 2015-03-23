@@ -84,6 +84,13 @@ Tasks to run tests:
     $ rake spec:full        # Run all tests
     $ rake spec:Unit        # Run RSpec code examples
 
+### Versioning
+
+In the past, versions were stored as a Ruby String in version.rb. Now, we use the .semver file to store the versions.
+The .semver file should not be edited by hand, but manipulated programmatically via the
+[semver2 gem](https://rubygems.org/gems/semver2). After `bundle install` you will have an executable called `semver`
+on your path. Run `bundle exec semver help` for details.
+
 ### Github Access
 
 In order for the Github interactions to work, please do the following:

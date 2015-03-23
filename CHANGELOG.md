@@ -1,3 +1,6 @@
+### 2.0.2
+- Add semver support for generated projects
+
 ### 2.0.1
 - No CHANGELOG generated for test projects
 

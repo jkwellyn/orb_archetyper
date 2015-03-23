@@ -5,6 +5,7 @@ require 'erb'
 require 'github_project/project'
 require 'ostruct'
 require 'orb_logger'
+require 'semver'
 
 # Archetype generator
 class ArchetypeGenerator

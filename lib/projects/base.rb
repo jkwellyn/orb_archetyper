@@ -69,6 +69,11 @@ module Projects
 
         Array(yield).each { |additional_file| generate_file_with_output { additional_file } } if block_given?
       end
+      post_install_actions
+    end
+
+    def post_install_actions
+      # Subclasses should override if necessary
     end
 
     def generate_file_with_output

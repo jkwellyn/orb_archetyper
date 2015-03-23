@@ -10,6 +10,7 @@ require_relative '../template_classes/spec_helper'
 require_relative '../template_classes/version'
 require_relative '../template_classes/dot_gitignore_gem'
 require_relative '../template_classes/config_yml'
+require 'semver'
 
 module Projects
   class ProjectGem < Project
@@ -18,7 +19,7 @@ module Projects
 
       dev_gems.concat(
         [
-          %w(build_lifecycle ~> 1.0),
+          %w(build_lifecycle ~> 1.1),
           %w(orb_configuration ~> 1.0)
         ]
       )
@@ -43,6 +44,13 @@ module Projects
       version_path = TemplateVersion.new(project_name, module_name).gemspec_require_path
       templates << TemplateGemspec.new(project_name, module_name,
                                        dev_gems: dev_gems, runtime_gems: runtime_gems, version_path: version_path)
+    end
+
+    # Create a .semver file for gem projects.
+    def post_install_actions
+      Dir.chdir(@project_name) do
+        SemVer.new.save(SemVer::FILE_NAME)
+      end
     end
   end
 end

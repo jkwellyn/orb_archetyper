@@ -43,6 +43,7 @@ module Projects
 
         project_gem_expectations(project_type) do
           expected_file_name = "#{project_name}.rb"
+          expect_path_to_exist(true, project_name, '.semver')
           expect_path_to_exist(true, project_name, 'lib', expected_file_name)
           expect_path_to_exist(true, project_name, 'build.sh')
           expect_path_to_exist(true, project_name, 'CHANGELOG.md')
