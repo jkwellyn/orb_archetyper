@@ -1,9 +1,8 @@
 require_relative 'base'
-require_relative '../orb_archetyper/version'
 
 class TemplateVersionTopLevel < Template
   def version
-    OrbArchetyper::VERSION
+    '2.0.2'
   end
 
   def template_file

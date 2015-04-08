@@ -3,7 +3,6 @@ require 'thor'
 
 require_relative '../lib/archetype_generator'
 require_relative '../lib/fork_generator'
-require_relative '../lib/orb_archetyper/version'
 
 class OrbCLI < Thor
 

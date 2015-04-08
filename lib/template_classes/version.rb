@@ -1,5 +1,4 @@
 require_relative 'version_top_level'
-require_relative '../orb_archetyper/version'
 
 class TemplateVersion < TemplateVersionTopLevel
   def output_directory
