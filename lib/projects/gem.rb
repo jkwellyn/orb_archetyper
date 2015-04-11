@@ -19,7 +19,7 @@ module Projects
 
       dev_gems.concat(
         [
-          %w(build_lifecycle ~> 1.1),
+          %w(orb_build_lifecycle ~> 1.0),
           %w(orb_configuration ~> 1.0)
         ]
       )

@@ -20,7 +20,7 @@ Description: Reusable libraries packaged as gems. These facilitate automated tas
 Key Differences from Test projects:
  - Gems should include a .gemspec to build the gem. They should not include a Gemfile.lock to allow projects across the widest possible range of dependencies to use it.
  - Test execution is fairly straightforward. Run all unit/e2e tests, build, install, deploy. As a result, there will usually be a 1-to-1 project to master Jenkins job ratio for gem projects.
- - The [build_lifecycle gem](https://github.va.opower.it/auto/build_lifecycle) supplies various tasks common to gems.
+ - The [orb_build_lifecycle gem](https://github.va.opower.it/auto/orb_build_lifecycle) supplies various tasks common to gems.
 
 Projects are created with a predefined structure and are autowired with a set configuration.
 
