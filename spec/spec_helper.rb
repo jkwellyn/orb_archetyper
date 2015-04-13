@@ -1,6 +1,6 @@
 require 'simplecov'
 require 'rspec/mocks'
-require 'test_support/filesystem_helper'
+require 'orb_test_support/filesystem_helper'
 
 SimpleCov.start do
   coverage_dir 'tmp/coverage/unit'

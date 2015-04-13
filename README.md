@@ -12,7 +12,7 @@ Description: Tests that can be configured to be executed against a number of dep
 Key Differences from Gem projects:
  - Test projects should include a Gemfile.lock (and lack a .gemspec as they are not gems) as test projects are essentially applications that can be run across multiple machines, and the precision enforced by bundler is extremely desirable to ensure consistent, reliable execution.
  - Test execution can get complex as the project may house various sets of tests that need to be run against different tiers, configurations (clients), and/or at different intervals (smoke vs regression). As a result, there will usually NOT be a 1-to-1 project to Jenkins job ratio for test projects.
- - The [test_support gem](https://github.va.opower.it/auto/test_support) supplies various tasks common to testing, e.g. [spec:from_config](https://github.va.opower.it/auto/test_support#rake-from-config) specifically addresses the previous bulletpoint.
+ - The [orb_test_support gem](https://github.va.opower.it/auto/orb_test_support) supplies various tasks common to testing, e.g. [spec:from_config](https://github.va.opower.it/auto/orb_test_support#rake-from-config) specifically addresses the previous bulletpoint.
 
 ### Gem Projects generated with `-t core` or `-t cli`
 Description: Reusable libraries packaged as gems. These facilitate automated tasks common to all QA. Some examples of gem projects: Rest_Connection Manager, bertha-scheduler, any Archmage service client. A `cli` project is a more specialized `core` project that includes pre-wired Thor CLI files to help you write a CLI for your gem.
@@ -116,7 +116,7 @@ AND your project is either:
 
 You can specify the view that your job will appear under in the `ci_metadata.json` file using the `jenkins_view` key. If no value is set for `jenkins_view` or no `ci_metadata.json` file is found, the job will appear on the "No Assigned View" views.
 
-Again, if your test project has various different run configurations, see [test_support#rake-from-config](https://github.va.opower.it/auto/test_support#rake-from-config) for how to set up the configuration to create your jobs.
+Again, if your test project has various different run configurations, see [orb_test_support#rake-from-config](https://github.va.opower.it/auto/orb_test_support#rake-from-config) for how to set up the configuration to create your jobs.
 
 ## Contributing
 

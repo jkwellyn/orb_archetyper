@@ -3,8 +3,8 @@ require 'rubocop/rake_task'
 require 'annotation_manager/rake_task'
 require 'orb_logger'
 require 'yard'
-require 'test_support/tasks/spec_config'
-require 'test_support/tasks/task_helpers'
+require 'orb_test_support/tasks/spec_config'
+require 'orb_test_support/tasks/task_helpers'
 
 RAKE_LOG ||= OrbLogger::OrbLogger.new
 RAKE_LOG.progname = 'Rake Tasks'
@@ -13,9 +13,9 @@ YARD::Rake::YardocTask.new do |task|
   task.options = ['--output-dir=tmp/yard']
 end
 
-require 'test_support/tasks/spec_common'
-require 'test_support/tasks/spec_test'
+require 'orb_test_support/tasks/spec_common'
+require 'orb_test_support/tasks/spec_test'
 
 # Load the test execution configuration
 OrbConfiguration::Configuration.instance.load!
-require 'test_support/tasks/spec_config'
+require 'orb_test_support/tasks/spec_config'

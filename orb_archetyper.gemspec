@@ -26,6 +26,7 @@ Gem::Specification.new do |spec|
   # that cause confusion with more permissive version specifications.
   spec.add_development_dependency('opower-deployment', '0.1.2')
   spec.add_development_dependency('orb_build_lifecycle', '~> 1.1')
+  spec.add_development_dependency('orb_test_support')
 
   # Runtime dependencies
   spec.add_dependency('orb_logger', '~> 1.0')
