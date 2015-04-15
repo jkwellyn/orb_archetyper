@@ -6,7 +6,8 @@ Command line application to generate a given project type for QA.
 
 orb_archetyper generates two general types of projects - test projects and gem projects.
 
-### Rspec Test Projects (aka test launcher) generated with `-t test` or `-t bertha_test`
+#### Rspec Test Projects (aka test launcher) generated with `-t test` or `-t bertha_test`
+
 Description: Tests that can be configured to be executed against a number of deployment tiers. A `bertha_test` project is a more specialized `test` project that includes configuration files specifically to test Bertha jobs
 
 Key Differences from Gem projects:
@@ -14,7 +15,8 @@ Key Differences from Gem projects:
  - Test execution can get complex as the project may house various sets of tests that need to be run against different tiers, configurations (clients), and/or at different intervals (smoke vs regression). As a result, there will usually NOT be a 1-to-1 project to Jenkins job ratio for test projects.
  - The [orb_test_support gem](https://github.va.opower.it/auto/orb_test_support) supplies various tasks common to testing, e.g. [spec:from_config](https://github.va.opower.it/auto/orb_test_support#rake-from-config) specifically addresses the previous bulletpoint.
 
-### Gem Projects generated with `-t core` or `-t cli`
+#### Gem Projects generated with `-t core` or `-t cli`
+
 Description: Reusable libraries packaged as gems. These facilitate automated tasks common to all QA. Some examples of gem projects: Rest_Connection Manager, bertha-scheduler, any Archmage service client. A `cli` project is a more specialized `core` project that includes pre-wired Thor CLI files to help you write a CLI for your gem.
 
 Key Differences from Test projects:
@@ -111,12 +113,16 @@ Jobs for the master branch and for any PRs will automatically get created if:
 
 AND your project is either:
 
-- in the auto Github organization OR
+- in the [auto](https://github.va.opower.it/auto) Github organization OR
 - listed on the `AUTO_PROJECT_WHITE_LIST` [whitelist of the job cutter](https://github.va.opower.it/auto/jenkins-seed/blob/master/src/main/groovy/opower/xweb/jenkins/jobs/JobWhiteLists.groovy)
 
-You can specify the view that your job will appear under in the `ci_metadata.json` file using the `jenkins_view` key. If no value is set for `jenkins_view` or no `ci_metadata.json` file is found, the job will appear on the "No Assigned View" views.
+You can specify a number of global project-wide parameters in the `jenkins.yml` file, such as:
 
-Again, if your test project has various different run configurations, see [orb_test_support#rake-from-config](https://github.va.opower.it/auto/orb_test_support#rake-from-config) for how to set up the configuration to create your jobs.
+- `view_name`  - name of the jenkins view that your job will appear under. If no value is provided or no `jenkins.yml` file is found, the job will appear under the "No View Assigned" view.
+- `notification_email`
+- `cron_schedule`
+
+If your test project has various different run configurations, see [orb_test_support#rake-from-config](https://github.va.opower.it/auto/orb_test_support#rake-from-config) for how to set up the configuration to create your jobs.
 
 ## Contributing
 
