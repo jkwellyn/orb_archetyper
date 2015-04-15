@@ -1,12 +1,12 @@
 :test_execution:
-# TODO: this configuration provided as an example, replace with your own
-#  :dev-cec-primary:    # this is the key for you to retrieve your config; make it unique
-#    :rspec_pattern: 'spec/accept/primary/*_spec.rb'
-#    :jenkins_params:  # this entire section is optional, set values if you want to override the default behavior, listed below
-#      :auto_create: true
+  # TODO: this configuration provided as an example, replace with your own if needed
+  :primary:          # this is the key for you to retrieve your config; make it unique
+    :rspec_pattern:  'spec/accept/primary/*_spec.rb'
+    :jenkins_params: # this entire section is optional, set values if you want to override the default behavior, listed below
+      :view: 'No View Assigned'  # this is the name of the jenkins view the project will be assigned to, replace with your own
+#      :notification_email: your_team@opower.com
 #      :cron_frequency: 'H 3 * * *'
-#      :notification_email: yourteam@opower.com
-#      :view: 'No View Assigned'
-#    :run_params:      # parameters your test need; tier and client are just examples; replace with your own
-#      :tier: 'dev'
-#      :client: 'cec'
+#      :auto_create: true
+#    :run_params:    # parameters your test needs; tier and client are just examples; replace with your own
+#      :tier:   dev
+#      :client: test
