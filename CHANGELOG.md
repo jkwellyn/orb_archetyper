@@ -1,3 +1,6 @@
+### 2.0.3
+- AUTO-619 Comments aren't supported in .ruby-version.
+
 ### 2.0.2
 - Add semver support for generated projects
 

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    orb_archetyper (2.0.2)
+    orb_archetyper (2.0.3pre.1)
       activesupport
       ansi (~> 1.4)
       git (~> 1.2)
