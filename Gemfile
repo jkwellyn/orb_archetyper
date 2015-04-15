@@ -1,2 +1,2 @@
-source 'http://gemserver.va.opower.it'
+source 'https://gemserver.va.opower.it'
 gemspec

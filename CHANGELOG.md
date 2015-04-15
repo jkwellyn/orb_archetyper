@@ -1,5 +1,9 @@
+### 2.1.0
+- Generate a usable out of the box config.yml for test projects
+- Switch from ci_metadata.json to jenkins.yml
+
 ### 2.0.3
-- AUTO-619 Comments aren't supported in .ruby-version.
+Fixed .ruby-version template - comments aren't supported
 
 ### 2.0.2
 - Add semver support for generated projects

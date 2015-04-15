@@ -3,11 +3,11 @@ require_relative '../orb_archetyper/rules/naming_conventions/file_names'
 
 class TemplateArchetyperMetadata < Template
   def template_file
-    'ci_metadata.json.erb'
+    'jenkins_yml.erb'
   end
 
   def output_file
-    'ci_metadata.json'
+    'jenkins.yml'
   end
 
   def project_type

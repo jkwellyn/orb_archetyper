@@ -1,13 +1,12 @@
 # config/env_config.yml
 
 # todo tiers in here dev, qa, etc
-  :hosts:
-    local:  'http://localhost:8080'
-    dev:    'http://dev-service-5101.aws.opower.it:8080'
-    imp:    'http://dev-service-5101.aws.opower.it:8080'
-    opsqa:  'http://dev-service-5101.aws.opower.it:8080'
-    prod:   'http://dev-service-5101.aws.opower.it:8080'
-    qa:     'http://dev-service-5101.aws.opower.it:8080'
-    scale:  'http://dev-service-5101.aws.opower.it:8080'
-    stage:  'http://dev-service-5101.aws.opower.it:8080'
-
+:hosts:
+  local:  'http://localhost:8080'
+  dev:    'http://dev-service-5101.aws.opower.it:8080'
+  imp:    'http://dev-service-5101.aws.opower.it:8080'
+  opsqa:  'http://dev-service-5101.aws.opower.it:8080'
+  prod:   'http://dev-service-5101.aws.opower.it:8080'
+  qa:     'http://dev-service-5101.aws.opower.it:8080'
+  scale:  'http://dev-service-5101.aws.opower.it:8080'
+  stage:  'http://dev-service-5101.aws.opower.it:8080'
