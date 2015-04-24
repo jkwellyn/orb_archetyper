@@ -116,9 +116,9 @@ AND your project is either:
 - in the [auto](https://github.va.opower.it/auto) Github organization OR
 - listed on the `AUTO_PROJECT_WHITE_LIST` [whitelist of the job cutter](https://github.va.opower.it/auto/jenkins-seed/blob/master/src/main/groovy/opower/xweb/jenkins/jobs/JobWhiteLists.groovy)
 
-You can specify a number of global project-wide parameters in the `jenkins.yml` file, such as:
+You can specify a number of global project-wide parameters in the `.jenkins.yml` file, such as:
 
-- `view_name`  - name of the jenkins view that your job will appear under. If no value is provided or no `jenkins.yml` file is found, the job will appear under the "No View Assigned" view.
+- `view_name`  - name of the jenkins view that your job will appear under. If no value is provided or no `.jenkins.yml` file is found, the job will appear under the "No View Assigned" view.
 - `notification_email`
 - `cron_schedule`
 

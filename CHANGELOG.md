@@ -1,6 +1,7 @@
 ### 2.1.0
 - Generate a usable out of the box config.yml for test projects
-- Switch from ci_metadata.json to jenkins.yml
+- Switch from ci_metadata.json to .jenkins.yml
+- Rename view to view_name in jenkins_params
 
 ### 2.0.3
 Fixed .ruby-version template - comments aren't supported
