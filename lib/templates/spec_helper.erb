@@ -18,7 +18,7 @@ require 'orb_logger'
 LOG ||= OrbLogger::OrbLogger.new
 LOG.progname = 'Test Execution' # TODO: replace with whatever progname you want
 
-minimum_acceptable_coverage = 33 # set this % to your desired level of coverage
+minimum_acceptable_coverage = 66 # set this % to your desired level of coverage
 SimpleCov.at_exit do
   SimpleCov.result.format!
   if SimpleCov.result.covered_percent < minimum_acceptable_coverage
