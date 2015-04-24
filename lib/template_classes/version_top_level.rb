@@ -1,8 +1,10 @@
 require_relative 'base'
+require 'semver'
 
 class TemplateVersionTopLevel < Template
   def version
-    '2.0.2'
+    version = SemVer.find
+    version.format '%M.%m.%p%s'
   end
 
   def template_file

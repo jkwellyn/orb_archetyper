@@ -29,6 +29,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency('orb_test_support')
 
   # Runtime dependencies
+  spec.add_runtime_dependency('semver2', '~> 3.4')
   spec.add_dependency('orb_logger', '~> 1.0')
   spec.add_runtime_dependency('ansi', '~> 1.4')
   spec.add_runtime_dependency('git', '~> 1.2')
