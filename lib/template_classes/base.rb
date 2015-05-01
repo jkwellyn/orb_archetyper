@@ -37,6 +37,22 @@ class Template
     full_path
   end
 
+  # @param format [Symbol] format type
+  # :default (nil) => 'first.last', :github => 'first-last', :author => 'First Last'
+  def user_name(format = nil)
+    user = ENV['USER'] || 'firstname.lastname'
+    first_last = user.split('.').map(&:downcase)
+
+    case format
+    when :github
+      first_last.join('-')
+    when :author
+      first_last.map(&:capitalize).join(' ')
+    else
+      first_last.join('.')
+    end
+  end
+
   def post_install_actions(_args)
     # Subclasses should override if necessary
     # TODO: consider raising NotImplementedError
