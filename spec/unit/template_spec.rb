@@ -31,5 +31,26 @@ module  OrbArchetyper
         expect(template1).not_to eql(template2)
       end
     end
+
+    context 'user_name' do
+      let(:user) { 'jim.opower' }
+      let(:name) { 'opower' }
+
+      subject { Template.new('project_name', 'ProjectName') }
+
+      it 'with firstname and lastname' do
+        ENV['USER'] = user
+        expect(subject.user_name).to eq(user)
+        expect(subject.user_name(:github)).to eq('jim-opower')
+        expect(subject.user_name(:author)).to eq('Jim Opower')
+      end
+
+      it 'with firstname only' do
+        ENV['USER'] = name
+        expect(subject.user_name).to eq(name)
+        expect(subject.user_name(:github)).to eq(name)
+        expect(subject.user_name(:author)).to eq(name.capitalize)
+      end
+    end
   end
 end

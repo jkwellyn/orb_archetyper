@@ -6,10 +6,10 @@ Gem::Specification.new do |spec|
   spec.version       = <%= module_name %>::VERSION
   spec.summary       = 'Write a short summary. Required.'
   spec.description   = 'Write a longer description. Optional.'
-  spec.homepage      = 'https://github.va.opower.it/your-GH-name-here/<%= project_name %>'
+  spec.homepage      = 'https://github.va.opower.it/<%= user_name(:github) %>/<%= project_name %>'
 
-  spec.authors       = ['your team name', '<%= ENV['USER']%>']
-  spec.email         = ['your-team-email-here@opower.com', 'your-email-here@opower.com']
+  spec.authors       = ['your team name', '<%= user_name(:author) %>']
+  spec.email         = ['your-team-email-here@opower.com', '<%= user_name %>@opower.com']
 
   # This gem will work with 1.9.3 or greater...
   spec.required_ruby_version = '>= 1.9.3'
