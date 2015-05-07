@@ -1,3 +1,6 @@
+### 2.1.1
+- Fix `orb -v` bug
+
 ### 2.1.0
 - Generate a usable out of the box config.yml for test projects
 - Switch from ci_metadata.json to .jenkins.yml

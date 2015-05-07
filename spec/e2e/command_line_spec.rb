@@ -15,7 +15,7 @@ describe 'Command Line Interface' do
 
   it 'invokes the version command' do
     output = capture(:stdout) { OrbCLI.start(%w(version)) }
-    expect(output).to include('orb-archetyper version')
+    expect(output).to include('orb_archetyper')
   end
 
   it 'invokes the fork comamnd' do

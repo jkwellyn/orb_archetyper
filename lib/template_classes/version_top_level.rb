@@ -3,8 +3,9 @@ require 'semver'
 
 class TemplateVersionTopLevel < Template
   def version
-    version = SemVer.find
-    version.format '%M.%m.%p%s'
+    semver_dir = File.join(File.dirname(__FILE__), '..', '..')
+    version_tag = SemVer.find(semver_dir)
+    version_tag.format '%M.%m.%p%s'
   end
 
   def template_file
