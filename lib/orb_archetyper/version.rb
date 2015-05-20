@@ -2,7 +2,7 @@
 # We can't load 3rd party code from the .gemspec as one might expect without doing something like this.
 require 'rubygems/dependency_installer'
 
-gem_spec = ['orb_build_lifecycle', '~> 1.1']
+gem_spec = ['orb_build_lifecycle', '~> 1.3']
 build_lifecycle_gem = Gem::Specification.find_all_by_name(*gem_spec).first
 build_lifecycle_gem = Gem::DependencyInstaller.new.install(*gem_spec).first unless build_lifecycle_gem
 build_lifecycle_gem.add_self_to_load_path

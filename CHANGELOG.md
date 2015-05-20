@@ -1,5 +1,6 @@
-### 2.1.1
+### [2.1.1] - 2015-05-19
 - Fix `orb -v` bug
+- Fix version bug in generated projects
 
 ### 2.1.0
 - Generate a usable out of the box config.yml for test projects
