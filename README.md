@@ -118,11 +118,12 @@ AND your project is either:
 
 You can specify a number of global project-wide parameters in the `.jenkins.yml` file, such as:
 
-- `view_name`  - name of the jenkins view that your job will appear under. If no value is provided or no `.jenkins.yml` file is found, the job will appear under the "No View Assigned" view.
-- `notification_email`
-- `cron_schedule`
+- `view_name`  - name of the jenkins view that your job will appear under. If no value is provided or no `.jenkins.yml` file is found, the job will appear under the `~ noView` view.
+- `notification_email` - email address to send out notifications to when the jenkins job fails
+- `cron_schedule` - cron-based schedule for running the job. Default: 'H 3 * * *'
+- `auto_create` - if set to `false` no jenkins jobs will be created for the project. Default: true
 
-If your test project has various different run configurations, see [orb_test_support#rake-from-config](https://github.va.opower.it/auto/orb_test_support#rake-from-config) for how to set up the configuration to create your jobs.
+If your test project has various different run configurations, see [orb_test_support#rake-from-config](https://github.va.opower.it/auto/orb_test_support#rake-from-config) for how to set up the configuration to create your jobs. Run configuration parameters will override the correspoinding global project-wide parameters.
 
 ## Contributing
 
