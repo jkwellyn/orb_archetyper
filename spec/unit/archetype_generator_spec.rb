@@ -24,7 +24,7 @@ module OrbArchetyper
           double('Projects::ProjectCli', generate_project: {})
         end
         let(:project_github) do
-          double('SharedTasks::GithubProject::Project',
+          double('SharedTasks::OrbGithubProject::Project',
                  commit_current_directory: {},
                  create_remote_repository: {},
                  push: {},
@@ -36,8 +36,8 @@ module OrbArchetyper
           Projects::ProjectFactory.stub(:make_project).with('project_a', 'cli', 'auto') { project }
           expect(project).to receive(:generate_project)
 
-          SharedTasks::GithubProject::Project.stub(:initialize_git).with('project_a')
-          SharedTasks::GithubProject::Project.stub(:new) { project_github }
+          SharedTasks::OrbGithubProject::Project.stub(:initialize_git).with('project_a')
+          SharedTasks::OrbGithubProject::Project.stub(:new) { project_github }
           Dir.stub(:chdir) do |&block|
             block.call
           end

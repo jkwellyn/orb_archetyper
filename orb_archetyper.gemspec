@@ -29,13 +29,13 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency('orb_test_support')
 
   # Runtime dependencies
-  spec.add_runtime_dependency('semver2', '~> 3.4')
-  spec.add_dependency('orb_logger', '~> 1.0')
+  spec.add_runtime_dependency('activesupport')
   spec.add_runtime_dependency('ansi', '~> 1.4')
   spec.add_runtime_dependency('git', '~> 1.2')
-  spec.add_runtime_dependency('activesupport')
-  spec.add_runtime_dependency('github_project', '~> 1.0')
+  spec.add_runtime_dependency('semver2', '~> 3.4')
   spec.add_runtime_dependency('thor', '~> 0.18')
+  spec.add_runtime_dependency('orb_github_project', '~> 1.1')
+  spec.add_runtime_dependency('orb_logger', '~> 1.0')
 
   spec.post_install_message = 'Welcome to the oRb.'
 end

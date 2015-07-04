@@ -2,7 +2,7 @@ require_relative 'helpers/file_utils'
 require_relative 'projects/project_factory'
 require 'ansi'
 require 'erb'
-require 'github_project/project'
+require 'orb_github_project/project'
 require 'ostruct'
 require 'orb_logger'
 require 'semver'
@@ -40,7 +40,7 @@ class ArchetypeGenerator
     )
     project_archetype.generate_project
 
-    SharedTasks::GithubProject::Project.initialize_git(project_name)
+    SharedTasks::OrbGithubProject::Project.initialize_git(project_name)
     LOG.info ANSI.green { 'initialized git repository' }
 
     return if options[:no_github]
@@ -64,7 +64,7 @@ class ArchetypeGenerator
   # @param project_dir [String] project directory
   def upload_to_github(project_dir)
     Dir.chdir(project_dir) do
-      github_project = SharedTasks::GithubProject::Project.new
+      github_project = SharedTasks::OrbGithubProject::Project.new
       github_project.commit_current_directory('Initial commit of auto-generated scaffolding.')
       yield(github_project)
     end
