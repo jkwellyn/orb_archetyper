@@ -53,7 +53,7 @@ module Projects
         # make sure generated projects work
         Dir.chdir(project_name) do
           # need to commit directory in order for git ls-files to work
-          github_project = SharedTasks::GithubProject::RepositoryGitLocal.new
+          github_project = SharedTasks::OrbGithubProject::RepositoryGitLocal.new
           github_project.add_all
           github_project.commit('initial commit')
           script_output = ''

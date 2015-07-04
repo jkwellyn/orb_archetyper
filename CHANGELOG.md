@@ -1,3 +1,9 @@
+### [2.1.3] - 2015-07-04
+- Updated orb_github_project dependency
+
+### [2.1.2] - 2015-06-15
+- Updated orb_build_lifecycle dependency (runtime type and version bump)
+
 ### [2.1.1] - 2015-05-19
 - Fix `orb -v` bug
 - Fix version bug in generated projects
