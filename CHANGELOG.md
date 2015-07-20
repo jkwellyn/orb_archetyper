@@ -1,3 +1,6 @@
+### [2.2.0] - 2015-17-07
+- Updated gem templates to use orb_build_lifecycle 2.1 and new build script. 
+
 ### [2.1.3] - 2015-07-04
 - Updated orb_github_project dependency
 

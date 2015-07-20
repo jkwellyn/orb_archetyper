@@ -125,6 +125,11 @@ You can specify a number of global project-wide parameters in the `.jenkins.yml`
 
 If your test project has various different run configurations, see [orb_test_support#rake-from-config](https://github.va.opower.it/auto/orb_test_support#rake-from-config) for how to set up the configuration to create your jobs. Run configuration parameters will override the correspoinding global project-wide parameters.
 
+## Automatic Gem Deployment
+As of orb_archetyper 2.1.4, if you have included your project on the Jenkins whitelist mentioned above, your gem projects
+will be automatically published to the gemserver when a new version is checked into the Master build. See 
+[release task](https://github.va.opower.it/auto/orb_build_lifecycle) for details, specifically the `release` task.
+
 ## Contributing
 
 #### Contacts

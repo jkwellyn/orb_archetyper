@@ -6,9 +6,6 @@ set -e
 
 # Global Variables
 SOURCE_DIR=`pwd`
-# Build args
-ALPHA=$1
-BETA=$2
 
 # Begin
 echo "*************************************"
@@ -17,7 +14,6 @@ echo "PWD :"$SOURCE_DIR
 echo "Build args: $1 $2"
 
 main() {
-
   echo "*************************************"
   startTime=$(date +%s)
 
@@ -27,7 +23,9 @@ main() {
   # First, use any available ruby to get opower-deployment gem.
   # We use 1.9.3 because orb_archetyper has some specific gems with ruby requirement >= 1.9.3 (e.g. activesupport).
   rvm use 1.9.3 --fuzzy
+
   bundle install
+
   # access the official ruby version in that gem
   RUBY_VERSION_FILE="`bundle show opower-deployment`/lib/opower/APP_RUBY_VERSION"
   RUBY_VERSION=`cat $RUBY_VERSION_FILE`
@@ -36,8 +34,15 @@ main() {
   # Use the official Opower approved ruby version to run our tests against.
   rvm use $RUBY_VERSION
 
-  bundle install
-  bundle exec rake build
+  if [ $RELEASE ]
+  then
+    echo "Releasing."
+    bundle exec rake release
+  else
+    echo "Not releasing, just doing a build."
+    bundle exec rake build
+    bundle exec rake release:prerelease?
+  fi
 
   endTime=$(date +%s)
   timeDifference=$(( $endTime - $startTime ))
@@ -47,5 +52,5 @@ main() {
 
 }
 
-# RUN
+#RUN
 main
