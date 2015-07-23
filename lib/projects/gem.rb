@@ -25,7 +25,7 @@ module Projects
 
       runtime_gems.concat(
         [
-          %w(orb_build_lifecycle ~> 2.1)
+          %w(orb_build_lifecycle ~> 2.2)
         ]
       )
 

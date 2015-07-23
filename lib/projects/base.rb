@@ -10,7 +10,6 @@ require_relative '../template_classes/dot_rspec'
 require_relative '../template_classes/dot_rubocop_yml'
 require_relative '../template_classes/empty_dir'
 require_relative '../template_classes/spec_helper'
-require_relative '../template_classes/orb_annotations_mustache'
 require_relative '../gems/gem_data'
 
 module Projects
@@ -35,7 +34,6 @@ module Projects
       create_standard_templates(
         [
           TemplateDotRspec,
-          TemplateOrbAnnotationsMustache,
           TemplateDotRubocopYml
         ]
       )

@@ -1,3 +1,6 @@
+### [2.3.0] - 2005-24-07
+- Removed orb_annotation_manager from generated projects
+
 ### [2.2.1] - 2015-17-07
 - Fixed e2e tests so they won't release
 
