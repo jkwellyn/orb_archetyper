@@ -26,9 +26,6 @@ main(){
     bundle exec rake spec:from_config[$1]
   fi
 
-  # Generate TODO/FIXME/other annotations report.
-  bundle exec rake notes:generate_annotations_report
-
   endTime=$(date +%s)
   timeDifference=$(( $endTime - $startTime ))
 
