@@ -7,6 +7,20 @@ set -e
 # Global Variables
 SOURCE_DIR=`pwd`
 
+function set_ruby_manager() {
+  echo "checking ruby manager"
+  if hash rvm 2>/dev/null;
+  then
+    echo 'using rvm to manage ruby'
+    set_cmd='rvm use $RUBY_VERSION'
+    execute_cmd=''
+  else
+    echo 'using rbenv to manage ruby'
+    set_cmd='rbenv shell $RUBY_VERSION'
+    execute_cmd='rbenv exec'
+  fi
+}
+
 # Begin
 echo "*************************************"
 echo "Running build script..."
@@ -17,31 +31,28 @@ main() {
   echo "*************************************"
   startTime=$(date +%s)
 
-  echo WHICH rvm is `which rvm`
-  echo RVM LIST is `rvm list`
+  if [ -z "$RUBY_VERSION" ]
+  then
+    echo "You must set the environment variable RUBY_VERSION to the ruby version you wish to use: "
+    echo "export RUBY_VERSION=1.9.3-p392"
+    exit 1
+  fi
 
-  # First, use any available ruby to get opower-deployment gem.
-  # We use 1.9.3 because orb_archetyper has some specific gems with ruby requirement >= 1.9.3 (e.g. activesupport).
-  rvm use 1.9.3 --fuzzy
+  echo "Using Ruby ${RUBY_VERSION}"
 
-  bundle install
+  set_ruby_manager
+  eval $set_cmd
 
-  # access the official ruby version in that gem
-  RUBY_VERSION_FILE="`bundle show opower-deployment`/lib/opower/APP_RUBY_VERSION"
-  RUBY_VERSION=`cat $RUBY_VERSION_FILE`
-  echo RUBY_VERSION is \'$RUBY_VERSION\'
-
-  # Use the official Opower approved ruby version to run our tests against.
-  rvm use $RUBY_VERSION
+  eval "${execute_cmd} bundle install"
 
   if [ $RELEASE ]
   then
     echo "Releasing."
-    bundle exec rake release
+    eval "${execute_cmd} bundle exec rake release"
   else
     echo "Not releasing, just doing a build."
-    bundle exec rake build
-    bundle exec rake release:prerelease?
+    eval "${execute_cmd} bundle exec rake build"
+    eval "${execute_cmd} bundle exec rake release:prerelease?"
   fi
 
   endTime=$(date +%s)

@@ -57,7 +57,7 @@ module Projects
           github_project.commit('initial commit')
           script_output = ''
           Bundler.with_clean_env do
-            script_output = `unset RELEASE; ./build.sh`
+            script_output = `unset RELEASE; export RUBY_VERSIONS=1.9.3-p392 && ./build.sh`
           end
           LOG.info(script_output)
           expect($CHILD_STATUS.success?).to be true

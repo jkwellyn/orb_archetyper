@@ -1,4 +1,8 @@
-### [2.3.0] - 2005-24-07
+### [2.4.0] - 2015-12-08
+- Ruby version should be set external to the build script now
+- Build script works with rbenv
+
+### [2.3.0] - 2015-24-07
 - Removed orb_annotation_manager from generated projects
 
 ### [2.2.1] - 2015-17-07
