@@ -2,3 +2,4 @@
 ---
 project_type: core
 view_name:    auto_core
+ruby_versions: 1.9.3-p392
