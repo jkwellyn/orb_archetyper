@@ -1,3 +1,6 @@
+### [2.5.0] - 2015-13-08
+- Build status link generated into README
+
 ### [2.4.0] - 2015-12-08
 - Ruby version should be set external to the build script now
 - Build script works with rbenv
