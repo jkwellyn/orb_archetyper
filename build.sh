@@ -45,14 +45,8 @@ main() {
 
   eval "${execute_cmd} bundle install"
 
-  if [ $RELEASE ]
-  then
-    echo "Releasing."
-    eval "${execute_cmd} bundle exec rake release"
-  else
-    echo "Not releasing, just doing a build."
-    eval "${execute_cmd} bundle exec rake build"
-  fi
+  echo "Not releasing, just doing a build." # no auto gem deploy for orb_archetyper yet; problem with guard_clean and Gemfile.lock being updated
+  eval "${execute_cmd} bundle exec rake build"
 
   endTime=$(date +%s)
   timeDifference=$(( $endTime - $startTime ))
