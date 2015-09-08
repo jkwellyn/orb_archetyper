@@ -31,6 +31,7 @@ class ArchetypeGenerator
   # @param options [Hash] options for project generation
   # @option options [String] :type Type of the project
   # @option options [String] :upload_organization Name of the Github organization to upload to
+  # @option options [String] :upload_team Name of the Github team to own the repo, defaults to 'owners'
   # @option options [Boolean] :no_github `false` pushes the project to github, `true` does not
   def generate(options)
     project_archetype = Projects::ProjectFactory.make_project(
@@ -47,7 +48,7 @@ class ArchetypeGenerator
 
     if (org = options[:upload_organization])
       upload_to_github(project_name) do |project|
-        project.create_remote_repository(org)
+        project.create_remote_repository(org, org, options.fetch(:upload_team, 'owners'))
         project.push(org)
         project.fork_repository(org)
       end

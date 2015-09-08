@@ -64,6 +64,13 @@ For the purposes of this README, we will be creating a CLI project (`-t cli`), b
 
     $ bin/orb -t cli -p <project> -o <organization>
 
+##### A new CLI project immediately pushed to an upstream Github organization (assuming proper credentials) owned by given team
+
+If you are not the owner of the provided organization but you are a member of a team which has permissions on the organization,
+you can specify a "team" option, and create the repo on behalf of that team.
+
+    $ bin/orb -t cli -p <project> -o <organization> --team <team>
+
 ##### A new CLI project without creating a git repo for the project
 
     $ bin/orb -t cli -p <project> --no-github
