@@ -10,6 +10,7 @@ require_relative '../template_classes/spec_helper'
 require_relative '../template_classes/version'
 require_relative '../template_classes/dot_gitignore_gem'
 require_relative '../template_classes/config_yml'
+require_relative '../template_classes/release_shell'
 require 'semver'
 
 module Projects
@@ -39,6 +40,7 @@ module Projects
           TemplateReadme,
           TemplateSpecHelper,
           TemplateBuildShell,
+          TemplateReleaseShell,
           TemplateVersion,
           TemplateConfigYml,
           TemplateChangelog

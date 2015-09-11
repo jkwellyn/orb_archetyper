@@ -3,3 +3,4 @@
 project_type: core
 view_name:    auto_core
 test_ruby_versions: 1.9.3-p392
+release_ruby_version: 1.9.3-p392

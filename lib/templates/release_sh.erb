@@ -44,7 +44,7 @@ main() {
   eval $set_cmd
 
   eval "${execute_cmd} bundle install"
-  eval "${execute_cmd} bundle exec rake build"
+  eval "${execute_cmd} bundle exec rake release"
 
   endTime=$(date +%s)
   timeDifference=$(( $endTime - $startTime ))

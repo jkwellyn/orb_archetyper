@@ -1,3 +1,6 @@
+### [2.7.0] - 2015-09-14
+- release.sh for gem projects
+
 ### [2.6.0] - 2015-08-21
 - Add `upload-team` option when uploading a new repo to GitHub
 
