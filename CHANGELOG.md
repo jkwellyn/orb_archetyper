@@ -1,3 +1,6 @@
+### [2.8.0] - 2015-09-30
+- Updated bertha_test templates
+
 ### [2.7.0] - 2015-09-14
 - release.sh for gem projects
 
@@ -18,7 +21,7 @@
 - Fixed e2e tests so they won't release
 
 ### [2.2.0] - 2015-07-17
-- Updated gem templates to use orb_build_lifecycle 2.1 and new build script. 
+- Updated gem templates to use orb_build_lifecycle 2.1 and new build script
 
 ### [2.1.3] - 2015-07-04
 - Updated orb_github_project dependency

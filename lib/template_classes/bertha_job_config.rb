@@ -2,7 +2,7 @@ require_relative 'base'
 
 class TemplateBerthaJobConfigYml < Template
   def output_file
-    'JOB_NAME.yml'
+    'job_name.yml'
   end
 
   def output_directory
