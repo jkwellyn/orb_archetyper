@@ -8,20 +8,30 @@ orb_archetyper generates two general types of projects - test projects and gem p
 
 #### Rspec Test Projects (aka test launcher) generated with `-t test` or `-t bertha_test`
 
-Description: Tests that can be configured to be executed against a number of deployment tiers. A `bertha_test` project is a more specialized `test` project that includes configuration files specifically to test Bertha jobs
+Description: Tests that can be configured to be executed against a number of deployment tiers.
+A `bertha_test` project is a more specialized `test` project that includes configuration files specifically to test Bertha jobs.
 
 Key Differences from Gem projects:
- - Test projects should include a Gemfile.lock (and lack a .gemspec as they are not gems) as test projects are essentially applications that can be run across multiple machines, and the precision enforced by bundler is extremely desirable to ensure consistent, reliable execution.
- - Test execution can get complex as the project may house various sets of tests that need to be run against different tiers, configurations (clients), and/or at different intervals (smoke vs regression). As a result, there will usually NOT be a 1-to-1 project to Jenkins job ratio for test projects.
- - The [orb_test_support gem](https://github.va.opower.it/auto/orb_test_support) supplies various tasks common to testing, e.g. [spec:from_config](https://github.va.opower.it/auto/orb_test_support#rake-from-config) specifically addresses the previous bulletpoint.
+ - Test projects should include a Gemfile.lock (and lack a .gemspec as they are not gems) as test projects are essentially applications
+ that can be run across multiple machines, and the precision enforced by bundler is extremely desirable to ensure consistent,
+ reliable execution.
+ - Test execution can get complex as the project may house various sets of tests that need to be run against different tiers,
+ configurations (clients), and/or at different intervals (smoke vs regression). As a result, there will usually NOT be a 1-to-1 project
+ to Jenkins job ratio for test projects.
+ - The [orb_test_support gem](https://github.va.opower.it/auto/orb_test_support) supplies various tasks common to testing,
+ e.g. [spec:from_config](https://github.va.opower.it/auto/orb_test_support#rake-from-config) specifically addresses the previous bulletpoint.
 
 #### Gem Projects generated with `-t core` or `-t cli`
 
-Description: Reusable libraries packaged as gems. These facilitate automated tasks common to all QA. Some examples of gem projects: Rest_Connection Manager, bertha-scheduler, any Archmage service client. A `cli` project is a more specialized `core` project that includes pre-wired Thor CLI files to help you write a CLI for your gem.
+Description: Reusable libraries packaged as gems. These facilitate automated tasks common to all QA. Some examples of gem projects:
+Rest_Connection Manager, bertha-scheduler, any Archmage service client.
+A `cli` project is a more specialized `core` project that includes pre-wired Thor CLI files to help you write a CLI for your gem.
 
 Key Differences from Test projects:
- - Gems should include a .gemspec to build the gem. They should not include a Gemfile.lock to allow projects across the widest possible range of dependencies to use it.
- - Test execution is fairly straightforward. Run all unit/e2e tests, build, install, deploy. As a result, there will usually be a 1-to-1 project to master Jenkins job ratio for gem projects.
+ - Gems should include a .gemspec to build the gem. They should not include a Gemfile.lock to allow projects across the widest
+ possible range of dependencies to use it.
+ - Test execution is fairly straightforward. Run all unit/e2e tests, build, install, deploy. As a result, there will usually be a
+ 1-to-1 project to master Jenkins job ratio for gem projects.
  - The [orb_build_lifecycle gem](https://github.va.opower.it/auto/orb_build_lifecycle) supplies various tasks common to gems.
 
 Projects are created with a predefined structure and are autowired with a set configuration.
@@ -40,7 +50,8 @@ This includes:
 6. Annotations - annotation_manager built on top of rake-notes (TODO, FIXME, OPTIMIZE)
 7. Changelog - document changes between versions
 8. Git project initialization
-9. A build.sh script to simplify how Jenkins executes/invokes commands. This script can (and should) be used locally to double check your changes before pushing a PR.
+9. A build.sh script to simplify how Jenkins executes/invokes commands.
+This script can (and should) be used locally to double check your changes before pushing a PR.
 
 ## Usage
 
@@ -54,7 +65,8 @@ This includes:
 
 ### Create a new project
 
-For the purposes of this README, we will be creating a CLI project (`-t cli`), but check the usage for the various other project types you can create.
+For the purposes of this README, we will be creating a CLI project (`-t cli`), but check the usage for the various other project
+types you can create.
 
 ##### A new CLI project that pushes to your Github automatically (assuming proper setup)
 
@@ -67,7 +79,7 @@ For the purposes of this README, we will be creating a CLI project (`-t cli`), b
 ##### A new CLI project immediately pushed to an upstream Github organization (assuming proper credentials) owned by given team
 
 If you are not the owner of the provided organization but you are a member of a team which has permissions on the organization,
-you can specify a "team" option, and create the repo on behalf of that team.
+you can specify a 'team' option, and create the repo on behalf of that team.
 
     $ bin/orb -t cli -p <project> -o <organization> --team <team>
 
@@ -91,7 +103,7 @@ Tasks to run tests:
 
     $ rake spec:e2e         # Run RSpec code examples
     $ rake spec:full        # Run all tests
-    $ rake spec:Unit        # Run RSpec code examples
+    $ rake spec:unit        # Run RSpec code examples
 
 ### Versioning
 
@@ -125,18 +137,21 @@ AND your project is either:
 
 You can specify a number of global project-wide parameters in the `.jenkins.yml` file, such as:
 
-- `view_name`  - name of the jenkins view that your job will appear under. If no value is provided or no `.jenkins.yml` file is found, the job will appear under the `~ noView` view.
+- `view_name`  - name of the jenkins view that your job will appear under.
+If no value is provided or no `.jenkins.yml` file is found, the job will appear under the `~ noView` view.
 - `notification_email` - email address to send out notifications to when the jenkins job fails
 - `cron_schedule` - cron-based schedule for running the job. Default: 'H 3 * * *'
 - `auto_create` - if set to `false` no jenkins jobs will be created for the project. Default: true
 
-If your test project has various different run configurations, see [orb_test_support#rake-from-config](https://github.va.opower.it/auto/orb_test_support#rake-from-config) for how to set up the configuration to create your jobs. Run configuration parameters will override the correspoinding global project-wide parameters.
+If your test project has various different run configurations, see [orb_test_support#rake-from-config](https://github.va.opower.it/auto/orb_test_support#rake-from-config)
+for how to set up the configuration to create your jobs. Run configuration parameters will override the correspoinding global
+project-wide parameters.
 
-For gems, the build status for your job has already been templatized to the top of your README. 
+For gems, the build status for your job has already been templatized to the top of your README.
 
 ## Automatic Gem Deployment
 As of orb_archetyper 2.1.4, if you have included your project on the Jenkins whitelist mentioned above, your gem projects
-will be automatically published to the gemserver when a new version is checked into the Master build. See 
+will be automatically published to the gemserver when a new version is checked into the Master build. See
 [release task](https://github.va.opower.it/auto/orb_build_lifecycle) for details, specifically the `release` task.
 
 ## Contributing

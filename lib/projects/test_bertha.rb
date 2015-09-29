@@ -11,7 +11,7 @@ module Projects
       dev_gems.concat(
         [
           %w(bertha_common ~> 0.3),
-          %w(bertha_test_launcher ~> 0.2.1)
+          %w(bertha_test_launcher ~> 0.3)
         ]
       )
 

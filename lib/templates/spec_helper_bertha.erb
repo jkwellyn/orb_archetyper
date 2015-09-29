@@ -2,7 +2,8 @@ require 'orb_test_support/filesystem_helper'
 require 'bertha_test_launcher'
 
 RSpec.configure do |config|
-  include BerthaTestLauncher
+  include BerthaCommon::Common
+  include BerthaTest
   # Only accept expect syntax do not allow old should syntax
   config.expect_with :rspec do |c|
     c.syntax = :expect
@@ -13,5 +14,5 @@ require 'orb_logger'
 LOG ||= OrbLogger::OrbLogger.new
 LOG.progname = 'Test Execution' # TODO: replace with whatever progname you want
 
-BerthaTestLauncher.configuration_path = File.join(File.expand_path(File.dirname(__FILE__)),
-                                                  '..', 'config', 'job_configurations')
+BerthaTest.configuration_path =
+  File.join(File.expand_path(File.dirname(__FILE__)), '..', 'config', 'job_configurations')
