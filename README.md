@@ -47,12 +47,11 @@ This includes:
 3. Unit test coverage via simplecov
 4. Documentation via yard
 5. Style check via rubocop
-6. Annotations - annotation_manager built on top of rake-notes (TODO, FIXME, OPTIMIZE)
-7. Changelog - document changes between versions
-8. Git project initialization
-9. A build.sh script to simplify how Jenkins executes/invokes commands.
+6. Changelog - document changes between versions
+7. Git project initialization
+8. A build.sh script to simplify how Jenkins executes/invokes commands.
 This script can (and should) be used locally to double check your changes before pushing a PR.
-
+9. (gem projects only) A release.sh script to simplify how Jenkins releases the gem. 
 ## Usage
 
 ### Installation
@@ -105,22 +104,6 @@ Tasks to run tests:
     $ rake spec:full        # Run all tests
     $ rake spec:unit        # Run RSpec code examples
 
-### Versioning
-
-In the past, versions were stored as a Ruby String in version.rb. Now, we use the `.semver` file to store the versions.
-The `.semver` file should not be edited by hand, but manipulated programmatically via the
-[semver2 gem](https://rubygems.org/gems/semver2). After `bundle install` you will have an executable called `semver`
-on your path. Run `bundle exec semver help` for details.
-
-### Github Access
-
-In order for the Github interactions to work, please do the following:
-
-1. Go to `https://github.va.opower.it/settings/applications`
-2. Create a new token
-3. Add the following to your .bashrc: `export GITHUB_ACCESS_TOKEN=<token>`
-4. `. ~/.bashrc`
-
 ## CI Integration
 
 QA Jenkins Master - [http://qa-jenkins-master-1002.va.opower.it:8080/](http://qa-jenkins-master-1002.va.opower.it:8080/)
@@ -135,13 +118,18 @@ AND your project is either:
 - in the [auto](https://github.va.opower.it/auto) Github organization OR
 - listed on the `AUTO_PROJECT_WHITE_LIST` [whitelist of the job cutter](https://github.va.opower.it/auto/jenkins-seed/blob/master/src/main/groovy/opower/xweb/jenkins/jobs/JobWhiteLists.groovy)
 
+If you are not in the [auto](https://github.va.opower.it/auto) Github organization, please speak to someone in Automation Services about additional permissions (e.g. Jenkins user must be an owner in order to access webhooks).
+
 You can specify a number of global project-wide parameters in the `.jenkins.yml` file, such as:
 
-- `view_name`  - name of the jenkins view that your job will appear under.
-If no value is provided or no `.jenkins.yml` file is found, the job will appear under the `~ noView` view.
-- `notification_email` - email address to send out notifications to when the jenkins job fails
-- `cron_schedule` - cron-based schedule for running the job. Default: 'H 3 * * *'
-- `auto_create` - if set to `false` no jenkins jobs will be created for the project. Default: true
+  `view_name`                       name of the jenkins view that your job will appear under.
+                                    If no value is provided or no `.jenkins.yml` file is found, the job will appear under the `~ noView` view.
+  `notification_email`              email address to send out notifications to when the jenkins job fails
+  `cron_schedule`                   cron-based schedule for running the job. Default: 'H 3 * * *'
+  `auto_create`                     if set to `false` no jenkins jobs will be created for the project. Default: true
+  `auto_release`                    if set to `true`, a jenkins job will be created to release the project. Default: false
+  `test_ruby_versions`              space delimited list of ruby versions to run tests against. Only for gem projects
+  `release_ruby_version`            a single ruby version to perform the release of a gem in. Only for gem projects
 
 If your test project has various different run configurations, see [orb_test_support#rake-from-config](https://github.va.opower.it/auto/orb_test_support#rake-from-config)
 for how to set up the configuration to create your jobs. Run configuration parameters will override the correspoinding global
@@ -149,10 +137,45 @@ project-wide parameters.
 
 For gems, the build status for your job has already been templatized to the top of your README.
 
-## Automatic Gem Deployment
-As of orb_archetyper 2.1.4, if you have included your project on the Jenkins whitelist mentioned above, your gem projects
-will be automatically published to the gemserver when a new version is checked into the Master build. See
-[release task](https://github.va.opower.it/auto/orb_build_lifecycle) for details, specifically the `release` task.
+### Github Access
+
+In order for the Github interactions to work, please do the following:
+
+1. Go to `https://github.va.opower.it/settings/applications`
+2. Create a new token
+3. Add the following to your .bashrc: `export GITHUB_ACCESS_TOKEN=<token>`
+4. `. ~/.bashrc`
+
+## Gem Testing, Versioning, and Releasing
+orb_archetyper relies on the [`release` task](https://github.va.opower.it/auto/orb_build_lifecycle) of orb_build_lifecycle to release gems.
+
+## Testing against Multiple Ruby Versions
+If you wish to test your gem against multiple versions of Ruby, you can specify what version to use by setting the `test_ruby_versions` value in the `.jenkins.yml`. Currently, this list is a space delimited list of Ruby versions.
+
+```yaml
+# .jenkins.yml
+---
+project_type: core
+view_name:    auto_core
+test_ruby_versions: 1.9.3-p392 2.1.2 2.2.2
+release_ruby_version: 1.9.3-p392
+```
+
+The jenkins-seed project will read this configuration and set up your test job to be a matrix configured project. There will be a separate sub-job for each ruby version you specify and you will be able to see the status of your gem's test run against the different listed Ruby versions.
+![multi_ruby](https://github.va.opower.it/github-enterprise-assets/0000/0017/0000/2390/b0808860-6774-11e5-94e4-f2c70b4d4218.png)
+
+## Versioning
+
+In the past, versions were stored as a Ruby String in version.rb. Now, we use the `.semver` file to store the versions.
+The `.semver` file should not be edited by hand, but manipulated programmatically via the
+[semver2 gem](https://rubygems.org/gems/semver2). After `bundle install` you will have an executable called `semver`
+on your path. Run `bundle exec semver help` for details.
+
+## Automatic Gem Deployment Jenkins Job
+In order to turn on automatic release, you must specify `auto_release` to `true` in your `.jenkins.yml`. You will also need to set `release_ruby_version` with the version of Ruby you want to release with.
+
+Once this is turned on, you should see two Jenkins jobs get created - one to test your gem and one to release it.
+![release_job](https://github.va.opower.it/github-enterprise-assets/0000/0017/0000/2389/f7c20614-6773-11e5-9282-d14f70aa11bf.png)
 
 ## Contributing
 
