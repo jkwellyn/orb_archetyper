@@ -129,7 +129,7 @@ You can specify a number of global project-wide parameters in the `.jenkins.yml`
   cron_schedule                   cron-based schedule for running the job. Default: 'H 3 * * *'
   auto_create                     if set to `false` no jenkins jobs will be created for the project. Default: true
   auto_release                    if set to `true`, a jenkins job will be created to release the project. Default: false
-  test_ruby_versions              space delimited list of ruby versions to run tests against. Only for gem projects
+  test_ruby_versions              array of ruby version strings to run tests against. Only for gem projects
   release_ruby_version            a single ruby version to perform the release of a gem in. Only for gem projects
 ```
 

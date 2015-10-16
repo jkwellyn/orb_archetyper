@@ -1,3 +1,6 @@
+### [2.8.1] - 2015-10-15
+- Fixed .jenkins.yml test_ruby_versions format
+
 ### [2.8.0] - 2015-09-30
 - Updated bertha_test templates
 
