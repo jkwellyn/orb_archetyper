@@ -13,7 +13,7 @@ module Gems
     end
 
     def version_string
-      version.nil? ? '' : ", '#{range_specifier} #{version}'"
+      version ? ", '#{range_specifier} #{version}'" : ''
     end
   end
 end

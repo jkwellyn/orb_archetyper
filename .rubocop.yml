@@ -1,5 +1,3 @@
-inherit_from: .rubocop_todo.yml
-
 # do not check for utf stamp
 Encoding:
   Enabled: false
@@ -8,16 +6,17 @@ LineLength:
   Enabled: true
   Max: 128
 
-# Documentation cop is a duplicate of the Reek IrresponsibleModule check.
 Documentation:
   Enabled: false
 
 CaseIndentation:
   Enabled: false
 
-# MethodLength is superseded by Reek's TooManyStatements smell-finder.
 MethodLength:
   Enabled: false
 
 CyclomaticComplexity:
+  Max: 10
+
+Metrics/PerceivedComplexity:
   Max: 10

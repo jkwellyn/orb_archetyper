@@ -1,9 +1,10 @@
-.idea
-*.iml
 *.gem
+*.iml
+*.log
 *.rbc
 .bundle
 .config
+.idea
 .rvmrc
 .yardoc
 InstalledFiles
@@ -19,6 +20,5 @@ test/version_tmp
 tmp
 temp
 vendor
-*.log
 annotations_report.html
 annotations.yml

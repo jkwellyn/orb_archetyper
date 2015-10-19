@@ -3,7 +3,7 @@ require 'semver'
 class OrbCLI < Thor
   desc 'fork REPO', 'Fork a github repo. Repo name should include organization prefix, e.g. opower/myproject'
   def fork(repo)
-    ForkGenerator.new.generate(repo)
+    ForkGenerator.generate(repo)
   end
 
   desc 'version', 'Display version information'
