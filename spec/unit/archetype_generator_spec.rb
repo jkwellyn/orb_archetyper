@@ -1,4 +1,4 @@
-require_relative '../../lib/archetype_generator'
+require_relative '../../lib/orb_archetyper/archetype_generator'
 
 module OrbArchetyper
   describe ArchetypeGenerator do

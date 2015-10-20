@@ -1,4 +1,4 @@
-require_relative '../../lib/archetype_generator'
+require_relative '../../lib/orb_archetyper/archetype_generator'
 require_relative '../../lib/projects/test'
 require_relative '../../lib/orb_archetyper/rules/naming_conventions/file_names'
 require_relative 'e2e_spec_helper'

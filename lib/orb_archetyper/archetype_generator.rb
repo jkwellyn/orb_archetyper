@@ -1,5 +1,5 @@
-require_relative 'helpers/file_utils'
-require_relative 'projects/project_factory'
+require_relative 'file_utils'
+require_relative '../projects/project_factory'
 require 'ansi'
 require 'erb'
 require 'orb_github_project/project'

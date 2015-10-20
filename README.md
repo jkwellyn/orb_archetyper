@@ -51,7 +51,8 @@ This includes:
 7. Git project initialization
 8. A build.sh script to simplify how Jenkins executes/invokes commands.
 This script can (and should) be used locally to double check your changes before pushing a PR.
-9. (gem projects only) A release.sh script to simplify how Jenkins releases the gem. 
+9. (gem projects only) A release.sh script to simplify how Jenkins releases the gem.
+
 ## Usage
 
 ### Installation
@@ -106,7 +107,7 @@ Tasks to run tests:
 
 ## CI Integration
 
-QA Jenkins Master - [http://qa-jenkins-master-1002.va.opower.it:8080/](http://qa-jenkins-master-1002.va.opower.it:8080/)
+QA Jenkins Master - http://qa-jenkins-master-1002.va.opower.it:8080
 
 Jobs for the master branch and for any PRs will automatically get created if:
 
@@ -123,14 +124,14 @@ If you are not in the [auto](https://github.va.opower.it/auto) Github organizati
 You can specify a number of global project-wide parameters in the `.jenkins.yml` file, such as:
 
 ```
-  view_name                       name of the jenkins view that your job will appear under.
-                                  If no value is provided or no `.jenkins.yml` file is found, the job will appear under the `~ noView` view.
-  notification_email              email address to send out notifications to when the jenkins job fails
-  cron_schedule                   cron-based schedule for running the job. Default: 'H 3 * * *'
-  auto_create                     if set to `false` no jenkins jobs will be created for the project. Default: true
-  auto_release                    if set to `true`, a jenkins job will be created to release the project. Default: false
-  test_ruby_versions              array of ruby version strings to run tests against. Only for gem projects
-  release_ruby_version            a single ruby version to perform the release of a gem in. Only for gem projects
+  view_name                  # Name of the jenkins view that your job will appear under
+                             # If no value is provided or no `.jenkins.yml` file is found, the job will appear under the `~noView` view
+  notification_email         # Email address to send out notifications to when the jenkins job fails
+  cron_schedule              # cron-based schedule for running the job. Default: 'H 3 * * *'
+  auto_create                # If set to `false` no jenkins jobs will be created for the project. Default: true
+  auto_release               # If set to `true`, a jenkins job will be created to release the project. Default: false
+  test_ruby_versions         # Array of ruby version strings to run tests against. Only for gem projects
+  release_ruby_version       # A single ruby version to perform the release of a gem in. Only for gem projects
 ```
 
 If your test project has various different run configurations, see [orb_test_support#rake-from-config](https://github.va.opower.it/auto/orb_test_support#rake-from-config)
@@ -152,18 +153,20 @@ In order for the Github interactions to work, please do the following:
 orb_archetyper relies on the [`release` task](https://github.va.opower.it/auto/orb_build_lifecycle) of orb_build_lifecycle to release gems.
 
 ## Testing against Multiple Ruby Versions
-If you wish to test your gem against multiple versions of Ruby, you can specify what version to use by setting the `test_ruby_versions` value in the `.jenkins.yml`. Currently, this list is a space delimited list of Ruby versions.
+
+If you wish to test your gem against multiple versions of Ruby, you can specify what version to use by setting the `test_ruby_versions` value in the `.jenkins.yml`.
 
 ```yaml
 # .jenkins.yml
 ---
-project_type: core
-view_name:    auto_core
-test_ruby_versions: 1.9.3-p392 2.1.2 2.2.2
+project_type:         core
+view_name:            auto_core
+test_ruby_versions:   [1.9.3-p392, 2.1.2, 2.2.2]
 release_ruby_version: 1.9.3-p392
 ```
 
-The jenkins-seed project will read this configuration and set up your test job to be a matrix configured project. There will be a separate sub-job for each ruby version you specify and you will be able to see the status of your gem's test run against the different listed Ruby versions.
+The jenkins-seed project will read this configuration and set up your test job to be a matrix configured project.
+There will be a separate sub-job for each ruby version you specify and you will be able to see the status of your gem's test run against the different listed Ruby versions.
 ![multi_ruby](https://github.va.opower.it/github-enterprise-assets/0000/0017/0000/2390/b0808860-6774-11e5-94e4-f2c70b4d4218.png)
 
 ## Versioning
@@ -174,7 +177,8 @@ The `.semver` file should not be edited by hand, but manipulated programmaticall
 on your path. Run `bundle exec semver help` for details.
 
 ## Automatic Gem Deployment Jenkins Job
-In order to turn on automatic release, you must specify `auto_release` to `true` in your `.jenkins.yml`. You will also need to set `release_ruby_version` with the version of Ruby you want to release with.
+In order to turn on automatic release, you must specify `auto_release` to `true` in your `.jenkins.yml`.
+You will also need to set `release_ruby_version` with the version of Ruby you want to release with.
 
 Once this is turned on, you should see two Jenkins jobs get created - one to test your gem and one to release it.
 ![release_job](https://github.va.opower.it/github-enterprise-assets/0000/0017/0000/2389/f7c20614-6773-11e5-9282-d14f70aa11bf.png)

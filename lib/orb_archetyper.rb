@@ -1,0 +1,2 @@
+require_relative 'orb_archetyper/archetype_generator'
+require_relative 'orb_archetyper/fork_generator'

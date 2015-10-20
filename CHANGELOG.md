@@ -1,3 +1,6 @@
+### [2.8.2] - 2015-10-19
+- Reorganized files under lib
+
 ### [2.8.1] - 2015-10-15
 - Fixed .jenkins.yml test_ruby_versions format
 

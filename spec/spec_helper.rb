@@ -18,4 +18,4 @@ end
 
 require 'orb_logger'
 LOG ||= OrbLogger::OrbLogger.new
-LOG.progname = 'orb-archetyper tests'
+LOG.progname = 'orb-spec'
