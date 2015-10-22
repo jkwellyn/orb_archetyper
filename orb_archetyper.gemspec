@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   # Dev Dependencies
-  spec.add_development_dependency('orb_build_lifecycle', '~> 1.3')
+  spec.add_development_dependency('orb_build_lifecycle', '~> 3.0')
   spec.add_development_dependency('orb_test_support', '~> 3.1')
 
   # Runtime dependencies
