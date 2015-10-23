@@ -20,13 +20,14 @@ module Projects
 
       dev_gems.concat(
         [
-          %w(orb_configuration ~> 1.2)
+          %w(orb_configuration ~> 1.2),
+          %w(orb_build_lifecycle ~> 3.0)
         ]
       )
 
       runtime_gems.concat(
         [
-          %w(orb_build_lifecycle ~> 2.2)
+          %w(semver2 ~> 3.4)
         ]
       )
 

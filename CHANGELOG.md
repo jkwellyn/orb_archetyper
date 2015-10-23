@@ -1,3 +1,6 @@
+### [2.9.0] - 2015-10-21
+- Simplify gem versioning to not require orb_build_lifecycle at runtime
+
 ### [2.8.2] - 2015-10-19
 - Reorganized files under lib
 
