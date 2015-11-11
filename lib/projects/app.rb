@@ -13,7 +13,6 @@ module Projects
       dev_gems.concat(
         [
           %w(rake ~> 10.1),
-          %w(annotation_manager ~> 1.0),
           %w(yard ~> 0.8),
           %w(redcarpet ~> 2.3),
           %w(rubocop = 0.26.1)

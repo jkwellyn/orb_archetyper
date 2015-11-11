@@ -2,7 +2,6 @@ require 'fileutils'
 require_relative 'app'
 require_relative '../template_classes/tasks_test'
 require_relative '../template_classes/build_shell_app'
-require_relative '../template_classes/dot_ruby_version'
 require_relative '../template_classes/config_yml_test'
 
 module Projects
@@ -23,7 +22,6 @@ module Projects
         [
           TemplateTasksTest,
           TemplateBuildShellApp,
-          TemplateDotRubyVersion,
           TemplateConfigYmlTest
         ]
       )
