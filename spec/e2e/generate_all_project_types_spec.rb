@@ -37,7 +37,6 @@ module Projects
           expect_path_to_exist(true, expected_spec_accept_path, 'secondary')
           expect_path_to_exist(true, project_name, 'Gemfile')
           expect_path_to_exist(true, project_name, 'build.sh')
-          expect_path_to_exist(true, project_name, '.ruby-version')
         end
 
         project_gem_expectations(project_type) do
@@ -57,7 +56,7 @@ module Projects
           github_project.commit('initial commit')
           script_output = ''
           Bundler.with_clean_env do
-            script_output = `unset RELEASE; export RUBY_VERSIONS=1.9.3-p392 && ./build.sh`
+            script_output = `./build.sh`
           end
           LOG.info(script_output)
           expect($CHILD_STATUS.success?).to be true

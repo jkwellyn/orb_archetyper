@@ -1,10 +1,10 @@
 # .jenkins.yml
 ---
-project_type:       <%= project_type %>
-# view_name:          '~ noView'    # name of the jenkins view the project will be assigned to, replace with your own
-# notification_email:  your_team@opower.com
-# cron_schedule:      'H 3 * * *'
-# auto_create:         true
-# test_ruby_versions: [1.9.3-p392] # GEM: array of ruby version strings you want to test against. For example, [1.9.3-p392, 2.1.0]
+project_type:         <%= project_type %>
+# view_name:            ~ noView    # name of the jenkins view the project will be assigned to, replace with your own
+# notification_email:   your_team@opower.com
+# cron_schedule:        H H * * *
+# auto_create:          true
+# test_ruby_versions:   [1.9.3-p392] # GEM: array of ruby version strings you want to test against. For example, [1.9.3-p392, 2.1.0]
                                    # TEST: specify only 1 ruby version to run tests against. if you specify more than 1, only the first one will be used
 # release_ruby_version: 1.9.3-p392 # GEM PROJECTS ONLY: ONE ruby version to release the gem with

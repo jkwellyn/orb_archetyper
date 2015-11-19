@@ -1,3 +1,6 @@
+### [2.10.0] - 2015-11-10
+- AUTO-917 remove rvm/rbenv from build.sh and release.sh templates, AUTO-905 remove annotation_manager
+
 ### [2.9.0] - 2015-10-21
 - Simplify gem versioning to not require orb_build_lifecycle at runtime
 

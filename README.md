@@ -127,7 +127,7 @@ You can specify a number of global project-wide parameters in the `.jenkins.yml`
   view_name                  # Name of the jenkins view that your job will appear under
                              # If no value is provided or no `.jenkins.yml` file is found, the job will appear under the `~noView` view
   notification_email         # Email address to send out notifications to when the jenkins job fails
-  cron_schedule              # cron-based schedule for running the job. Default: 'H 3 * * *'
+  cron_schedule              # cron-based schedule for running the job. Default: 'H H * * *'
   auto_create                # If set to `false` no jenkins jobs will be created for the project. Default: true
   auto_release               # If set to `true`, a jenkins job will be created to release the project. Default: false
   test_ruby_versions         # Array of ruby version strings to run tests against. Only for gem projects
