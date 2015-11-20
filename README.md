@@ -130,12 +130,12 @@ You can specify a number of global project-wide parameters in the `.jenkins.yml`
   cron_schedule              # cron-based schedule for running the job. Default: 'H H * * *'
   auto_create                # If set to `false` no jenkins jobs will be created for the project. Default: true
   auto_release               # If set to `true`, a jenkins job will be created to release the project. Default: false
-  test_ruby_versions         # Array of ruby version strings to run tests against. Only for gem projects
+  test_ruby_versions         # GEM: array of ruby version strings you want to test against. TEST: specify only 1 ruby version to run tests against. if you specify more than 1, only the first one will be used
   release_ruby_version       # A single ruby version to perform the release of a gem in. Only for gem projects
 ```
 
-If your test project has various different run configurations, see [orb_test_support#rake-from-config](https://github.va.opower.it/auto/orb_test_support#rake-from-config)
-for how to set up the configuration to create your jobs. Run configuration parameters will override the correspoinding global
+If your test project has various different run configurations, see [orb_test_support#specfrom_config](https://github.va.opower.it/auto/orb_test_support#specfrom_config)
+for how to set up the configuration to create your jobs. Run configuration parameters will override the corresponding global
 project-wide parameters.
 
 For gems, the build status for your job has already been templatized to the top of your README.
