@@ -1,3 +1,6 @@
+### [2.11.0] - 2015-12-02
+- AUTO-971 Remove reliance on semver gem for determining version.
+
 ### [2.10.0] - 2015-11-10
 - AUTO-917 remove rvm/rbenv from build.sh and release.sh templates, AUTO-905 remove annotation_manager
 

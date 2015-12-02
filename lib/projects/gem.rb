@@ -27,7 +27,6 @@ module Projects
 
       runtime_gems.concat(
         [
-          %w(semver2 ~> 3.4)
         ]
       )
 
