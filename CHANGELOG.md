@@ -1,3 +1,6 @@
+### [2.11.1] - 2015-12-014
+- AUTO-950 Add docs and template change for results persistence
+
 ### [2.11.0] - 2015-12-02
 - AUTO-971 Remove reliance on semver gem for determining version.
 
