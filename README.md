@@ -140,6 +140,16 @@ project-wide parameters.
 
 For gems, the build status for your job has already been templatized to the top of your README.
 
+### Test Results Persistence
+If you want to configure a test project to push test results to our -currently in development- repository,
+you will need to set the following in your `.jenkins.yml`:
+
+`persist_test_results: true`
+
+This will automatically create a downstream job that will publish your test results to a location where they can
+be consumed by our test results repository. These test results will be stored and available for analysis by managers
+and other folks interested in histogram type analysis.
+
 ### Github Access
 
 In order for the Github interactions to work, please do the following:
