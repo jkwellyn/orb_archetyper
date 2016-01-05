@@ -1,0 +1,7 @@
+# project metadata
+---
+description: Tool to generate Orb based projects
+type:        gem
+language:    Ruby
+authors:     ['Automation Services']
+email:       [automation.services@opower.com]

@@ -6,6 +6,7 @@ require_relative '../template_classes/build_shell'
 require_relative '../template_classes/changelog'
 require_relative '../template_classes/rakefile'
 require_relative '../template_classes/dot_jenkins_yml'
+require_relative '../template_classes/dot_project_yml'
 require_relative '../template_classes/dot_rspec'
 require_relative '../template_classes/dot_rubocop_yml'
 require_relative '../template_classes/empty_dir'
@@ -37,7 +38,10 @@ module Projects
           TemplateDotRubocopYml
         ]
       )
-      @templates << TemplateArchetyperMetadata.new(@project_name, @module_name, project_type: @project_type)
+
+      [TemplateDotJenkinsYml, TemplateDotProjectYml].each do |template_class|
+        @templates << template_class.new(@project_name, @module_name, project_type: @project_type)
+      end
 
       # TODO: break the specifier into own element?
       @dev_gems = []

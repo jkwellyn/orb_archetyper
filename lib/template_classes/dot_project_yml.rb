@@ -1,13 +1,13 @@
 require_relative 'base'
 require_relative '../orb_archetyper/rules/naming_conventions/file_names'
 
-class TemplateDotJenkinsYml < Template
+class TemplateDotProjectYml < Template
   def template_file
-    'dot_jenkins_yml.erb'
+    'dot_project_yml.erb'
   end
 
   def output_file
-    '.jenkins.yml'
+    '.project.yml'
   end
 
   def project_type
