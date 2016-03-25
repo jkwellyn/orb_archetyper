@@ -1,6 +1,7 @@
 # .jenkins.yml
 ---
-project_type: core
-view_name:    auto_core
-test_ruby_versions:   ['1.9.3-p392', '2.1.2', '2.2.2']
+project_type:  core
+view_name:     auto_core
+cron_schedule: 'H H * * *'
+test_ruby_versions:   [1.9.3-p392, 2.1.2, 2.2.2]
 release_ruby_version: 1.9.3-p392
