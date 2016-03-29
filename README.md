@@ -11,6 +11,10 @@ orb_archetyper generates two general types of projects - test projects and gem p
 Description: Tests that can be configured to be executed against a number of deployment tiers.
 A `bertha_test` project is a more specialized `test` project that includes configuration files specifically to test Bertha jobs.
 
+If you create a bertha_test project, an additional configuration file (temporarily named `job_name.yml`) is created in the 
+config/job_configurations folder. Rename this file to your job's name and put any configurations for the Bertha job. If you have multiple
+Bertha jobs, create more configuration files in this folder.
+
 Key Differences from Gem projects:
  - Test projects should include a Gemfile.lock (and lack a .gemspec as they are not gems) as test projects are essentially applications
  that can be run across multiple machines, and the precision enforced by bundler is extremely desirable to ensure consistent,

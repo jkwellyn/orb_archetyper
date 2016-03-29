@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    orb_archetyper (2.12.1)
+    orb_archetyper (2.13.0)
       activesupport
       ansi (~> 1.4)
       git (~> 1.2)
@@ -166,4 +166,4 @@ DEPENDENCIES
   orb_test_support (~> 3.1)
 
 BUNDLED WITH
-   1.10.6
+   1.11.2

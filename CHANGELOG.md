@@ -1,3 +1,6 @@
+### [2.13.0] - 2016-03-29
+* Switch projects from orb_configuration to clean_config
+
 ### [2.12.1] - 2016-03-25
 * Update changelog template
 
