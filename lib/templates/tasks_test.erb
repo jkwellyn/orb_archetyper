@@ -16,5 +16,6 @@ require 'orb_test_support/tasks/spec_common'
 require 'orb_test_support/tasks/spec_test'
 
 # Load the test execution configuration
-OrbConfiguration::Configuration.instance.load!
+require 'clean_config'
+CleanConfig::Configuration.instance.load!
 require 'orb_test_support/tasks/spec_config'

@@ -14,7 +14,7 @@ module Projects
       dev_gems.concat(
         [
           %w(orb_test_support ~> 3.1),
-          %w(orb_configuration ~> 1.2)
+          %w(clean_config ~> 0.0.2)
         ]
       )
 
