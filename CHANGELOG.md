@@ -1,3 +1,6 @@
+### [2.13.1] - 2016-08-12
+* Updated `tasks.rb` for `test` project types to require `spec_config` only once, after configuration is loaded
+
 ### [2.13.0] - 2016-03-29
 * Switch projects from orb_configuration to clean_config
 
