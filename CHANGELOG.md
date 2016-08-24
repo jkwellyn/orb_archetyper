@@ -1,3 +1,6 @@
+### [2.13.2] - 2016-08-18
+* add note about utils view in .jenkins.yml template
+
 ### [2.13.1] - 2016-08-12
 * Updated `tasks.rb` for `test` project types to require `spec_config` only once, after configuration is loaded
 
